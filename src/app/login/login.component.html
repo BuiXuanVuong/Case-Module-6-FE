@@ -59,10 +59,10 @@
                 <span>sign in now and meet the awesome Friends around the world.</span>
               </div>
               <form  class="we-form"   [formGroup]="loginAccountForm" (ngSubmit)="createSubmit()">
-                <input type="text" placeholder="Username" formControlName="name" required="required" >
-                <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                <input type="text" placeholder="Email" formControlName="email" required="required" >
+                <div *ngIf="email.invalid && (email.dirty || email.touched)"
                 >
-                  <div *ngIf="name.errors.required" style="color: #4c4eaa">
+                  <div *ngIf="email.errors.required" style="color: #4c4eaa">
                     Tên không được bỏ trống
                   </div>
 

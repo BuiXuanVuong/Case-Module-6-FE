@@ -3,7 +3,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {TokenStorageService} from '../service/token-storage.service';
 import {AuthenService} from '../service/authen.service';
-import {IAccount} from '../model/iaccount';
+// @ts-ignore
+import {IAccount} from '../model/Iaccount';
 
 @Component({
   selector: 'app-login',
@@ -16,13 +17,12 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
+  // accountEmail = this.tokenStorage.getAccount();
 
   constructor(private authService: AuthenService,
               private tokenStorage: TokenStorageService,
               private fb: FormBuilder,
-              private router: Router) {
-
-  }
+              private router: Router) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()){
@@ -30,10 +30,11 @@ export class LoginComponent implements OnInit {
 
     }
     this.loginAccountForm = this.fb.group({
-      name: ['', [Validators.required, Validators.name]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
+
   createSubmit(): void{
     const account: IAccount = this.loginAccountForm.value;
     this.authService.login(account).subscribe(
@@ -41,13 +42,12 @@ export class LoginComponent implements OnInit {
         console.log(data);
         // tslint:disable-next-line:triple-equals
         if (data.message == 'Login success'){
-          console.log("ok");
           this.isLoggedIn = true;
           this.tokenStorage.saveToken(data.token);
           this.tokenStorage.saveAccount(data.account_id);
           this.router.navigate(['/']);
           // tslint:disable-next-line:triple-equals
-        }else if (data.message == 'Tên hoặc mật khẩu không đúng'){
+        }else if (data.message == 'Email hoặc mật khẩu không đúng'){
           this.isLoginFailed = true;
           this.errorMessage = data.message;
         }
@@ -65,8 +65,8 @@ export class LoginComponent implements OnInit {
     window.location.reload();
   }
 
-  get name(){
-    return this.loginAccountForm.get('name');
+  get email(){
+    return this.loginAccountForm.get('email');
   }
 
   get password(){

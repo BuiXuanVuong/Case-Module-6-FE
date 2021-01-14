@@ -13,7 +13,7 @@ import {CreatePostComponent} from './create-post/create-post.component';
 import {PostListComponent} from './post-list/post-list.component';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
+  {path: '', component: LoginComponent},
   {path: 'about', component: AboutComponent},
   {path: 'friend', component: FriendComponent},
   {path: 'group', component: GroupComponent},
