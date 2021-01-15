@@ -17,7 +17,7 @@ export class AppComponent {
   // @ts-ignore
   downloadURL: Observable<any>;
   constructor(private storage: AngularFireStorage) {}
-  onFileSelected(event) {
+  onFileSelected(event: { target: { files: any[]; }; }): any {
     const n = Date.now();
     const file = event.target.files[0];
     const filePath = `RoomsImages/${n}`;
