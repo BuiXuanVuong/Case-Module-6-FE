@@ -1,1 +1,15 @@
-<p>friend-list-suggest works!</p>
+<h2>List Friend Suggest</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>User Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let username of friendListSuggest">
+      <td> {{username.userName}}</td>
+    </tr>
+  </tbody>
+
+
+</table>
