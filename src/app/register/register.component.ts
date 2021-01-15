@@ -6,6 +6,7 @@ import {IAccount} from '../model/iaccount';
 import {AccountNofiticationService} from '../service/nofitication/account-nofitication.service';
 import {AuthenService} from '../service/authen.service';
 import {AccountService} from '../service/account.service';
+import {NofiticationService} from '../service/nofitication.service';
 
 
 @Component({
@@ -17,19 +18,16 @@ export class RegisterComponent implements OnInit {
   errorMessage = '';
   // @ts-ignore
   registerForm: FormGroup;
-  confirmPassword = '';
   isRegisterFail = false;
 
-
-  constructor(private router: Router,
-              private accountService: AccountService,
+  constructor(private accountService: AccountService,
               private formBuilder: FormBuilder,
-              private authService: AuthenService,
-              private tokenStorage: TokenStorageService,
-              private notificationService: AccountNofiticationService) { }
+              private router: Router,
+              private authenService: AuthenService,
+              ){ }
 
   ngOnInit(): void {
-    if (this.authService.isLogin()){
+    if (this.authenService.isLogin()){
       alert('Bạn đã Đăng Nhập');
       this.router.navigate(['login']);
     }
@@ -38,18 +36,21 @@ export class RegisterComponent implements OnInit {
       name: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+
   }
+
+
   submitRegister() {
     const newAccount: IAccount = this.registerForm.value;
-    // tslint:disable-next-line:triple-equals
-    if (this.confirmPassword == newAccount.password){
-      this.accountService.createAccount(newAccount).subscribe(
+    console.log(newAccount);
+    this.accountService.createAccount(newAccount).subscribe(
         (data) => {
-          // tslint:disable-next-line:triple-equals
+          // @ts-ignore
           if (data.message == 'Đăng ký thành công'){
-            alert('Đăng ký thành công');
+            console.log('Đăng ký thành công');
             this.router.navigate(['login']);
           }else {
+            // @ts-ignore
             this.errorMessage = data.message;
 
           }
@@ -58,15 +59,9 @@ export class RegisterComponent implements OnInit {
 
           console.log(data); },
         () => {
-          // @ts-ignore
-          this.notificationService.fail('Đăng ký không thành công');
+          console.log('Đăng kí không thành công');
         }
       );
-    }else {
-      // @ts-ignore
-      this.notificationService.fail('Mật khẩu không khớp');
-    }
-
   }
 
   get name(){
@@ -80,6 +75,7 @@ export class RegisterComponent implements OnInit {
   get password(){
     return this.registerForm.get('password');
   }
+
 
 
 }

@@ -1,23 +1,21 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Post} from '../post';
-import {PostService} from '../post.service';
-import {Router} from '@angular/router';
 import {IAccount} from '../model/iaccount';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {IImage} from '../model/iimage';
 import {TokenStorageService} from '../service/token-storage.service';
 import {StatusService} from '../service/status.service';
-import {NofiticationService} from '../service/nofitication.service';
+import {Router} from '@angular/router';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {NofiticationService} from '../service/nofitication.service';
 import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
+import {IImage} from '../model/iimage';
 
 @Component({
-  selector: 'app-timeline',
-  templateUrl: './timeline.component.html',
-  styleUrls: ['./timeline.component.css']
+  selector: 'app-status-form',
+  templateUrl: './status-form.component.html',
+  styleUrls: ['./status-form.component.css']
 })
-export class TimelineComponent implements OnInit {
+export class StatusFormComponent implements OnInit {
   @Input()
   currentAccount: IAccount = {
     // @ts-ignore
@@ -62,14 +60,12 @@ export class TimelineComponent implements OnInit {
         url: image
       }];
     }
-    // tslint:disable-next-line:triple-equals
     if (dataSent.content == '') {
       this.notice.fail('Hãy điền vào form.');
       return;
     } else {
       this.statusService.createStatus(this.currentAccount.id, dataSent).subscribe(
         (data) => {
-          // tslint:disable-next-line:triple-equals
           if (data.message == 'success') {
             this.notice.success('Đăng status thành công!');
             window.location.reload();
@@ -127,4 +123,7 @@ export class TimelineComponent implements OnInit {
     }
 
   }
+
+
+
 }

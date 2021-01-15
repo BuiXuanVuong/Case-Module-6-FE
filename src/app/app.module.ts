@@ -24,6 +24,9 @@ import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireStorage, AngularFireStorageModule} from '@angular/fire/storage';
+import { StatusComponent } from './status/status.component';
+import { StatusFormComponent } from './status-form/status-form.component';
+import { StatusEditComponent } from './status-edit/status-edit.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,9 @@ import {AngularFireStorage, AngularFireStorageModule} from '@angular/fire/storag
     EmployeeListComponent,
     PostListComponent,
     HeaderComponent,
+    StatusComponent,
+    StatusFormComponent,
+    StatusEditComponent,
   ],
   imports: [
     BrowserModule,

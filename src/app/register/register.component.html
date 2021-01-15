@@ -64,6 +64,7 @@
                   </div>
 
                 </div>
+
                 <button [disabled]="registerForm.invalid"  type="submit" data-ripple="">Register</button>
                 <div *ngIf="isRegisterFail">
                   <div class="alert alert-danger">
@@ -71,7 +72,6 @@
                   </div>
                 </div>
 
-                <a class="forgot underline" [(ngModel)]="confirmPassword" [ngModelOptions]="{standalone: true}" title="">forgot password?</a>
               </form>
               <a data-ripple="" title="" href="#" class="with-smedia facebook"><i class="fa fa-facebook"></i></a>
               <a data-ripple="" title="" href="#" class="with-smedia twitter"><i class="fa fa-twitter"></i></a>

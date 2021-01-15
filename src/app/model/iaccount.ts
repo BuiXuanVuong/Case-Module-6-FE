@@ -5,6 +5,5 @@ export interface IAccount {
   password: string;
   phone?: number;
   birthday?: string;
-  image?: string;
 
 }

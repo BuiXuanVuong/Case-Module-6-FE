@@ -17,8 +17,8 @@ export class AccountService {
   getAccount(id: number): Observable<IAccount>{
     return this.httpClient.get<IAccount>(`${this.API_URL}/${id}`);
   }
-  createAccount(data: IAccount): Observable<any>{
-    return this.httpClient.post(this.API_URL, data);
+  createAccount(data: IAccount): Observable<IAccount>{
+    return this.httpClient.post<IAccount>(`${this.API_URL}`, data);
   }
   deleteAccount(id: number): Observable<any>{
     return this.httpClient.delete(`${this.API_URL}/${id}`);

@@ -11,6 +11,9 @@ import {LoginComponent} from './login/login.component';
 import {SettingComponent} from './setting/setting.component';
 import {CreatePostComponent} from './create-post/create-post.component';
 import {PostListComponent} from './post-list/post-list.component';
+import {StatusComponent} from './status/status.component';
+import {StatusEditComponent} from './status-edit/status-edit.component';
+import {StatusFormComponent} from './status-form/status-form.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -19,11 +22,13 @@ const routes: Routes = [
   {path: 'group', component: GroupComponent},
   {path: 'photo', component: PhotoComponent},
   {path: 'video', component: VideoComponent},
-  {path: '**', component: RegisterComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'timeline', component: TimelineComponent},
   {path: 'setting', component: SettingComponent},
   {path: 'create-post', component: CreatePostComponent},
   {path: 'posts', component: PostListComponent},
+  {path: 'status-form', component: StatusFormComponent},
+  {path: 'status-edit', component: StatusEditComponent}
 ];
 
 @NgModule({
