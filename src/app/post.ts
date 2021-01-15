@@ -1,5 +1,7 @@
 export interface Post {
   id: number;
-  content: string;
-  image: string;
+  status_body: string;
+  wall_id: string;
+  repliedStatusMessages: any[];
+  poster: any[];
 }
