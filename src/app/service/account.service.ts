@@ -3,12 +3,14 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IAccount} from '../model/iaccount';
+import {Iuser} from '../model/iuser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   private API_URL = environment.URL;
+  private BASE_URL = environment.BASE_URL;
 
   constructor(private httpClient: HttpClient) { }
   getAccountList(): Observable<any>{
@@ -25,6 +27,11 @@ export class AccountService {
   }
   updateAccount(data: IAccount): Observable<any>{
     return this.httpClient.put(`${this.API_URL}/${data.id}`, data);
+  }
+
+  getAccountListSuggest(): Observable<Iuser[]> {
+    // @ts-ignore
+    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/user`);
   }
 
 }
