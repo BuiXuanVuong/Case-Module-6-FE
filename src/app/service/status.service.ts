@@ -31,7 +31,7 @@ export class StatusService {
     return this.http.get<IStatus>(`${this.API_URL}/${id}`);
   }
   createStatus(id: number | undefined, data: IStatus): Observable<any>{
-    return this.http.post(`${this.API_URL}/${id}`, data);
+    return this.http.post(`${this.API_URL}/${1}`, data);
   }
 
   editStatus( id: number, data: any): Observable<any>{
