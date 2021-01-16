@@ -13,6 +13,8 @@ import {CreatePostComponent} from './create-post/create-post.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {StatusEditComponent} from './status-edit/status-edit.component';
 import {StatusFormComponent} from './status-form/status-form.component';
+
+// @ts-ignore
 import {FriendListSuggestComponent} from './friend-list-suggest/friend-list-suggest.component';
 import {InviteFriendComponent} from './invite-friend/invite-friend.component';
 
@@ -24,7 +26,7 @@ const routes: Routes = [
   {path: 'photo', component: PhotoComponent},
   {path: 'video', component: VideoComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'timeline', component: TimelineComponent},
+  {path: 'timeline/:id', component: TimelineComponent},
   {path: 'setting', component: SettingComponent},
   {path: 'create-post', component: CreatePostComponent},
   {path: 'posts', component: PostListComponent},

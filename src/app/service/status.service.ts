@@ -12,6 +12,7 @@ import {INewfeedResponse} from '../model/inewfeed-response';
 export class StatusService {
 
   private API_URL = environment.API_URL;
+  private BASE_URL = environment.BASE_URL;
 
 
   constructor(private http: HttpClient,
@@ -37,4 +38,9 @@ export class StatusService {
   editStatus( id: number, data: any): Observable<any>{
     return this.http.put(`${this.API_URL}/${id}`, data);
   }
+
+  getAllStatus(): Observable<IStatus[]> {
+    return this.http.get<IStatus[]>(`${this.BASE_URL}/home/1`);
+  }
+
 }

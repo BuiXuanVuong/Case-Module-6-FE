@@ -19,12 +19,27 @@ import {finalize} from 'rxjs/operators';
 })
 export class TimelineComponent implements OnInit {
 
+  public id: any;
+  // @ts-ignore
+  statuses: IStatus[];
 
-  constructor( ) {
+  constructor(private statusService: StatusService,
+              route: Router) {
   }
 
   ngOnInit(): void {
+    // @ts-ignore
+    this.getStatuses(this.id);
   }
+
+  private getStatuses(id: any) {
+    // @ts-ignore
+    this.statusService.getAllStatus(id).subscribe(data => {
+      this.statuses = data;
+    });
+  }
+
+
 
 
 }

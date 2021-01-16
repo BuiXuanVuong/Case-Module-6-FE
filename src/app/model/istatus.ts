@@ -1,4 +1,5 @@
 import {IComment} from './icomment';
+import {StatusReply} from './status-reply';
 export interface IStatus {
   id: number;
   content: string;
@@ -8,10 +9,7 @@ export interface IStatus {
   images: any;
   totalComments?: number;
   totalLikes?: number;
-  comments?: IComment[];
-
-
-
-
+  repliedStatusMessages?: StatusReply[];
+  imageURL: string;
 
 }
