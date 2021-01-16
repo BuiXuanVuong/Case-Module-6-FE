@@ -22,4 +22,12 @@ export class InviteFriendComponent implements OnInit {
     });
   }
 
+  private getListInvite(username: any) {
+    // @ts-ignore
+    this.accountService.getListInvite(username).subscribe(data => {
+      // @ts-ignore
+      this.friendListSuggest = data;
+    });
+  }
+
 }

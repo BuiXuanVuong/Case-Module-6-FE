@@ -54,4 +54,8 @@ export class AccountService {
     return this.httpClient.get(`${this.BASE_URL}/connect/1`);
   }
 
+  // getListInvite(): Observable<any> {
+  //   return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/user/`)
+  // }
+
 }
