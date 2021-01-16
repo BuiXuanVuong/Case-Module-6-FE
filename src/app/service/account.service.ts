@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {IAccount} from '../model/iaccount';
 import {Iuser} from '../model/iuser';
 import {DomSanitizer} from '@angular/platform-browser';
-import * as path from 'path';
+
 
 @Injectable({
   providedIn: 'root'

@@ -19,7 +19,7 @@ export class StatusFormComponent implements OnInit {
   @Input()
   currentAccount: IAccount = {
     avatarUrl: '',
-    name: '',
+    userName: '',
     email: '',
     password: ''
   };

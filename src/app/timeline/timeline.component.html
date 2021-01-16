@@ -910,7 +910,7 @@
                   <div class="loadMore">
 
 <!-- TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT-->
-                    <span *ngFor="let post of posts">
+                    <span *ngFor="let status of statuses">
 
 
                     <div class="central-meta item">
@@ -940,7 +940,7 @@
                           </div>
                           <div class="post-meta">
                             <figure>
-                              <img src="{{ post.image }}" alt="">
+                              <img src="{{ status.imageURL }}" alt="">
                               <ul class="like-dislike">
                                 <li><a class="bg-purple" href="#" title="Save to Pin Post"><i
                                   class="fa fa-thumb-tack"></i></a></li>
@@ -952,10 +952,10 @@
                             <div class="description">
                               <a href="#" class="learnmore" data-ripple="">Learn More</a>
                               <p>
-                                AAA
+
                                 <!--                              Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc.-->
 
-                                  {{ post.content }}
+                                  {{ status.content }}
 
 
                               </p>
@@ -1014,18 +1014,24 @@
                                 <div class="comet-avatar">
                                   <img src="assets/images/resources/nearly3.jpg" alt="">
                                 </div>
+
                                 <div class="we-comment">
                                   <h5><a href="time-line.html" title="">Jason borne</a></h5>
-                                  <p>we are working for the dance and sing songs. this video is very awesome for the
-                                    youngster. please vote this video and like our channel</p>
+
+
+                                  <div *ngFor="let reply of status.repliedStatusMessages">
+                                     <p>{{reply.statusReplyBody}}</p>
+                                  </div>
+
+
                                   <div class="inline-itms">
                                     <span>1 year ago</span>
                                     <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
                                     <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
                                   </div>
                                 </div>
-
                               </li>
+
                               <li>
                                 <div class="comet-avatar">
                                   <img src="assets/images/resources/comet-4.jpg" alt="">
@@ -1043,6 +1049,8 @@
                                   </div>
                                 </div>
                               </li>
+
+
                               <li>
                                 <a href="#" title="" class="showmore underline">more comments+</a>
                               </li>
@@ -1557,4 +1565,31 @@
 
 
 
+
+<!--<h1>Time Line</h1>-->
+<!--<table class="table table-striped">-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th>Content</th>-->
+<!--    <th>ImageURL</th>-->
+<!--    <th>Comment</th>-->
+<!--&lt;!&ndash;    <th>comments</th>&ndash;&gt;-->
+
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--  <tr *ngFor="let status of statuses">-->
+<!--    <td> {{ status.content }} </td>-->
+<!--    <td> {{ status.imageURL}}</td>-->
+
+<!--    <td *ngFor="let reply of status.repliedStatusMessages"> {{ reply.statusReplyBody }} </td>-->
+
+<!--    <td>-->
+<!--      <button  class="btn btn-info"> Update </button>-->
+<!--      <button  class="btn btn-danger" style="margin-left: 10px;">Delete</button>-->
+<!--      <button  class="btn btn-info" style="margin-left: 10px;">View</button>-->
+<!--    </td>-->
+<!--  </tr>-->
+<!--  </tbody>-->
+<!--</table>-->
 
