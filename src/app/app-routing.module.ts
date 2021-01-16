@@ -13,6 +13,7 @@ import {CreatePostComponent} from './create-post/create-post.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {StatusEditComponent} from './status-edit/status-edit.component';
 import {StatusFormComponent} from './status-form/status-form.component';
+
 // @ts-ignore
 import {FriendListSuggestComponent} from './friend-list-suggest/friend-list-suggest.component';
 import {InviteFriendComponent} from './invite-friend/invite-friend.component';
