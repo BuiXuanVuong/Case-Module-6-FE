@@ -41,4 +41,7 @@ export class AccountService {
     return this.httpClient.get<IAccount>(`${this.API_URL}/${1}`);
 
   }
+  updateUserProfile(id: any, user: IAccount): Observable<IAccount> {
+    return this.httpClient.put<IAccount>(`${this.API_URL}/${1}`, user);
+  }
 }

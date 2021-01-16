@@ -28,6 +28,7 @@ import { StatusComponent } from './status/status.component';
 import { StatusFormComponent } from './status-form/status-form.component';
 import { StatusEditComponent } from './status-edit/status-edit.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ProfileComponent } from './profile/profile.component';
     StatusFormComponent,
     StatusEditComponent,
     ProfileComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     BrowserModule,

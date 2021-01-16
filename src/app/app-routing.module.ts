@@ -14,6 +14,7 @@ import {PostListComponent} from './post-list/post-list.component';
 import {StatusEditComponent} from './status-edit/status-edit.component';
 import {StatusFormComponent} from './status-form/status-form.component';
 import {ProfileComponent} from './profile/profile.component';
+import {UpdateProfileComponent} from './update-profile/update-profile.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -29,7 +30,8 @@ const routes: Routes = [
   {path: 'posts', component: PostListComponent},
   {path: 'status-form', component: StatusFormComponent},
   {path: 'status-edit', component: StatusEditComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent},
+  {path: 'update-profile', component: UpdateProfileComponent}
 ];
 
 @NgModule({
