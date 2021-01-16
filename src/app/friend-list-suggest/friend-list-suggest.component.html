@@ -8,6 +8,11 @@
   <tbody>
     <tr *ngFor="let username of friendListSuggest">
       <td> {{username.userName}}</td>
+
+      <td>
+<!--        <a [routerLink]="http://localhost:8080/invite/8">Invite</a>-->
+        <a (click)="sentRequestFriend()" >Invite</a>
+      </td>
     </tr>
   </tbody>
 

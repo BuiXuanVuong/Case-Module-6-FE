@@ -15,6 +15,7 @@ import {StatusComponent} from './status/status.component';
 import {StatusEditComponent} from './status-edit/status-edit.component';
 import {StatusFormComponent} from './status-form/status-form.component';
 import {FriendListSuggestComponent} from './friend-list-suggest/friend-list-suggest.component';
+import {InviteFriendComponent} from './invite-friend/invite-friend.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path: 'posts', component: PostListComponent},
   {path: 'status-form', component: StatusFormComponent},
   {path: 'status-edit', component: StatusEditComponent},
-  {path: 'friend-list-suggest', component: FriendListSuggestComponent}
+  {path: 'friend-list-suggest/:username', component: FriendListSuggestComponent},
+  {path: 'invite-friend/:id', component: InviteFriendComponent}
 ];
 
 @NgModule({

@@ -3,13 +3,14 @@ import {AccountService} from '../service/account.service';
 import {Router} from '@angular/router';
 import {IAccount} from '../model/iaccount';
 
+
 @Component({
   selector: 'app-friend-list-suggest',
   templateUrl: './friend-list-suggest.component.html',
   styleUrls: ['./friend-list-suggest.component.css']
 })
 export class FriendListSuggestComponent implements OnInit {
-
+  public username: any;
   // @ts-ignore
   friendListSuggest: IAccount[];
 
@@ -17,15 +18,26 @@ export class FriendListSuggestComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit(): void {
-    this.getAccountListSuggest();
+    // @ts-ignore
+    this.getAccountListSuggest(this.username);
   }
 
-  private getAccountListSuggest() {
+
+  private getAccountListSuggest(username: any) {
     // @ts-ignore
-    this.accountService.getAccountListSuggest().subscribe(data => {
+    this.accountService.getAccountListSuggest(username).subscribe(data => {
       // @ts-ignore
       this.friendListSuggest = data;
     });
   }
+
+  sentRequestFriend() {
+    this.accountService.requestFriend().subscribe(data => {
+      console.log('OK');
+    });
+  }
+
+
+
 
 }
