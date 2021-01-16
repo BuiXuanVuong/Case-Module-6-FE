@@ -17,12 +17,12 @@ export class AuthenService {
   constructor(private http: HttpClient,
               private tokenStorage: TokenStorageService) { }
   login(credentials: IAccount): Observable<any> {
-    return this.http.post(this.URL_API, credentials);
+    return this.http.get(this.URL_API, credentials);
   }
   register(user: IAccount): Observable<any>{
     return this.http.post(this.URL_API, {
       email: user.email,
-      name: user.name,
+      name: user.userName,
       password: user.password
     }, this.httpOptions);
   }
