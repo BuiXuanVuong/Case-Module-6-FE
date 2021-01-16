@@ -11,7 +11,6 @@ import {LoginComponent} from './login/login.component';
 import {SettingComponent} from './setting/setting.component';
 import {CreatePostComponent} from './create-post/create-post.component';
 import {PostListComponent} from './post-list/post-list.component';
-import {StatusComponent} from './status/status.component';
 import {StatusEditComponent} from './status-edit/status-edit.component';
 import {StatusFormComponent} from './status-form/status-form.component';
 

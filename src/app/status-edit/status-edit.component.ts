@@ -5,7 +5,7 @@ import {IImage} from '../model/iimage';
 import {StatusService} from '../service/status.service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {Router} from '@angular/router';
-import {NofiticationService} from '../service/nofitication.service';
+
 import {finalize} from 'rxjs/operators';
 
 @Component({
@@ -19,7 +19,7 @@ export class StatusEditComponent implements OnInit {
   constructor(private statusService: StatusService,
               private fb: FormBuilder,
               private storage: AngularFireStorage,
-              private notice: NofiticationService,
+
               private router: Router,
   ) { }
   @Input()
@@ -66,7 +66,7 @@ export class StatusEditComponent implements OnInit {
       const imgReader = new FileReader();
       imgReader.onload = (e: any) => {
         this.currentStatus.images.map(
-            (image: { url: any; }) => image.url = e.target.result,
+          (image: { url: any; }) => image.url = e.target.result,
         );
       };
       imgReader.readAsDataURL(event.target.files[0]);
@@ -85,13 +85,15 @@ export class StatusEditComponent implements OnInit {
       this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
         finalize(
           () => fileRef.getDownloadURL().subscribe(url => {
+
             this.currentStatus.images.map(
-              console.log(url)
-              // image => image.url =  url
+              // @ts-ignore
+              image => image.url =  url
             );
             this.editStatus(url);
           }, () => {
-            this.notice.fail('Load ảnh thất bại, xin thử lại');
+            console.log('Load ảnh thất bại');
+
           })
         )
       ).subscribe();
@@ -110,22 +112,23 @@ export class StatusEditComponent implements OnInit {
     this.currentStatus.content = this.editForm.value.content;
     // @ts-ignore
     this.statusService.editStatus(this.currentStatus).subscribe(() => {
-      this.notice.success('Chỉnh sửa thành công');
+      console.log('Chỉnh sửa thành công');
+
       this.showEditForm = false;
     });
 
   }
-submit() {
+  submit() {
     this.uploadImage();
   }
-deleteImg() {
+  deleteImg() {
     this.currentStatus.images = [];
     this.hideImg = true;
 
   }
 
   // tslint:disable-next-line:typedef
-changeEditStatus() {
+  changeEditStatus() {
     this.showEditForm = false;
   }
 

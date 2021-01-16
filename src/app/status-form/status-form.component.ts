@@ -5,7 +5,7 @@ import {TokenStorageService} from '../service/token-storage.service';
 import {StatusService} from '../service/status.service';
 import {Router} from '@angular/router';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {NofiticationService} from '../service/nofitication.service';
+
 import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
 import {IImage} from '../model/iimage';
@@ -37,7 +37,7 @@ export class StatusFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private token: TokenStorageService,
-              private notice: NofiticationService,
+
               private statusService: StatusService,
               private route: Router,
               private storage: AngularFireStorage, ) {
@@ -61,13 +61,14 @@ export class StatusFormComponent implements OnInit {
       }];
     }
     if (dataSent.content == '') {
-      this.notice.fail('Hãy điền vào form.');
+      console.log('Hãy điền vào form');
       return;
     } else {
       this.statusService.createStatus(this.currentAccount.id, dataSent).subscribe(
         (data) => {
           if (data.message == 'success') {
-            this.notice.success('Đăng status thành công!');
+            console.log('Đăng thành công');
+
             window.location.reload();
             this.newStatus = this.fb.group({
               content: [''],
@@ -75,10 +76,12 @@ export class StatusFormComponent implements OnInit {
             console.log(dataSent);
 
           } else {
-            this.notice.fail('Đăng thất bại :(');
+            console.log('Đăng thất bại');
+
           }
         }, () => {
-          this.notice.fail('Lỗi kết nối');
+          console.log('Lỗi');
+
         }
       );
     }
@@ -111,10 +114,12 @@ export class StatusFormComponent implements OnInit {
       this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
         finalize(
           () => fileRef.getDownloadURL().subscribe(responseUrl => {
-            this.notice.success('Upload ảnh thành công');
+            console.log('Up ảnh thành công');
+
             this.addStatus(responseUrl);
           }, () => {
-            this.notice.fail('Up ảnh thất bại');
+            console.log('Up thất bại');
+
           })
         )
       ).subscribe();
@@ -127,3 +132,4 @@ export class StatusFormComponent implements OnInit {
 
 
 }
+
