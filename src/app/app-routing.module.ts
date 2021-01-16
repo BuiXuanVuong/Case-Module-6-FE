@@ -13,6 +13,7 @@ import {CreatePostComponent} from './create-post/create-post.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {StatusEditComponent} from './status-edit/status-edit.component';
 import {StatusFormComponent} from './status-form/status-form.component';
+import {ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path: 'create-post', component: CreatePostComponent},
   {path: 'posts', component: PostListComponent},
   {path: 'status-form', component: StatusFormComponent},
-  {path: 'status-edit', component: StatusEditComponent}
+  {path: 'status-edit', component: StatusEditComponent},
+  {path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({
