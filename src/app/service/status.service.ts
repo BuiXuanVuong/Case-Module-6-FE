@@ -37,4 +37,6 @@ export class StatusService {
   editStatus( id: number, data: any): Observable<any>{
     return this.http.put(`${this.API_URL}/${id}`, data);
   }
+
+  getAllStatus
 }
