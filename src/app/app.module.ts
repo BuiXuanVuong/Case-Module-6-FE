@@ -15,9 +15,22 @@ import { SettingComponent } from './setting/setting.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {HttpClientModule} from '@angular/common/http';
 import { CreatePostComponent } from './create-post/create-post.component';
-import {FormsModule} from '@angular/forms';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { PostListComponent } from './post-list/post-list.component';
+import { HeaderComponent } from './header/header.component';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireStorage, AngularFireStorageModule} from '@angular/fire/storage';
+import { StatusComponent } from './status/status.component';
+import { StatusFormComponent } from './status-form/status-form.component';
+import { StatusEditComponent } from './status-edit/status-edit.component';
+import { FriendListSuggestComponent } from './friend-list-suggest/friend-list-suggest.component';
+import { InviteFriendComponent } from './invite-friend/invite-friend.component';
+
 
 @NgModule({
   declarations: [
@@ -35,14 +48,30 @@ import { PostListComponent } from './post-list/post-list.component';
     CreatePostComponent,
     EmployeeListComponent,
     PostListComponent,
+
+    HeaderComponent,
+    StatusComponent,
+    StatusFormComponent,
+    StatusEditComponent,
+    FriendListSuggestComponent,
+    InviteFriendComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+
+    FormsModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule
+
   ],
-  providers: [],
+  providers: [
+    AngularFirestoreModule,
+    AngularFireStorage],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

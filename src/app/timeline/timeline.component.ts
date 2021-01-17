@@ -1,7 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+
+import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post';
 import {PostService} from '../post.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {IAccount} from '../model/iaccount';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {IImage} from '../model/iimage';
+import {TokenStorageService} from '../service/token-storage.service';
+import {StatusService} from '../service/status.service';
+
+import {AngularFireStorage} from '@angular/fire/storage';
+import {IStatus} from '../model/istatus';
+import {finalize} from 'rxjs/operators';
+import {StatusReply} from '../model/status-reply';
+
 
 @Component({
   selector: 'app-timeline',
@@ -10,19 +22,69 @@ import {Router} from '@angular/router';
 })
 export class TimelineComponent implements OnInit {
 
+
+  public replyStatusForm = new FormGroup({
+    statusReplyBody: new FormControl(''),
+  });
+
+  public id: any;
   // @ts-ignore
-  posts: Post[];
-  constructor(private postSerVice: PostService,
-              private router: Router) { }
+  statuses: IStatus[];
+
+  constructor(private statusService: StatusService,
+              private router: Router,
+              private route: ActivatedRoute ) {
+    // @ts-ignore
+    this.id = this.route.snapshot.params.id;
+  }
 
   ngOnInit(): void {
-    this.getPosts();
+    // @ts-ignore
+    this.getStatuses(this.id);
+    // @ts-ignore
   }
 
-  // tslint:disable-next-line:typedef
-  private getPosts() {
-    this.postSerVice.getPostsList().subscribe(data => {
-      this.posts = data;
+  private getStatuses(id: any) {
+    // @ts-ignore
+    this.statusService.getAllStatus(id).subscribe(data => {
+      this.statuses = data;
     });
   }
+
+
+
+  // @ts-ignore
+  public save(statusId, wallId) {
+    // @ts-ignore
+    this.statusService.addReplyStatus(statusId, wallId, this.createReplyStatus()).subscribe((data) => {
+      console.log('OK');
+      this.replyStatusForm.reset();
+    });
+  }
+
+  createReplyStatus() {
+    const newReplyStatus = {};
+    for (const controlName in this.replyStatusForm.controls) {
+      if (controlName) {
+        // @ts-ignore
+        newReplyStatus[controlName] = this.replyStatusForm.controls[controlName].value;
+      }
+    }
+    return newReplyStatus as StatusReply;
+  }
+
+  // @ts-ignore
+  deleteStatus(statusId) {
+    // @ts-ignore
+    this.statusService.deleteStatus(statusId).subscribe(data => {
+      console.log('delete', data);
+    });
+  }
+
+  // @ts-ignore
+  editStatus(statusId) {
+    this.router.navigate(['status-form', statusId]);
+  }
+
+
 }
