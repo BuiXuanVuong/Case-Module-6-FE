@@ -59,14 +59,14 @@ export class StatusService {
 
   // modifyStatus(statusId: number, data)
 
-  getAllStatus(): Observable<IStatus[]> {
-    return this.http.get<IStatus[]>(`${this.BASE_URL}/home/1`);
+  getAllStatus(wallId: number): Observable<IStatus[]> {
+    return this.http.get<IStatus[]>(`${this.BASE_URL}/home/` + wallId);
   }
 
-  addReplyStatus(data: StatusReply): Observable<any> {
+  addReplyStatus(statusId: number, wallId: number, data: StatusReply): Observable<any> {
     // @ts-ignore
     return this.http
-      .post(`${this.BASE_URL}/status/reply/4/1`, data, this.httpOptions)
+      .post(`${this.BASE_URL}/status/reply/` + statusId + `/` + wallId, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

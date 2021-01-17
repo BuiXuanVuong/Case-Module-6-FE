@@ -31,11 +31,14 @@ export class TimelineComponent implements OnInit {
   constructor(private statusService: StatusService,
               private router: Router,
               private route: ActivatedRoute ) {
+    // @ts-ignore
+    this.id = this.route.snapshot.params.id;
   }
 
   ngOnInit(): void {
     // @ts-ignore
     this.getStatuses(this.id);
+    // @ts-ignore
   }
 
   private getStatuses(id: any) {
@@ -45,9 +48,10 @@ export class TimelineComponent implements OnInit {
     });
   }
 
-  public save() {
+  // @ts-ignore
+  public save(statusId, wallId) {
     // @ts-ignore
-    this.statusService.addReplyStatus(this.createReplyStatus()).subscribe((data) => {
+    this.statusService.addReplyStatus(statusId, wallId, this.createReplyStatus()).subscribe((data) => {
       console.log('OK');
       this.replyStatusForm.reset();
     });
