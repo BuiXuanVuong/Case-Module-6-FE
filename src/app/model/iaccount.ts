@@ -6,6 +6,4 @@ export interface IAccount {
   phone?: number;
   birthday?: string;
   avatarUrl: string;
-
-
 }

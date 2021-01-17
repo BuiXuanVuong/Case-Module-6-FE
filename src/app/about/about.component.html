@@ -429,8 +429,7 @@
                         </div>
 
                         <div class="author-content">
-                          <a class="h4 author-name" href="about.html">Jack Carter</a>
-                          <div class="country">Ontario, CA</div>
+                          <a class="h4 author-name" href="about.html">{{account.userName}}</a>
                         </div>
                       </div>
                     </div>
@@ -479,45 +478,63 @@
                   <div class="central-meta stick-widget">
                     <span class="create-post">Personal Info</span>
                     <div class="personal-head">
-                      <span class="f-title"><i class="fa fa-user"></i> About Me:</span>
-                      <p>
-                        Hi, I’m John Carter, I’m 36 and I work as a Digital Designer for the “dewwater” Agency in Ontario, Canada
-                      </p>
                       <span class="f-title"><i class="fa fa-birthday-cake"></i> Birthday:</span>
                       <p>
-                        December 17, 1985
+                        {{account.birthday}}
                       </p>
                       <span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
                       <p>
-                        +1-989-232435234
+                        {{account.phone}}
                       </p>
-                      <span class="f-title"><i class="fa fa-medkit"></i> Blood group:</span>
+                      <span class="f-title"><i class="fa fa-envelope"></i> Email:</span>
                       <p>
-                        B+
+                        {{account.email}}
                       </p>
-                      <span class="f-title"><i class="fa fa-male"></i> Gender:</span>
-                      <p>
-                        Male
-                      </p>
-                      <span class="f-title"><i class="fa fa-globe"></i> Country:</span>
-                      <p>
-                        San Francisco, California, USA
-                      </p>
-                      <span class="f-title"><i class="fa fa-briefcase"></i> Occupation:</span>
-                      <p>
-                        UI/UX Designer
-                      </p>
-                      <span class="f-title"><i class="fa fa-handshake-o"></i> Joined:</span>
-                      <p>
-                        December 20, 2001
-                      </p>
-
-                      <span class="f-title"><i class="fa fa-envelope"></i> Email & Website:</span>
-                      <p>
-                        <a href="wpkixx.html" title="">www.wpkixx.com</a> <a href="http://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ebbb829f858280ab92849e99868a8287c5888486">[email&#160;protected]</a>
-                      </p>
-
                     </div>
+
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#loginModal">
+                      Update
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form [formGroup]="updateForm" (ngSubmit)="updateUser()" >
+                              <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" formControlName="username" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter username" [(ngModel)]="account.userName">
+                              </div>
+                              <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="account.email">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                              </div>
+                              <div class="form-group">
+                                <label for="birthday">Birthday</label>
+                                <input type="birthday"  formControlName="birthday" class="form-control" id="birthday" placeholder="Birthday" [(ngModel)]="account.birthday">
+                              </div>
+                              <div class="form-group">
+                                <label for="phone">Phone number</label>
+                                <input type="phone"  formControlName="phone" class="form-control" id="phone" placeholder="phone" [(ngModel)]="account.phone">
+                              </div>
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
                   </div>
                 </aside>
               </div>
