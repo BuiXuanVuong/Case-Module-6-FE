@@ -9,6 +9,7 @@ import {VideoComponent} from './video/video.component';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import {SettingComponent} from './setting/setting.component';
+
 import {CreatePostComponent} from './create-post/create-post.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {StatusEditComponent} from './status-edit/status-edit.component';
@@ -20,12 +21,14 @@ import {InviteFriendComponent} from './invite-friend/invite-friend.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
+
   {path: 'about', component: AboutComponent},
   {path: 'friend', component: FriendComponent},
   {path: 'group', component: GroupComponent},
   {path: 'photo', component: PhotoComponent},
   {path: 'video', component: VideoComponent},
   {path: 'register', component: RegisterComponent},
+
   {path: 'timeline/:id', component: TimelineComponent},
   {path: 'setting', component: SettingComponent},
   {path: 'create-post', component: CreatePostComponent},
@@ -34,6 +37,7 @@ const routes: Routes = [
   {path: 'status-edit', component: StatusEditComponent},
   {path: 'friend-list-suggest/:username', component: FriendListSuggestComponent},
   {path: 'invite-friend/:id', component: InviteFriendComponent}
+
 ];
 
 @NgModule({

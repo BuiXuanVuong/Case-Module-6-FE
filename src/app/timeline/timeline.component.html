@@ -1,4 +1,6 @@
+
 <app-header></app-header>
+
 <div>
   <div class="wavy-wraper">
     <div class="wavy">
@@ -373,6 +375,7 @@
       </div>
     </div><!-- right sidebar user chat -->
 
+
     <section>
       <div class="gap2 gray-bg">
         <div class="container">
@@ -523,7 +526,9 @@
                     </div><!-- badges -->
                     <div class="widget">
                       <div class="weather-widget low-opacity bluesh">
+
                         <div class="bg-image" style="background-image: url(assets/images/resources/weather.jpg)"></div>
+
                         <span class="refresh-content"><i class="fa fa-refresh"></i></span>
                         <div class="weather-week">
                           <div class="icon sun-shower">
@@ -748,7 +753,9 @@
                         <img src="assets/images/resources/admin.jpg" alt="">
                       </figure>
                       <div class="newpst-input">
+
                         <form method="post" [formGroup]="newStatus" (ngSubmit)="submit()">
+
                           <textarea rows="2" placeholder="Share some what you are thinking?"></textarea>
                         </form>
                       </div>
@@ -762,41 +769,49 @@
                           <li>
                             <i class="fa fa-music"></i>
                             <label class="fileContainer">
+
                               <input type="file"
                                      #userPhoto
                                      (change)="getImgFromFireBase()"
                                      name="image"
                                      autocomplete="off">
+
                             </label>
                           </li>
                           <li>
                             <i class="fa fa-image"></i>
                             <label class="fileContainer">
+
                               <input type="file"
                                      #userPhoto
                                      (change)="getImgFromFireBase()"
                                      name="image"
                                      autocomplete="off">
+
                             </label>
                           </li>
                           <li>
                             <i class="fa fa-video-camera"></i>
                             <label class="fileContainer">
+
                               <input type="file"
                                      #userPhoto
                                      (change)="getImgFromFireBase()"
                                      name="image"
                                      autocomplete="off">
+
                             </label>
                           </li>
                           <li>
                             <i class="fa fa-camera"></i>
                             <label class="fileContainer">
+
                               <input type="file"
                                      #userPhoto
                                      (change)="getImgFromFireBase()"
                                      name="image"
                                      autocomplete="off">
+
                             </label>
                           </li>
                           <li class="preview-btn">
@@ -910,7 +925,9 @@
                   <div class="loadMore">
 
 <!-- TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT-->
+
                     <span *ngFor="let status of statuses">
+
 
 
                     <div class="central-meta item">
@@ -929,7 +946,9 @@
                                   <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
                                   <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
                                   <li><i class="fa fa-clock-o"></i>Schedule Post</li>
+
                                   <li><i class="fa fa-wpexplorer"></i>Select as featured</li>
+
                                   <li><i class="fa fa-bell-slash-o"></i>Turn off Notifications</li>
                                 </ul>
                               </div>
@@ -940,7 +959,9 @@
                           </div>
                           <div class="post-meta">
                             <figure>
+
                               <img src="{{ status.imageURL }}" alt="">
+
                               <ul class="like-dislike">
                                 <li><a class="bg-purple" href="#" title="Save to Pin Post"><i
                                   class="fa fa-thumb-tack"></i></a></li>
@@ -953,9 +974,11 @@
                               <a href="#" class="learnmore" data-ripple="">Learn More</a>
                               <p>
 
+
                                 <!--                              Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc.-->
 
                                   {{ status.content }}
+
 
 
                               </p>
@@ -1015,6 +1038,7 @@
                                   <img src="assets/images/resources/nearly3.jpg" alt="">
                                 </div>
 
+
                                 <div class="we-comment">
                                   <h5><a href="time-line.html" title="">Jason borne</a></h5>
 
@@ -1026,13 +1050,16 @@
                                   </div>
 
 
+
                                   <div class="inline-itms">
                                     <span>1 year ago</span>
                                     <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
                                     <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
                                   </div>
                                 </div>
+
                               </li>
+
 
                               <li>
                                 <div class="comet-avatar">
@@ -1053,6 +1080,8 @@
                               </li>
 
 
+
+
                               <li>
                                 <a href="#" title="" class="showmore underline">more comments+</a>
                               </li>
@@ -1061,9 +1090,11 @@
                                   <img src="assets/images/resources/nearly1.jpg" alt="">
                                 </div>
 
+
                                 <div class="post-comt-box">
                                   <form [formGroup]="replyStatusForm" method="post">
                                     <textarea formControlName="statusReplyBody" placeholder="Post your comment"></textarea>
+
                                     <div class="add-smiles">
                                       <div class="uploadimage">
                                         <i class="fa fa-image"></i>
@@ -1088,10 +1119,12 @@
                                       </div>
                                     </div>
 
+
                                     <button type="submit" class="btn btn-success"
                                     [disabled]="!replyStatusForm.valid" (click)="save(status.id, status.wallId)">Add Reply</button>
                                   </form>
                                 </div>
+
 
 
                               </li>
@@ -1099,9 +1132,11 @@
                           </div>
                         </div>
                       </div>
+
                       <button (click)="editStatus(status.id)">Edit status</button>
                       <button (click)="deleteStatus(status.id)">Delete status</button>
                     </div><!-- digital sponsors -->
+
 
 </span>
 
@@ -1601,4 +1636,5 @@
 <!--  </tr>-->
 <!--  </tbody>-->
 <!--</table>-->
+
 

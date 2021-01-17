@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import {Router} from '@angular/router';
 import {TokenStorageService} from '../service/token-storage.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -14,6 +15,7 @@ import {AccountService} from '../service/account.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
   errorMessage = '';
   // @ts-ignore
   registerForm: FormGroup;
@@ -74,6 +76,7 @@ export class RegisterComponent implements OnInit {
   get password(){
     return this.registerForm.get('password');
   }
+
 
 
 

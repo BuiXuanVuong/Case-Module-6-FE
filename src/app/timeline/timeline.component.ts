@@ -1,3 +1,4 @@
+
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post';
 import {PostService} from '../post.service';
@@ -13,12 +14,14 @@ import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
 import {StatusReply} from '../model/status-reply';
 
+
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent implements OnInit {
+
 
   public replyStatusForm = new FormGroup({
     statusReplyBody: new FormControl(''),
@@ -82,5 +85,6 @@ export class TimelineComponent implements OnInit {
   editStatus(statusId) {
     this.router.navigate(['status-form', statusId]);
   }
+
 
 }
