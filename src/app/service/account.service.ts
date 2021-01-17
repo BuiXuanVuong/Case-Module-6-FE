@@ -58,4 +58,8 @@ export class AccountService {
     return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/user/invite/` + id);
   }
 
+  getListFriends(id: number): Observable<any> {
+    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/list-friend/` + id);
+  }
+
 }

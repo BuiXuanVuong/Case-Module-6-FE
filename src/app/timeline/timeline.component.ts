@@ -93,8 +93,8 @@ export class TimelineComponent implements OnInit {
     this.router.navigate(['invite-friend', this.id]);
   }
 
-  getListFriend() {
-
+  listFriends() {
+    this.router.navigate(['list-friend', this.id]);
   }
 
 }
