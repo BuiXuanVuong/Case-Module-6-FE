@@ -3,7 +3,7 @@ import {IAccount} from '../model/iaccount';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {TokenStorageService} from '../service/token-storage.service';
 import {StatusService} from '../service/status.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFireStorage} from '@angular/fire/storage';
 
 import {IStatus} from '../model/istatus';
@@ -19,7 +19,7 @@ export class StatusFormComponent implements OnInit {
   @Input()
   currentAccount: IAccount = {
     avatarUrl: '',
-    name: '',
+    userName: '',
     email: '',
     password: ''
   };
@@ -42,20 +42,55 @@ export class StatusFormComponent implements OnInit {
               private token: TokenStorageService,
               private statusService: StatusService,
               private route: Router,
+              private router: ActivatedRoute,
               private storage: AngularFireStorage, ) {
   }
-
+  public id = 0;
   ngOnInit(): void {
     this.newStatus = this.fb.group({
+      imageURL: [''],
       content: [''],
       privacy: ['0'],
     });
+
+    // @ts-ignore
+    this.id =+this.router.snapshot.paramMap.get('id');
+    if (this.id > 0) {
+      this.loadData(this.id);
+    }
   }
+    // @ts-ignore
+  private loadData(id) {
+      this.statusService.getOneStatus(id).subscribe((data) => {
+        console.log('getStudent', data);
+        for (const controlName in this.newStatus.controls) {
+          if (controlName) {
+            // @ts-ignore
+            this.newStatus.controls[controlName].setValue(data[controlName]);
+          }
+        }
+      });
+    }
+
+    private createNewStatus() {
+    const newStatus = {};
+
+    for (const controlName in this.newStatus.controls) {
+      if (controlName) {
+        // @ts-ignore
+        newStatus[controlName] = this.newStatus.controls[controlName].value;
+      }
+    }
+    return newStatus as IStatus;
+    }
+
 
   addStatus(image?: any) {
+
     // @ts-ignore
     const dataSent: IStatus = {
       content: this.newStatus.value.content,
+      imageURL: this.newStatus.value.imageURL,
     };
     if (image != null){
       dataSent.images = [{
@@ -85,6 +120,16 @@ export class StatusFormComponent implements OnInit {
           alert('Lỗi');
         }
       );
+    }
+  }
+
+  public editStatus() {
+    if (this.id > 0) {
+      // @ts-ignore
+      this.statusService.modifyStatus(this.id, this.createNewStatus())
+        .subscribe((data) => {
+
+        });
     }
   }
 
@@ -127,6 +172,7 @@ export class StatusFormComponent implements OnInit {
     }
 
   }
+
 
 
 
