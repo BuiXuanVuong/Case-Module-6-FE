@@ -48,6 +48,8 @@ export class TimelineComponent implements OnInit {
     });
   }
 
+
+
   // @ts-ignore
   public save(statusId, wallId) {
     // @ts-ignore
