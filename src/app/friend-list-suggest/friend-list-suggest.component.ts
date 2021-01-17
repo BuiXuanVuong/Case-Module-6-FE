@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../service/account.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {IAccount} from '../model/iaccount';
 
 
@@ -11,30 +11,41 @@ import {IAccount} from '../model/iaccount';
 })
 export class FriendListSuggestComponent implements OnInit {
   public username: any;
+  public id: any;
   // @ts-ignore
   friendListSuggest: IAccount[];
 
   constructor(private accountService: AccountService,
-              private router: Router) {}
+              private router: Router,
+              private route: ActivatedRoute) {
+    // @ts-ignore
+
+  }
 
   ngOnInit(): void {
     // @ts-ignore
-    this.getAccountListSuggest(this.username);
+    this.id = +this.route.snapshot.paramMap.get('id');
+    console.log(this.id);
+    // @ts-ignore
+    this.getAccountListSuggest(this.id);
   }
 
 
-  private getAccountListSuggest(username: any) {
+  private getAccountListSuggest(id: number) {
     // @ts-ignore
-    this.accountService.getAccountListSuggest(username).subscribe(data => {
+    this.accountService.getAccountListSuggest(id).subscribe(data => {
       // @ts-ignore
       this.friendListSuggest = data;
     });
   }
 
-  sentRequestFriend() {
-    this.accountService.requestFriend().subscribe(data => {
-      console.log('OK');
+  sentRequestFriend(idPost: number, idGet: number) {
+    // @ts-ignore
+    this.accountService.requestFriend(this.id, idGet).subscribe(data => {
+      alert('Bạn đã gửi lời mời kết bạn đến  user' + idGet );
     });
+
+
   }
 
 

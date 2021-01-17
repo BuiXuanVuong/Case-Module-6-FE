@@ -42,20 +42,20 @@ export class AccountService {
   }
 
 // @ts-ignore
-  getAccountListSuggest(): Observable<IAccount[]> {
-    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/search/user`);
+  getAccountListSuggest(id: number): Observable<IAccount[]> {
+    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/search/` + id);
   }
 
-  requestFriend(): Observable<any> {
-    return this.httpClient.get(`${this.BASE_URL}/invite/8`);
+  requestFriend(idPost: number, idGet: number): Observable<any> {
+    return this.httpClient.get(`${this.BASE_URL}/invite/` + idPost + `/` + idGet);
   }
 
-  acceptFriend(): Observable<any> {
-    return this.httpClient.get(`${this.BASE_URL}/connect/1`);
+  acceptFriend(idGet: number, idPost: number): Observable<any> {
+    return this.httpClient.get(`${this.BASE_URL}/connect/` + idGet + `/` + idPost);
   }
 
-  // getListInvite(): Observable<any> {
-  //   return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/user/`)
-  // }
+  getListInvite(id: number): Observable<any> {
+    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/user/invite/` + id);
+  }
 
 }
