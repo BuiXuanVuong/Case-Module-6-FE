@@ -52,6 +52,11 @@ export class StatusService {
       .pipe(catchError(this.handleError));
   }
 
+  public deleteStatus(statusId: number) {
+   return  this.http.delete<any>(`${this.BASE_URL}/status/` + statusId).pipe(catchError(this.handleError));
+  }
+
+
   // modifyStatus(statusId: number, data)
 
   getAllStatus(): Observable<IStatus[]> {

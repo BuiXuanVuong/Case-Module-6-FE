@@ -46,6 +46,7 @@ export class TimelineComponent implements OnInit {
   }
 
   public save() {
+    // @ts-ignore
     this.statusService.addReplyStatus(this.createReplyStatus()).subscribe((data) => {
       console.log('OK');
       this.replyStatusForm.reset();
@@ -64,9 +65,16 @@ export class TimelineComponent implements OnInit {
   }
 
   // @ts-ignore
+  deleteStatus(statusId) {
+    // @ts-ignore
+    this.statusService.deleteStatus(statusId).subscribe(data => {
+      console.log('delete', data);
+    });
+  }
+
+  // @ts-ignore
   editStatus(statusId) {
     this.router.navigate(['status-form', statusId]);
   }
-
 
 }
