@@ -63,5 +63,10 @@ export class TimelineComponent implements OnInit {
     return newReplyStatus as StatusReply;
   }
 
+  // @ts-ignore
+  editStatus(statusId) {
+    this.router.navigate(['status-form', statusId]);
+  }
+
 
 }

@@ -7,9 +7,10 @@ export interface IStatus {
   createdAt: Date;
   updatedAt: Date;
   images: any;
+  imageURL: any;
   totalComments?: number;
   totalLikes?: number;
   repliedStatusMessages?: StatusReply[];
-  imageURL: string;
+
 
 }

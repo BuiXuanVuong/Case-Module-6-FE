@@ -47,6 +47,7 @@ export class StatusFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.newStatus = this.fb.group({
+      imageURL: [''],
       content: [''],
       privacy: ['0'],
     });
@@ -56,6 +57,7 @@ export class StatusFormComponent implements OnInit {
     // @ts-ignore
     const dataSent: IStatus = {
       content: this.newStatus.value.content,
+      imageURL: this.newStatus.value.imageURL,
     };
     if (image != null){
       dataSent.images = [{
