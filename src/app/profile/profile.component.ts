@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
       this.currentAccount = value;
       this.email = this.currentAccount.email;
       // @ts-ignore
-      this.name = this.currentAccount.name;
+      this.userName = this.currentAccount.userName;
       this.password = this.password;
       // @ts-ignore
       this.phone = this.currentAccount.phone;

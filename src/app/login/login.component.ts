@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
           this.isLoggedIn = true;
           this.tokenStorage.saveToken(data.token);
           this.tokenStorage.saveAccount(data.account_id);
-          this.router.navigate(['/']);
+          this.router.navigate(['timeline']);
           // tslint:disable-next-line:triple-equals
         }else if (data.message == 'Email hoặc mật khẩu không đúng'){
           this.isLoginFailed = true;

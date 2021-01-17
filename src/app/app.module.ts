@@ -35,6 +35,7 @@ import { FriendListSuggestComponent } from './friend-list-suggest/friend-list-su
 import { InviteFriendComponent } from './invite-friend/invite-friend.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

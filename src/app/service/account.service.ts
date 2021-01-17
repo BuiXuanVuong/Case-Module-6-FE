@@ -24,11 +24,6 @@ export class AccountService {
   private BASE_URL = environment.BASE_URL;
 
 
-
-
-  constructor(private httpClient: HttpClient) {
-  }
-
   getAccountList(): Observable<any> {
 
     return this.httpClient.get(this.API_URL);
@@ -50,7 +45,7 @@ export class AccountService {
     return this.httpClient.put(`${this.API_URL}/${data.id}`, data);
   }
 
- 
+
 
   getAccountProfile(id: string): Observable<IAccount> {
     return this.httpClient.get<IAccount>(`${this.API_URL}/${1}`);

@@ -23,14 +23,14 @@ export class UpdateProfileComponent implements OnInit {
   // @ts-ignore
   sub: Subscription;
   email = '';
-  name = '';
+  userName = '';
   password = '';
   phone = '';
   birthday = '';
   arrayPicture = '';
   userForm: FormGroup = this.fb.group({
     email: new FormControl('', [Validators.required]),
-    name: new FormControl('', [Validators.required]),
+    userName: new FormControl('', [Validators.required]),
     password: new FormControl('', Validators.required),
     phone: new FormControl('', [Validators.required]),
     birthday: new FormControl('', Validators.required),
@@ -57,7 +57,7 @@ export class UpdateProfileComponent implements OnInit {
       this.currentAccount = value;
       this.email = this.currentAccount.email;
       // @ts-ignore
-      this.name = this.currentAccount.name;
+      this.userName = this.currentAccount.userName;
       this.password = this.password;
       // @ts-ignore
       this.phone = this.currentAccount.phone;
@@ -80,7 +80,7 @@ export class UpdateProfileComponent implements OnInit {
           id: this.currentAccount.id,
           email: this.userForm.get('email')?.value,
           password: this.userForm.get('password')?.value,
-          name: this.userForm.get('name')?.value,
+          userName: this.userForm.get('userName')?.value,
           phone: this.userForm.get('phone')?.value,
           birthday: this.userForm.get('birthday')?.value,
         };
@@ -90,8 +90,8 @@ export class UpdateProfileComponent implements OnInit {
         if (user.password === '') {
           user.password = this.password;
         }
-        if (user.name === '') {
-          user.name = this.name;
+        if (user.userName === '') {
+          user.userName = this.userName;
         }
         // @ts-ignore
         if (user.phone === '') {

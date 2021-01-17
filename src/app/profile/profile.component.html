@@ -18,7 +18,7 @@
             <h5>Tên người dùng</h5>
           </div>
           <div class="col-7">
-            <h5>: {{currentAccount.name}}</h5>
+            <h5>: {{currentAccount.userName}}</h5>
           </div>
         </div>
         <div class="row">
@@ -47,7 +47,7 @@
         </div>
         <div class="row text-center">
           <div class="col-md-2"></div>
-          <a [routerLink]="['/user/update-profile',currentAccount.id]" class="btn btn-secondary mr-2 mb-2">Sửa TTCN</a>
+          <a [routerLink]="['/update-profile',currentAccount.id]" class="btn btn-secondary mr-2 mb-2">Sửa TTCN</a>
         </div>
       </div>
 
