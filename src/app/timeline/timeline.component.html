@@ -1087,7 +1087,7 @@
                                     </div>
 
                                     <button type="submit" class="btn btn-success"
-                                    [disabled]="!replyStatusForm.valid" (click)="save()"></button>
+                                    [disabled]="!replyStatusForm.valid" (click)="save()">Add Reply</button>
                                   </form>
                                 </div>
 
@@ -1097,7 +1097,9 @@
                           </div>
                         </div>
                       </div>
+                      <button (click)="editStatus(status.id)">Edit status</button>
                     </div><!-- digital sponsors -->
+
 </span>
 
 <!-- TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT-->

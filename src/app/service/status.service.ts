@@ -46,6 +46,14 @@ export class StatusService {
     return this.http.put(`${this.API_URL}/${id}`, data);
   }
 
+  modifyStatus(statusId: number, data: IStatus) {
+    return this.http
+      .put<any>(`${this.BASE_URL}/status/` + statusId, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  // modifyStatus(statusId: number, data)
+
   getAllStatus(): Observable<IStatus[]> {
     return this.http.get<IStatus[]>(`${this.BASE_URL}/home/1`);
   }

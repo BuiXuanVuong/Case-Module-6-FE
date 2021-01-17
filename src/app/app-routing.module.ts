@@ -30,7 +30,7 @@ const routes: Routes = [
   {path: 'setting', component: SettingComponent},
   {path: 'create-post', component: CreatePostComponent},
   {path: 'posts', component: PostListComponent},
-  {path: 'status-form', component: StatusFormComponent},
+  {path: 'status-form/:id', component: StatusFormComponent},
   {path: 'status-edit', component: StatusEditComponent},
   {path: 'friend-list-suggest/:username', component: FriendListSuggestComponent},
   {path: 'invite-friend/:id', component: InviteFriendComponent}
