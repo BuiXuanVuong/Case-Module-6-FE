@@ -33,7 +33,28 @@ export class LoginComponent implements OnInit {
     }
   }
 
+
   ngOnInit() {
+
+  createSubmit(): void{
+    const account: IAccount = this.loginAccountForm.value;
+    this.authService.login(account).subscribe(
+      data => {
+        console.log(data);
+        // tslint:disable-next-line:triple-equals
+
+        if (data.message == 'Login success'){
+          this.isLoggedIn = true;
+          this.tokenStorage.saveToken(data.token);
+          this.tokenStorage.saveAccount(data.account_id);
+          this.router.navigate(['timeline']);
+
+          // tslint:disable-next-line:triple-equals
+      },
+      (error) => {
+        console.log('ko được');
+      }
+    );
   }
 
   login() {

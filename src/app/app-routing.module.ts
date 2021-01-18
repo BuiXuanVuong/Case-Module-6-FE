@@ -23,6 +23,12 @@ import {InviteFriendComponent} from './invite-friend/invite-friend.component';
 import {HeaderComponent} from './header/header.component';
 
 
+import {HeaderComponent} from './header/header.component';
+
+
+import {ListFriendComponent} from './list-friend/list-friend.component';
+
+
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
 
@@ -43,8 +49,12 @@ const routes: Routes = [
 
   {path: 'status-form/:id', component: StatusFormComponent},
   {path: 'status-edit', component: StatusEditComponent},
-  // {path: 'friend-list-suggest/:username', component: FriendListSuggestComponent},
-  {path: 'invite-friend/:id', component: InviteFriendComponent}
+
+
+  {path: 'friend-list-suggest/:id', component: FriendListSuggestComponent},
+  {path: 'invite-friend/:id', component: InviteFriendComponent},
+  {path: 'list-friend/:id', component: ListFriendComponent}
+
 
 ];
 

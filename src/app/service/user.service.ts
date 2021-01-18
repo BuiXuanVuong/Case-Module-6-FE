@@ -16,4 +16,5 @@ export class UserService {
   getUserListSuggest(): Observable<Iuser[]> {
     return this.httpClient.get<Iuser[]>(`${this.baseURL}/search/`);
   }
+
 }
