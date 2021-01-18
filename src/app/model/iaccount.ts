@@ -1,3 +1,5 @@
+import {Role} from './role';
+
 export interface IAccount {
   id?: number;
   email?: string;
@@ -6,6 +8,9 @@ export interface IAccount {
   phone?: number;
   birthday?: string;
   avatarUrl: string;
+  accessToken?: string;
+  enabled?: boolean;
+
 
 
 }

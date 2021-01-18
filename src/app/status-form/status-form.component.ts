@@ -54,7 +54,7 @@ export class StatusFormComponent implements OnInit {
     });
 
     // @ts-ignore
-    this.id =+this.router.snapshot.paramMap.get('id');
+    this.id = +this.router.snapshot.paramMap.get('id');
     if (this.id > 0) {
       this.loadData(this.id);
     }

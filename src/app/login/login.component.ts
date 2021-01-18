@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+// @ts-ignore
 import {TokenStorageService} from '../service/token-storage.service';
 import {AuthenService} from '../service/authen.service';
 // @ts-ignore
 import {IAccount} from '../model/Iaccount';
+import {first} from 'rxjs/operators';
 
 
 @Component({
@@ -14,59 +16,42 @@ import {IAccount} from '../model/Iaccount';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  loginForm: FormGroup = new FormGroup({
+    userName: new FormControl(''),
+    password: new FormControl('')
+  });
   // @ts-ignore
-  loginAccountForm: FormGroup;
-  // isLoggedIn = false;
-  // isLoginFailed = false;
-  // errorMessage = '';
-  // accountEmail = this.tokenStorage.getAccount();
-
-  constructor(private authService: AuthenService,
-              private tokenStorage: TokenStorageService,
-              private fb: FormBuilder,
-              private router: Router) { }
-
-  ngOnInit(): void {
-    // if (this.tokenStorage.getToken()){
-    //   this.isLoggedIn = true;
-    //
-    // }
-    this.loginAccountForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-    });
+  returnUrl: string;
+  error = '';
+  loading = false;
+  submitted = false;
+  constructor(private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private authenticationService: AuthenService) {
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['timeline']);
+    }
   }
 
-  createSubmit(): void{
-    const account: IAccount = this.loginAccountForm.value;
-    this.authService.login(account).subscribe(
-      data => {
-        console.log(data);
-        // tslint:disable-next-line:triple-equals
-          // this.tokenStorage.saveToken(data.token);
-          // this.tokenStorage.saveAccount(data.account_id);
-        this.router.navigate(['timeline']);
-          // tslint:disable-next-line:triple-equals
-      },
-      (error) => {
-        console.log('ko được');
-      }
-    );
+  ngOnInit() {
   }
 
-  logOut() {
-    this.tokenStorage.signOut();
-    window.location.reload();
+  login() {
+    this.submitted = true;
+    this.loading = true;
+    this.authenticationService.login(this.loginForm.value.userName, this.loginForm.value.password)
+      .pipe(first())
+      .subscribe(
+        data => {
+          localStorage.setItem('ACCESS_TOKEN', data.accessToken);
+          this.router.navigate(['timeline']);
+        },
+        error => {
+          this.error = 'Sai tên đăng nhập hoặc mật khẩu';
+          this.loading = false;
+        });
   }
 
-  get email(){
-    return this.loginAccountForm.get('email');
-  }
 
-  get password(){
-    return this.loginAccountForm.get('password');
-
-  }
 
 }
