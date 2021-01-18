@@ -15,6 +15,7 @@ import { SettingComponent } from './setting/setting.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {HttpClientModule} from '@angular/common/http';
 import { CreatePostComponent } from './create-post/create-post.component';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { PostListComponent } from './post-list/post-list.component';
@@ -27,8 +28,17 @@ import {AngularFireStorage, AngularFireStorageModule} from '@angular/fire/storag
 import { StatusComponent } from './status/status.component';
 import { StatusFormComponent } from './status-form/status-form.component';
 import { StatusEditComponent } from './status-edit/status-edit.component';
+
+import { ProfileComponent } from './profile/profile.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
+
 import { FriendListSuggestComponent } from './friend-list-suggest/friend-list-suggest.component';
 import { InviteFriendComponent } from './invite-friend/invite-friend.component';
+import { ListFriendComponent } from './list-friend/list-friend.component';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -46,22 +56,34 @@ import { InviteFriendComponent } from './invite-friend/invite-friend.component';
     CreatePostComponent,
     EmployeeListComponent,
     PostListComponent,
+
     HeaderComponent,
     StatusComponent,
     StatusFormComponent,
     StatusEditComponent,
+
+    ProfileComponent,
+    UpdateProfileComponent,
+
     FriendListSuggestComponent,
     InviteFriendComponent,
+
+
+    ListFriendComponent,
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule
+
   ],
   providers: [
     AngularFirestoreModule,

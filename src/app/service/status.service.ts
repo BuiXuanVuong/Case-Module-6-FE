@@ -52,16 +52,21 @@ export class StatusService {
       .pipe(catchError(this.handleError));
   }
 
-  // modifyStatus(statusId: number, data)
-
-  getAllStatus(): Observable<IStatus[]> {
-    return this.http.get<IStatus[]>(`${this.BASE_URL}/home/1`);
+  public deleteStatus(statusId: number) {
+   return  this.http.delete<any>(`${this.BASE_URL}/status/` + statusId).pipe(catchError(this.handleError));
   }
 
-  addReplyStatus(data: StatusReply): Observable<any> {
+
+  // modifyStatus(statusId: number, data)
+
+  getAllStatus(wallId: number): Observable<IStatus[]> {
+    return this.http.get<IStatus[]>(`${this.BASE_URL}/home/` + wallId);
+  }
+
+  addReplyStatus(statusId: number, wallId: number, data: StatusReply): Observable<any> {
     // @ts-ignore
     return this.http
-      .post(`${this.BASE_URL}/status/reply/4/1`, data, this.httpOptions)
+      .post(`${this.BASE_URL}/status/reply/` + statusId + `/` + wallId, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

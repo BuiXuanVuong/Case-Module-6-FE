@@ -1,0 +1,60 @@
+<!--<app-carousel></app-carousel>-->
+<div class="row container-fluid mt-3 ml-1">
+  <div class="col-2 test"></div>
+  <div class="card text-center register col-lg-8 " style="background: white !important;">
+    <div class=" text-center mt-2">
+      <h2>Sửa thông tin cá nhân</h2>
+    </div>
+    <div class="card-body">
+      <!-- Login-->
+
+      <form [formGroup]="userForm" (ngSubmit)="updateAccountProfile()">
+        <div class="text-left">
+          <label>Email</label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="email" id="exampleInputEmail"
+                 placeholder="Email" value="{{email}}">
+        </div>
+        <div class="text-left">
+          <label>Password</label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="password" id="exampleInputPassword"
+                 placeholder="Password" value="{{password}}">
+        </div>
+        <div class="text-left">
+          <label>UserName</label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="userName" id="exampleInputUserName"
+                 placeholder="UserName" value="{{userName}}">
+        </div>
+        <div class="text-left">
+          <label>Phone</label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="phone" id="exampleInputPhone"
+                 placeholder="Phone" value="{{phone}}">
+        </div>
+        <div class="text-left">
+          <label>Birthday</label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="birthday" id="exampleInputBirthday"
+                 placeholder="Birthday" value="{{birthday}}">
+        </div>
+<!--        <div class="text-left">-->
+<!--          <label>Image Link</label>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <input type="file" class="form-control" (change)="saveImg($event)">-->
+<!--        </div>-->
+
+        <button type="submit" class="btn btn-success nutPhai mr-2">Cập nhật</button>
+        <a class="we-account underline" routerLink="/profile" title="">Quay lại</a>
+      </form>
+    </div>
+  </div>
+</div>
+

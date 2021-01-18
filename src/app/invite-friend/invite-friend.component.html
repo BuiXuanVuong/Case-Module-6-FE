@@ -6,17 +6,17 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td> {{username.userName}}</td>
+  <tr *ngFor="let friend of friendListSuggest">
+    <td> {{friend.userName}}</td>
     <td>
+      <a (click)="acceptInvitation(this.id, friend.id)">Accept Invitation</a>
 
-      <a (click)="sentRequestFriend()" >Invite</a>
     </td>
   </tr>
   </tbody>
 
 
 </table>
-<a (click)="acceptInvitation()">Accept Invitation</a>
+
 
 

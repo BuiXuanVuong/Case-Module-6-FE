@@ -9,31 +9,53 @@ import {VideoComponent} from './video/video.component';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import {SettingComponent} from './setting/setting.component';
+
 import {CreatePostComponent} from './create-post/create-post.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {StatusEditComponent} from './status-edit/status-edit.component';
 import {StatusFormComponent} from './status-form/status-form.component';
+import {ProfileComponent} from './profile/profile.component';
+import {UpdateProfileComponent} from './update-profile/update-profile.component';
 
 // @ts-ignore
 import {FriendListSuggestComponent} from './friend-list-suggest/friend-list-suggest.component';
 import {InviteFriendComponent} from './invite-friend/invite-friend.component';
+import {HeaderComponent} from './header/header.component';
+
+
+import {HeaderComponent} from './header/header.component';
+
+
+import {ListFriendComponent} from './list-friend/list-friend.component';
+
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
+
   {path: 'about', component: AboutComponent},
   {path: 'friend', component: FriendComponent},
   {path: 'group', component: GroupComponent},
   {path: 'photo', component: PhotoComponent},
   {path: 'video', component: VideoComponent},
   {path: 'register', component: RegisterComponent},
+
   {path: 'timeline/:id', component: TimelineComponent},
   {path: 'setting', component: SettingComponent},
   {path: 'create-post', component: CreatePostComponent},
   {path: 'posts', component: PostListComponent},
+  {path: 'header', component: HeaderComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'update-profile', component: UpdateProfileComponent},
+
   {path: 'status-form/:id', component: StatusFormComponent},
   {path: 'status-edit', component: StatusEditComponent},
-  {path: 'friend-list-suggest/:username', component: FriendListSuggestComponent},
-  {path: 'invite-friend/:id', component: InviteFriendComponent}
+
+
+  {path: 'friend-list-suggest/:id', component: FriendListSuggestComponent},
+  {path: 'invite-friend/:id', component: InviteFriendComponent},
+  {path: 'list-friend/:id', component: ListFriendComponent}
+
+
 ];
 
 @NgModule({
