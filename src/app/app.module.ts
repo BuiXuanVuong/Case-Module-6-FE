@@ -15,6 +15,7 @@ import { SettingComponent } from './setting/setting.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {HttpClientModule} from '@angular/common/http';
 import { CreatePostComponent } from './create-post/create-post.component';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { PostListComponent } from './post-list/post-list.component';
@@ -52,6 +53,7 @@ import { InviteFriendComponent } from './invite-friend/invite-friend.component';
     CreatePostComponent,
     EmployeeListComponent,
     PostListComponent,
+
     HeaderComponent,
     StatusComponent,
     StatusFormComponent,
@@ -68,11 +70,13 @@ import { InviteFriendComponent } from './invite-friend/invite-friend.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule
+
   ],
   providers: [
     AngularFirestoreModule,

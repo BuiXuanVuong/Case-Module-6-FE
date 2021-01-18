@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {TokenStorageService} from '../service/token-storage.service';
@@ -6,12 +7,14 @@ import {AuthenService} from '../service/authen.service';
 // @ts-ignore
 import {IAccount} from '../model/Iaccount';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   // @ts-ignore
   loginAccountForm: FormGroup;
   // isLoggedIn = false;
@@ -63,6 +66,7 @@ export class LoginComponent implements OnInit {
 
   get password(){
     return this.loginAccountForm.get('password');
+
   }
 
 }
