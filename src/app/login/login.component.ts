@@ -44,9 +44,13 @@ export class LoginComponent implements OnInit {
       data => {
         console.log(data);
         // tslint:disable-next-line:triple-equals
-          // this.tokenStorage.saveToken(data.token);
-          // this.tokenStorage.saveAccount(data.account_id);
-        this.router.navigate(['timeline']);
+
+        if (data.message == 'Login success'){
+          this.isLoggedIn = true;
+          this.tokenStorage.saveToken(data.token);
+          this.tokenStorage.saveAccount(data.account_id);
+          this.router.navigate(['timeline']);
+
           // tslint:disable-next-line:triple-equals
       },
       (error) => {

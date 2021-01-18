@@ -34,6 +34,9 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
 
 import { FriendListSuggestComponent } from './friend-list-suggest/friend-list-suggest.component';
 import { InviteFriendComponent } from './invite-friend/invite-friend.component';
+import { ListFriendComponent } from './list-friend/list-friend.component';
+
+
 
 
 
@@ -64,6 +67,10 @@ import { InviteFriendComponent } from './invite-friend/invite-friend.component';
 
     FriendListSuggestComponent,
     InviteFriendComponent,
+
+
+    ListFriendComponent,
+
 
   ],
   imports: [

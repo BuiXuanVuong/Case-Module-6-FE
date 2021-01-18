@@ -14,6 +14,7 @@ import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
 import {StatusReply} from '../model/status-reply';
 
+// @ts-ignore
 
 @Component({
   selector: 'app-timeline',
@@ -84,6 +85,20 @@ export class TimelineComponent implements OnInit {
   // @ts-ignore
   editStatus(statusId) {
     this.router.navigate(['status-form', statusId]);
+  }
+
+
+  searchAddFriend() {
+   this.router.navigate(['friend-list-suggest', this.id]);
+
+  }
+
+  waitInvitation() {
+    this.router.navigate(['invite-friend', this.id]);
+  }
+
+  listFriends() {
+    this.router.navigate(['list-friend', this.id]);
   }
 
 
