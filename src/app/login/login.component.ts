@@ -17,9 +17,9 @@ export class LoginComponent implements OnInit {
 
   // @ts-ignore
   loginAccountForm: FormGroup;
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
+  // isLoggedIn = false;
+  // isLoginFailed = false;
+  // errorMessage = '';
   // accountEmail = this.tokenStorage.getAccount();
 
   constructor(private authService: AuthenService,
@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()){
-      this.isLoggedIn = true;
-
-    }
+    // if (this.tokenStorage.getToken()){
+    //   this.isLoggedIn = true;
+    //
+    // }
     this.loginAccountForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
@@ -44,21 +44,13 @@ export class LoginComponent implements OnInit {
       data => {
         console.log(data);
         // tslint:disable-next-line:triple-equals
-        if (data.message == 'Login success'){
-          this.isLoggedIn = true;
-          this.tokenStorage.saveToken(data.token);
-          this.tokenStorage.saveAccount(data.account_id);
-          this.router.navigate(['/']);
+          // this.tokenStorage.saveToken(data.token);
+          // this.tokenStorage.saveAccount(data.account_id);
+        this.router.navigate(['timeline']);
           // tslint:disable-next-line:triple-equals
-        }else if (data.message == 'Email hoặc mật khẩu không đúng'){
-          this.isLoginFailed = true;
-          this.errorMessage = data.message;
-        }
-
       },
       (error) => {
-        this.isLoginFailed = true;
-        this.errorMessage = error.message;
+        console.log('ko được');
       }
     );
   }

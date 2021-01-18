@@ -1,0 +1,57 @@
+<div class="row container-fluid mt-5 ml-1 mb-5">
+  <div class="col-1 test"></div>
+  <div class="card text-center register col-lg-10" style="background: white !important;">
+    <div class="row">
+<!--      <div class="col-lg-4 mb-3 mt-3">-->
+<!--        <img src="{{currentAccount.avatarUrl}}" alt="user image" width="100%" style="border-radius: 15px; ">-->
+<!--      </div>-->
+      <div class="col-lg-7 text-left mt-3">
+        <div class=" text-center">
+          <h2>Thông tin cá nhân</h2>
+        </div>
+        <div class="row">
+          <div class="col-5"><h3>Email</h3></div>
+          <div class="col-7"><h3>: {{currentAccount.email}} </h3></div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <h5>Tên người dùng</h5>
+          </div>
+          <div class="col-7">
+            <h5>: {{currentAccount.userName}}</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <h5>Password</h5>
+          </div>
+          <div class="col-7">
+            <h5>: {{currentAccount.password}}</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <h5>Số điện thoại</h5>
+          </div>
+          <div class="col-7">
+            <h5>: {{currentAccount.phone}}</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <h5>Ngày sinh</h5>
+          </div>
+          <div class="col-7">
+            <h5>: {{currentAccount.birthday}}</h5>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-2"></div>
+          <a [routerLink]="['/update-profile',currentAccount.id]" class="btn btn-secondary mr-2 mb-2">Sửa TTCN</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

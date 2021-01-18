@@ -34,10 +34,10 @@
               </div>
 
               <form class="we-form"  [formGroup]="registerForm" (ngSubmit)="submitRegister()">
-                <input type="text" formControlName="name" placeholder="Name" required="required">
-                <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                <input type="text" formControlName="userName" placeholder="Name" required="required">
+                <div *ngIf="userName.invalid && (userName.dirty || userName.touched)"
                     >
-                  <div *ngIf="name.errors.required" style="color: #4c4eaa">
+                  <div *ngIf="userName.errors.required" style="color: #4c4eaa">
                     Tên không được bỏ trống
                   </div>
 

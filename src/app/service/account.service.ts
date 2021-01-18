@@ -24,21 +24,35 @@ export class AccountService {
   private BASE_URL = environment.BASE_URL;
 
 
+  getAccountList(): Observable<any> {
 
-  getAccountList(): Observable<any>{
     return this.httpClient.get(this.API_URL);
   }
-  getAccount(id: number): Observable<IAccount>{
+
+  getAccount(id: number): Observable<IAccount> {
     return this.httpClient.get<IAccount>(`${this.API_URL}/${id}`);
   }
-  createAccount(data: IAccount): Observable<IAccount>{
-    return this.httpClient.post<IAccount>(`${this.API_URL}`, data);
+
+  createAccount(data: IAccount): Observable<IAccount> {
+    return this.httpClient.post<IAccount>(this.API_URL, data);
   }
-  deleteAccount(id: number): Observable<any>{
+
+  deleteAccount(id: number): Observable<any> {
     return this.httpClient.delete(`${this.API_URL}/${id}`);
   }
-  updateAccount(data: IAccount): Observable<any>{
+
+  updateAccount(data: IAccount): Observable<any> {
     return this.httpClient.put(`${this.API_URL}/${data.id}`, data);
+  }
+
+
+
+  getAccountProfile(id: string): Observable<IAccount> {
+    return this.httpClient.get<IAccount>(`${this.API_URL}/${1}`);
+
+  }
+  updateUserProfile(id: any, user: IAccount): Observable<IAccount> {
+    return this.httpClient.put<IAccount>(`${this.API_URL}/${1}`, user);
   }
 
 // @ts-ignore
@@ -57,5 +71,6 @@ export class AccountService {
   // getListInvite(): Observable<any> {
   //   return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/user/`)
   // }
+
 
 }
