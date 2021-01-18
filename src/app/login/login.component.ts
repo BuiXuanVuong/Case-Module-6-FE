@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-// @ts-ignore
-import {TokenStorageService} from '../service/token-storage.service';
+
+// import {TokenStorageService} from '../service/token-storage.service';
+=======
 import {AuthenService} from '../service/authen.service';
 // @ts-ignore
 import {IAccount} from '../model/Iaccount';
@@ -33,28 +34,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
   ngOnInit() {
-
-  createSubmit(): void{
-    const account: IAccount = this.loginAccountForm.value;
-    this.authService.login(account).subscribe(
-      data => {
-        console.log(data);
-        // tslint:disable-next-line:triple-equals
-
-        if (data.message == 'Login success'){
-          this.isLoggedIn = true;
-          this.tokenStorage.saveToken(data.token);
-          this.tokenStorage.saveAccount(data.account_id);
-          this.router.navigate(['timeline']);
-
-          // tslint:disable-next-line:triple-equals
-      },
-      (error) => {
-        console.log('ko được');
-      }
-    );
   }
 
   login() {
@@ -65,7 +45,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           localStorage.setItem('ACCESS_TOKEN', data.accessToken);
-          this.router.navigate(['timeline']);
+          this.router.navigate([this.returnUrl]);
+
         },
         error => {
           this.error = 'Sai tên đăng nhập hoặc mật khẩu';

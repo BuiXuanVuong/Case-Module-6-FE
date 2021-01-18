@@ -59,17 +59,17 @@
                 <span>sign in now and meet the awesome Friends around the world.</span>
               </div>
 
-              <form  class="we-form"   [formGroup]="loginForm" (ngSubmit)="login()">
-                <input type="text"formControlName="userName" id="exampleInputUserName1"
+              <form  class="we-form" [formGroup]="loginForm" (ngSubmit)="login()">
+                <input type="text" formControlName="userName" id="exampleInputUserName1"
                        aria-describedby="emailHelp"
                        placeholder="Enter username" >
-                <input type="password" placeholder="Password" formControlName="password" id="exampleInputPassword1"
+
+                <input type="password" placeholder="Password"  formControlName="password" id="exampleInputPassword1"
                        placeholder="Enter password">
 
                 <input type="checkbox"><label>remember me</label>
-                <button  type="submit"  class="btn btn-success nutPhai mr-2" data-ripple="" >sign in</button>
-
-                <button type="submit"  data-ripple="">sign out </button>
+                <button  type="submit" data-ripple="">sign in</button>
+                <button type="submit" data-ripple="">sign out </button>
 
                 <a class="forgot underline" href="#" title="">forgot password?</a>
 

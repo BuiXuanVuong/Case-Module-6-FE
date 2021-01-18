@@ -19,7 +19,6 @@ export class AboutComponent implements OnInit {
   constructor(private userService: AccountService,
               private fb: FormBuilder,
               private activatedRoute: ActivatedRoute) { }
-
   ngOnInit(): void {
     this.formInfo();
   }
@@ -33,7 +32,6 @@ export class AboutComponent implements OnInit {
       birthday: [''],
       avatarUrl: ['']
     });
-
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = paramMap.get('id');
       this.userService.getAccount(1).subscribe((result) => {
@@ -45,6 +43,7 @@ export class AboutComponent implements OnInit {
     });
   }
 
+  
   updateUser() {
     if (this.updateForm.valid) {
       const {value} = this.updateForm;
@@ -60,5 +59,4 @@ export class AboutComponent implements OnInit {
       );
     }
   }
-
 }

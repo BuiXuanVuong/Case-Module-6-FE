@@ -3,7 +3,6 @@ import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IAccount} from '../model/iaccount';
-import {Iuser} from '../model/iuser';
 import {DomSanitizer} from '@angular/platform-browser';
 
 
@@ -35,8 +34,7 @@ export class AccountService {
 
   createAccount(data: IAccount): Observable<IAccount> {
 
-    return this.httpClient.post<IAccount>(`${this.API_URL}`, data);
-
+    return this.httpClient.post<IAccount>(this.API_URL, data);
   }
 
   deleteAccount(id: number): Observable<any> {
