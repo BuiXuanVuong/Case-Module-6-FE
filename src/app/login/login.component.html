@@ -58,6 +58,7 @@
                 <i class="fa fa-key"></i>login
                 <span>sign in now and meet the awesome Friends around the world.</span>
               </div>
+
               <form  class="we-form"   [formGroup]="loginAccountForm" (ngSubmit)="createSubmit()">
                 <input type="text" placeholder="Email" formControlName="email" required="required" >
                 <div *ngIf="email.invalid && (email.dirty || email.touched)"
@@ -83,7 +84,9 @@
 
                 <input type="checkbox"><label>remember me</label>
                 <button [disabled]="loginAccountForm.invalid" type="submit" data-ripple="">sign in</button>
+
                 <button type="submit" (click)="logOut()" data-ripple="">sign out </button>
+
                 <a class="forgot underline" href="#" title="">forgot password?</a>
 
               </form>
@@ -91,6 +94,7 @@
               <a class="with-smedia twitter" href="#" title="" data-ripple=""><i class="fa fa-twitter"></i></a>
               <a class="with-smedia instagram" href="#" title="" data-ripple=""><i class="fa fa-instagram"></i></a>
               <a class="with-smedia google" href="#" title="" data-ripple=""><i class="fa fa-google-plus"></i></a>
+
               <span>don't have an account? <a routerLink="/register"  class="we-account underline"  title="">register now</a></span>
 
             </div>
