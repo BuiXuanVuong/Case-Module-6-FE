@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
     }
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      name: ['', [Validators.required]],
+      userName: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
@@ -45,6 +45,7 @@ export class RegisterComponent implements OnInit {
     this.accountService.createAccount(newAccount).subscribe(
         (data) => {
           // @ts-ignore
+          // tslint:disable-next-line:triple-equals
           if (data.message == 'Đăng ký thành công'){
             console.log('Đăng ký thành công');
             this.router.navigate(['login']);
@@ -63,7 +64,7 @@ export class RegisterComponent implements OnInit {
       );
   }
 
-  get name(){
+  get userName(){
     return this.registerForm.get('userName');
   }
 

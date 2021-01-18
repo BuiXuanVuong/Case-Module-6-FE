@@ -58,32 +58,17 @@
                 <i class="fa fa-key"></i>login
                 <span>sign in now and meet the awesome Friends around the world.</span>
               </div>
-              <form  class="we-form"   [formGroup]="loginAccountForm" (ngSubmit)="createSubmit()">
-                <input type="text" placeholder="Email" formControlName="email" required="required" >
-                <div *ngIf="email.invalid && (email.dirty || email.touched)"
-                >
-                  <div *ngIf="email.errors.required" style="color: #4c4eaa">
-                    Tên không được bỏ trống
-                  </div>
+              <form  class="we-form" [formGroup]="loginForm" (ngSubmit)="login()">
+                <input type="text" formControlName="userName" id="exampleInputUserName1"
+                       aria-describedby="emailHelp"
+                       placeholder="Enter username" >
 
-                </div>
-
-
-                <input type="password" placeholder="Password" formControlName="password" required="required">
-                <div *ngIf="password.invalid && (password.dirty || password.touched)"
-                >
-                  <div *ngIf="password.errors.required" style="color: #4c4eaa">
-                    Mật khẩu không được bỏ trống
-                  </div>
-                  <div *ngIf="password.errors.minlength" style="color: #0b2e13">
-                    Tối thiểu 6 kí tự
-                  </div>
-
-                </div>
+                <input type="password" placeholder="Password"  formControlName="password" id="exampleInputPassword1"
+                       placeholder="Enter password">
 
                 <input type="checkbox"><label>remember me</label>
-                <button [disabled]="loginAccountForm.invalid" type="submit" data-ripple="">sign in</button>
-                <button type="submit" (click)="logOut()" data-ripple="">sign out </button>
+                <button  type="submit" data-ripple="">sign in</button>
+                <button type="submit" data-ripple="">sign out </button>
                 <a class="forgot underline" href="#" title="">forgot password?</a>
 
               </form>

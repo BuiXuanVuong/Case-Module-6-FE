@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../service/account.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, ParamMap} from '@angular/router';
+import {IAccount} from '../model/iaccount';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -12,7 +13,7 @@ export class AboutComponent implements OnInit {
   updateForm: FormGroup;
   id: any;
   // @ts-ignore
-  accout: Account;
+  account: IAccount;
   constructor(private userService: AccountService,
               private fb: FormBuilder,
               private activatedRoute: ActivatedRoute) { }
@@ -23,14 +24,18 @@ export class AboutComponent implements OnInit {
     this.updateForm = this.fb.group({
       userName: [''],
       email: [''],
-      password: ['']
+      password: [''],
+      phone: [''],
+      birthday: [''],
+      avatarUrl: ['']
     });
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = paramMap.get('id');
-      this.userService.getAccount(this.id).subscribe((result) => {
+      this.userService.getAccount(1).subscribe((result) => {
         // @ts-ignore
-        this.accout = result;
-        this.updateForm.patchValue(this.accout);
+        this.account = result;
+        console.log(result);
+        this.updateForm.patchValue(this.account);
       });
     });
   }
@@ -38,7 +43,7 @@ export class AboutComponent implements OnInit {
     if (this.updateForm.valid) {
       const {value} = this.updateForm;
       const data = {
-        ...this.accout,
+        ...this.account,
         ...value
       };
       this.userService.updateAccount(data).subscribe(result => {

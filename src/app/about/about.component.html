@@ -504,8 +504,7 @@
                         Update
                       </button>
                       <!-- Modal -->
-                      <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                           aria-hidden="true">
+                      <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -515,30 +514,23 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                              <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
+                              <form [formGroup]="updateForm" (ngSubmit)="updateUser()" >
                                 <div class="form-group">
                                   <label for="username">Username</label>
-                                  <input type="text" formControlName="username" class="form-control" id="username"
-                                         aria-describedby="emailHelp" placeholder="Enter username"
-                                         [(ngModel)]="account.userName">
+                                  <input type="text" formControlName="username" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter username" [(ngModel)]="account.userName">
                                 </div>
                                 <div class="form-group">
                                   <label for="email">Email address</label>
-                                  <input type="email" formControlName="email" class="form-control" id="email"
-                                         aria-describedby="emailHelp" placeholder="Enter email"
-                                         [(ngModel)]="account.email">
-                                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                                    anyone else.</small>
+                                  <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="account.email">
+                                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                 </div>
                                 <div class="form-group">
                                   <label for="birthday">Birthday</label>
-                                  <input type="birthday" formControlName="birthday" class="form-control" id="birthday"
-                                         placeholder="Enter Birthday" [(ngModel)]="account.birthday">
+                                  <input type="birthday"  formControlName="birthday" class="form-control" id="birthday" placeholder="Enter Birthday" [(ngModel)]="account.birthday">
                                 </div>
                                 <div class="form-group">
                                   <label for="phone">Phone number</label>
-                                  <input type="phone" formControlName="phone" class="form-control" id="phone"
-                                         placeholder="Enter phone" [(ngModel)]="account.phone">
+                                  <input type="phone"  formControlName="phone" class="form-control" id="phone" placeholder="Enter phone" [(ngModel)]="account.phone">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                               </form>
@@ -546,8 +538,6 @@
                           </div>
                         </div>
                       </div>
-
-
                     </div>
                   </aside>
                 </div>
