@@ -1,14 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+// @ts-ignore
 import {TokenStorageService} from './token-storage.service';
 import {IAccount} from '../model/iaccount';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenService {
+  // @ts-ignore
+  private currentUserSubject: BehaviorSubject<IAccount>;
+  // @ts-ignore
+  public currentUser: Observable<IAccount>;
+  update = new EventEmitter<string>();
   private URL_API = environment.URL;
   private  httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -17,11 +24,18 @@ export class AuthenService {
   constructor(private http: HttpClient,
               private tokenStorage: TokenStorageService) { }
 
-  login(credentials: IAccount): Observable<any> {
+  public get currentUserValue(): IAccount {
+    return this.currentUserSubject.value;
+  }
 
-    // @ts-ignore
-
-    return this.http.get(this.URL_API, credentials);
+  login(username: string, password: string) {
+    return this.http.post<any>(this.URL_API , {username, password})
+      .pipe(map(user => {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+        this.update.emit('login');
+        return user;
+      }));
   }
   register(user: IAccount): Observable<any>{
     return this.http.post(this.URL_API, {
