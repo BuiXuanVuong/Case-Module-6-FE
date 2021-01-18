@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {IAccount} from '../model/iaccount';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../service/account.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {IAccount} from '../model/iaccount';
 
 @Component({
   selector: 'app-about',
@@ -16,27 +16,30 @@ export class AboutComponent implements OnInit {
   // @ts-ignore
   account: IAccount;
 
-  constructor(private accountService: AccountService,
+  constructor(private userService: AccountService,
               private fb: FormBuilder,
-              private activatedRoute: ActivatedRoute) {
-  }
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.createForm();
+    this.formInfo();
   }
 
-  createForm(): void {
+  formInfo(): void{
     this.updateForm = this.fb.group({
       userName: [''],
       email: [''],
-      birthday: [''],
+      password: [''],
       phone: [''],
+      birthday: [''],
+      avatarUrl: ['']
     });
+
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = paramMap.get('id');
-
-      this.accountService.getAccount(2).subscribe((result) => {
+      this.userService.getAccount(1).subscribe((result) => {
+        // @ts-ignore
         this.account = result;
+        console.log(result);
         this.updateForm.patchValue(this.account);
       });
     });
@@ -49,7 +52,7 @@ export class AboutComponent implements OnInit {
         ...this.account,
         ...value
       };
-      this.accountService.updateAccount(data).subscribe(result => {
+      this.userService.updateAccount(data).subscribe(result => {
           alert('Update successfully!');
         }, error => {
           console.log(error);
@@ -57,4 +60,5 @@ export class AboutComponent implements OnInit {
       );
     }
   }
+
 }

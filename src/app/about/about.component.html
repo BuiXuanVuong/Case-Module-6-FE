@@ -494,16 +494,16 @@
 
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#loginModal">
+                    <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#updateModal">
                       Update
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Update</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
@@ -521,11 +521,11 @@
                               </div>
                               <div class="form-group">
                                 <label for="birthday">Birthday</label>
-                                <input type="birthday"  formControlName="birthday" class="form-control" id="birthday" placeholder="Birthday" [(ngModel)]="account.birthday">
+                                <input type="birthday"  formControlName="birthday" class="form-control" id="birthday" placeholder="Enter Birthday" [(ngModel)]="account.birthday">
                               </div>
                               <div class="form-group">
                                 <label for="phone">Phone number</label>
-                                <input type="phone"  formControlName="phone" class="form-control" id="phone" placeholder="phone" [(ngModel)]="account.phone">
+                                <input type="phone"  formControlName="phone" class="form-control" id="phone" placeholder="Enter phone" [(ngModel)]="account.phone">
                               </div>
                               <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
