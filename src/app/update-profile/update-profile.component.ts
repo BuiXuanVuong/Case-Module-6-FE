@@ -35,7 +35,9 @@ export class UpdateProfileComponent implements OnInit {
     phone: new FormControl('', [Validators.required]),
     birthday: new FormControl('', Validators.required),
 
+
   });
+
 
   ngOnInit(): void {
     // @ts-ignore

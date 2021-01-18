@@ -485,7 +485,9 @@
                 <div class="col-lg-3">
                   <aside class="sidebar static left">
                     <div class="widget">
+
                       <h4 class="widget-title">User Badges <a class="see-all" href="#" title="">See All</a></h4>
+
                       <ul class="badgez-widget">
                         <li>
                           <a href="#" title="Male User" data-toggle="tooltip"><img src="assets/images/badges/badge2.png"
@@ -911,7 +913,7 @@
 
 <!-- TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT-->
                     <span *ngFor="let status of statuses">
-
+                    <p style="font-size: x-large; color: #0e0e0e">Xin chào, user{{status.wallId}}</p>
 
                     <div class="central-meta item">
                       <div class="user-post">
@@ -1020,7 +1022,9 @@
 
 
                                   <div *ngFor="let reply of status.repliedStatusMessages">
-                                     <p>{{reply.statusReplyBody}}</p>
+                                    <p>{{reply.userReply}}</p>
+                                    <center><p>{{reply.statusReplyBody}}</p></center>
+
                                   </div>
 
 
@@ -1087,7 +1091,7 @@
                                     </div>
 
                                     <button type="submit" class="btn btn-success"
-                                    [disabled]="!replyStatusForm.valid" (click)="save()">Add Reply</button>
+                                    [disabled]="!replyStatusForm.valid" (click)="save(status.id, status.wallId)">Add Reply</button>
                                   </form>
                                 </div>
 
@@ -1098,6 +1102,7 @@
                         </div>
                       </div>
                       <button (click)="editStatus(status.id)">Edit status</button>
+                      <button (click)="deleteStatus(status.id)">Delete status</button>
                     </div><!-- digital sponsors -->
 
 </span>
@@ -1249,6 +1254,14 @@
                       </ul>
                       <p>© Pitnik 2020. All Rights Reserved.</p>
                     </div><!-- little links -->
+
+                    <div class="widget pitnik-links stick-widget">
+                        <a (click)="searchAddFriend()">List suggest friend</a>
+                        <a (click)="waitInvitation()">List of wait invitations</a>
+                        <a (click)="listFriends()">List friends</a>
+                    </div><!-- little links -->
+
+
                   </aside>
                 </div><!-- sidebar -->
               </div>

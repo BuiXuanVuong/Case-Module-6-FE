@@ -13,6 +13,7 @@ import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
 import {StatusReply} from '../model/status-reply';
 
+// @ts-ignore
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
@@ -31,11 +32,14 @@ export class TimelineComponent implements OnInit {
   constructor(private statusService: StatusService,
               private router: Router,
               private route: ActivatedRoute ) {
+    // @ts-ignore
+    this.id = this.route.snapshot.params.id;
   }
 
   ngOnInit(): void {
     // @ts-ignore
     this.getStatuses(this.id);
+    // @ts-ignore
   }
 
   private getStatuses(id: any) {
@@ -45,8 +49,12 @@ export class TimelineComponent implements OnInit {
     });
   }
 
-  public save() {
-    this.statusService.addReplyStatus(this.createReplyStatus()).subscribe((data) => {
+
+
+  // @ts-ignore
+  public save(statusId, wallId) {
+    // @ts-ignore
+    this.statusService.addReplyStatus(statusId, wallId, this.createReplyStatus()).subscribe((data) => {
       console.log('OK');
       this.replyStatusForm.reset();
     });
@@ -64,9 +72,29 @@ export class TimelineComponent implements OnInit {
   }
 
   // @ts-ignore
+  deleteStatus(statusId) {
+    // @ts-ignore
+    this.statusService.deleteStatus(statusId).subscribe(data => {
+      console.log('delete', data);
+    });
+  }
+
+  // @ts-ignore
   editStatus(statusId) {
     this.router.navigate(['status-form', statusId]);
   }
 
+  searchAddFriend() {
+   this.router.navigate(['friend-list-suggest', this.id]);
+
+  }
+
+  waitInvitation() {
+    this.router.navigate(['invite-friend', this.id]);
+  }
+
+  listFriends() {
+    this.router.navigate(['list-friend', this.id]);
+  }
 
 }

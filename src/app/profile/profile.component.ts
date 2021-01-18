@@ -6,7 +6,6 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AngularFireDatabase} from '@angular/fire/database';
 
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
