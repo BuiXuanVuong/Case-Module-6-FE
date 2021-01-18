@@ -3,6 +3,7 @@ import {AccountService} from '../service/account.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {IAccount} from '../model/iaccount';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -14,12 +15,14 @@ export class AboutComponent implements OnInit {
   id: any;
   // @ts-ignore
   account: IAccount;
+
   constructor(private userService: AccountService,
               private fb: FormBuilder,
               private activatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     this.formInfo();
   }
+
   formInfo(): void{
     this.updateForm = this.fb.group({
       userName: [''],
@@ -39,6 +42,8 @@ export class AboutComponent implements OnInit {
       });
     });
   }
+
+  
   updateUser() {
     if (this.updateForm.valid) {
       const {value} = this.updateForm;

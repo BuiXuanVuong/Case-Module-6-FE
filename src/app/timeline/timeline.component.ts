@@ -1,3 +1,4 @@
+
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post';
 import {PostService} from '../post.service';
@@ -14,12 +15,14 @@ import {finalize} from 'rxjs/operators';
 import {StatusReply} from '../model/status-reply';
 
 // @ts-ignore
+
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent implements OnInit {
+
 
   public replyStatusForm = new FormGroup({
     statusReplyBody: new FormControl(''),
@@ -84,6 +87,7 @@ export class TimelineComponent implements OnInit {
     this.router.navigate(['status-form', statusId]);
   }
 
+
   searchAddFriend() {
    this.router.navigate(['friend-list-suggest', this.id]);
 
@@ -96,5 +100,6 @@ export class TimelineComponent implements OnInit {
   listFriends() {
     this.router.navigate(['list-friend', this.id]);
   }
+
 
 }

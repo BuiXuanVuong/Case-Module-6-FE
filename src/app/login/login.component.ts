@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+
 // import {TokenStorageService} from '../service/token-storage.service';
+=======
 import {AuthenService} from '../service/authen.service';
 // @ts-ignore
 import {IAccount} from '../model/Iaccount';
@@ -34,23 +36,23 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+
   login() {
     this.submitted = true;
     this.loading = true;
-    this.authenticationService.login(this.loginForm.value.username, this.loginForm.value.password)
+    this.authenticationService.login(this.loginForm.value.userName, this.loginForm.value.password)
       .pipe(first())
       .subscribe(
         data => {
           localStorage.setItem('ACCESS_TOKEN', data.accessToken);
           this.router.navigate([this.returnUrl]);
+
         },
         error => {
           this.error = 'Sai tên đăng nhập hoặc mật khẩu';
           this.loading = false;
         });
   }
-
-
 
 
 
