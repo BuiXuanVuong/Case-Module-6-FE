@@ -1,8 +1,8 @@
 export interface IAccount {
   id?: number;
-  email: string;
+  email?: string;
   userName?: string;
-  password: string;
+  password?: string;
   phone?: number;
   birthday?: string;
   avatarUrl: string;

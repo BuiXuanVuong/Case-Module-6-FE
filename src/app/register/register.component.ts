@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import {Router} from '@angular/router';
 import {TokenStorageService} from '../service/token-storage.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -14,6 +15,7 @@ import {AccountService} from '../service/account.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
   errorMessage = '';
   // @ts-ignore
   registerForm: FormGroup;
@@ -32,7 +34,7 @@ export class RegisterComponent implements OnInit {
     }
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      name: ['', [Validators.required]],
+      userName: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
@@ -45,25 +47,15 @@ export class RegisterComponent implements OnInit {
     this.accountService.createAccount(newAccount).subscribe(
         (data) => {
           // @ts-ignore
-          if (data.message == 'Đăng ký thành công'){
-            console.log('Đăng ký thành công');
+          // tslint:disable-next-line:triple-equals
             this.router.navigate(['login']);
-          }else {
-            // @ts-ignore
-            this.errorMessage = data.message;
-
-          }
-          this.isRegisterFail = true;
-
-
-          console.log(data); },
-        () => {
+          }, () => {
           console.log('Đăng kí không thành công');
         }
       );
   }
 
-  get name(){
+  get userName(){
     return this.registerForm.get('userName');
   }
 
@@ -74,6 +66,7 @@ export class RegisterComponent implements OnInit {
   get password(){
     return this.registerForm.get('password');
   }
+
 
 
 

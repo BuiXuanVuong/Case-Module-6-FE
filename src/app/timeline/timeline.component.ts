@@ -1,3 +1,4 @@
+
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post';
 import {PostService} from '../post.service';
@@ -13,12 +14,14 @@ import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
 import {StatusReply} from '../model/status-reply';
 
+
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent implements OnInit {
+
 
   public replyStatusForm = new FormGroup({
     statusReplyBody: new FormControl(''),
@@ -31,11 +34,14 @@ export class TimelineComponent implements OnInit {
   constructor(private statusService: StatusService,
               private router: Router,
               private route: ActivatedRoute ) {
+    // @ts-ignore
+    this.id = this.route.snapshot.params.id;
   }
 
   ngOnInit(): void {
     // @ts-ignore
     this.getStatuses(this.id);
+    // @ts-ignore
   }
 
   private getStatuses(id: any) {
@@ -45,8 +51,12 @@ export class TimelineComponent implements OnInit {
     });
   }
 
-  public save() {
-    this.statusService.addReplyStatus(this.createReplyStatus()).subscribe((data) => {
+
+
+  // @ts-ignore
+  public save(statusId, wallId) {
+    // @ts-ignore
+    this.statusService.addReplyStatus(statusId, wallId, this.createReplyStatus()).subscribe((data) => {
       console.log('OK');
       this.replyStatusForm.reset();
     });
@@ -61,6 +71,14 @@ export class TimelineComponent implements OnInit {
       }
     }
     return newReplyStatus as StatusReply;
+  }
+
+  // @ts-ignore
+  deleteStatus(statusId) {
+    // @ts-ignore
+    this.statusService.deleteStatus(statusId).subscribe(data => {
+      console.log('delete', data);
+    });
   }
 
   // @ts-ignore

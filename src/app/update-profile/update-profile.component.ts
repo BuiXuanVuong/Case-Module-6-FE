@@ -55,6 +55,7 @@ export class UpdateProfileComponent implements OnInit {
   private getUserProfileById(id: any) {
     this.accountService.getAccountProfile(id).subscribe(value => {
       this.currentAccount = value;
+      // @ts-ignore
       this.email = this.currentAccount.email;
       // @ts-ignore
       this.userName = this.currentAccount.userName;
