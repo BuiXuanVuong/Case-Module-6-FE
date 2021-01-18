@@ -5,6 +5,7 @@ import {AccountService} from '../service/account.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AngularFireDatabase} from '@angular/fire/database';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -21,6 +22,7 @@ export class ProfileComponent implements OnInit {
   phone = '';
   birthday = '';
   arrayPicture = '';
+
   constructor(private accountService: AccountService,
               private router: Router,
               private fb: FormBuilder,
@@ -32,7 +34,9 @@ export class ProfileComponent implements OnInit {
     password: new FormControl('', Validators.required),
     phone: new FormControl('', [Validators.required]),
     birthday: new FormControl('', Validators.required),
+
   });
+
   ngOnInit(): void {
     // @ts-ignore
     this.currentAccount = {

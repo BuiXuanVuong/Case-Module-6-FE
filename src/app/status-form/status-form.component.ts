@@ -97,12 +97,14 @@ export class StatusFormComponent implements OnInit {
         url: image
       }];
     }
+    // tslint:disable-next-line:triple-equals
     if (dataSent.content == '') {
      alert('Hãy điền vào form');
      return;
     } else {
       this.statusService.createStatus(this.currentAccount.id, dataSent).subscribe(
         (data) => {
+          // tslint:disable-next-line:triple-equals
           if (data.message == 'success') {
             alert('Đăng thành công');
             window.location.reload();

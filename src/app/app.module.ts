@@ -27,9 +27,15 @@ import {AngularFireStorage, AngularFireStorageModule} from '@angular/fire/storag
 import { StatusComponent } from './status/status.component';
 import { StatusFormComponent } from './status-form/status-form.component';
 import { StatusEditComponent } from './status-edit/status-edit.component';
+
+import { ProfileComponent } from './profile/profile.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
+
 import { FriendListSuggestComponent } from './friend-list-suggest/friend-list-suggest.component';
 import { InviteFriendComponent } from './invite-friend/invite-friend.component';
 import { ListFriendComponent } from './list-friend/list-friend.component';
+
+
 
 @NgModule({
   declarations: [
@@ -51,9 +57,15 @@ import { ListFriendComponent } from './list-friend/list-friend.component';
     StatusComponent,
     StatusFormComponent,
     StatusEditComponent,
+
+    ProfileComponent,
+    UpdateProfileComponent,
+
     FriendListSuggestComponent,
     InviteFriendComponent,
+
     ListFriendComponent,
+
   ],
   imports: [
     BrowserModule,
