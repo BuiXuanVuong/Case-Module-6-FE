@@ -126,7 +126,7 @@ export class StatusFormComponent implements OnInit {
   public editStatus() {
     if (this.id > 0) {
       // @ts-ignore
-      this.statusService.modifyStatus(this.id, this.createNewStatus())
+      this.statusService.modifyStatus(this.id, this.editStatus())
         .subscribe((data) => {
 
         });

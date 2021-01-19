@@ -99,7 +99,7 @@ export class TimelineComponent implements OnInit {
   }
 
   waitInvitation() {
-    this.router.navigate(['invite-friend', this.id]);
+    this.router.navigate(['invite-friend', this.userName]);
   }
 
   listFriends() {
