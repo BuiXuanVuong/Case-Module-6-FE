@@ -12,6 +12,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
 import {StatusReply} from '../model/status-reply';
+import {LikeService} from '../service/like.service';
 
 // @ts-ignore
 @Component({
@@ -28,10 +29,25 @@ export class TimelineComponent implements OnInit {
   public id: any;
   // @ts-ignore
   statuses: IStatus[];
+  // @ts-ignore
+  accountId: number;
+  // @ts-ignore
+  statusId: number;
+  // @ts-ignore
+  currentStatus: IStatus = {
+    id: 0,
+    content: '',
+    images: [],
+    totalComments: 0,
+    totalLikes: 0,
+
+  };
+  totalRecord = 0;
 
   constructor(private statusService: StatusService,
               private router: Router,
-              private route: ActivatedRoute ) {
+              private route: ActivatedRoute,
+              private likeService: LikeService) {
     // @ts-ignore
     this.id = this.route.snapshot.params.id;
   }
@@ -95,6 +111,27 @@ export class TimelineComponent implements OnInit {
 
   listFriends() {
     this.router.navigate(['list-friend', this.id]);
+  }
+
+  likeStatus(statusId: number, accountId: number){
+    this.likeService.likeStatus(statusId, this.accountId ).subscribe(data => {
+      console.log('like status');
+      this.getStatuses(this.id);
+    }, error => {
+      console.log('Không thể like');
+    });
+  }
+
+  unlikeStatus(statusId: number, accountId: number){
+    this.likeService.unlikeStatus(statusId, this.accountId).subscribe(
+      data => {
+        console.log('Huỷ like thành công');
+        this.getStatuses(this.id);
+      }, error => {
+        console.log('Không thể huỷ like');
+      }
+    );
+
   }
 
 }

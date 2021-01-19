@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  LIKE: 'http://localhost:8080/api/',
   URL: 'http://localhost:8080/users',
   API_URL: ' http://localhost:8080/status',
   BASE_URL: 'http://localhost:8080',
