@@ -3,6 +3,8 @@ import {AccountService} from '../service/account.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IAccount} from '../model/iaccount';
 import {AuthService} from '../auth.service';
+import {IStatus} from '../model/istatus';
+import {StatusService} from '../service/status.service';
 
 @Component({
   selector: 'app-list-friend',
@@ -14,10 +16,13 @@ export class ListFriendComponent implements OnInit {
   public id = 0;
   // @ts-ignore
   listFriend: IAccount[];
+  // @ts-ignore
+  statuses: IStatus[];
   constructor(private accountService: AccountService,
               private router: Router,
               private route: ActivatedRoute,
-              private auth: AuthService) { }
+              private auth: AuthService,
+              private statusService: StatusService) { }
 
   ngOnInit(): void {
     // @ts-ignore
@@ -30,6 +35,12 @@ export class ListFriendComponent implements OnInit {
     // @ts-ignore
     this.accountService.getListFriends(this.auth.currentUserValue.userName).subscribe(data => {
       this.listFriend = data;
+    });
+  }
+
+  watchWallFriend(userNameFriend: string) {
+    this.statusService.getAllStatus(userNameFriend).subscribe(data => {
+      this.statuses = data;
     });
   }
 

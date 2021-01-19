@@ -65,10 +65,10 @@ export class StatusService {
     return this.http.get<IStatus[]>(`${this.BASE_URL}/` + userName);
   }
 
-  addReplyStatus(statusId: number, wallId: number, data: StatusReply): Observable<any> {
+  addReplyStatus(statusId: number, userName: string, data: StatusReply): Observable<any> {
     // @ts-ignore
     return this.http
-      .post(`${this.BASE_URL}/status/reply/` + statusId + `/` + wallId, data, this.httpOptions)
+      .post(`${this.BASE_URL}/status/reply/` + statusId + `/` + this.auth.currentUserValue.userName, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

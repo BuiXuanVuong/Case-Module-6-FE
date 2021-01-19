@@ -38,7 +38,7 @@ const routes: Routes = [
   {path: 'video', component: VideoComponent},
   {path: 'register', component: RegisterComponent},
 
-  {path: 'timeline/:id', component: TimelineComponent},
+  {path: 'timeline/:userNamePath', component: TimelineComponent},
   {path: 'setting', component: SettingComponent},
   {path: 'create-post', component: CreatePostComponent},
   {path: 'posts', component: PostListComponent},

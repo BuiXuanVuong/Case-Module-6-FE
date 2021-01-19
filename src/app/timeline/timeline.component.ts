@@ -5,13 +5,15 @@ import {PostService} from '../post.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IAccount} from '../model/iaccount';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {IImage} from '../model/iimage';
-import {TokenStorageService} from '../service/token-storage.service';
+// import {IImage} from '../model/iimage';
+// import {TokenStorageService} from '../service/token-storage.service';
 import {StatusService} from '../service/status.service';
 
 import {AngularFireStorage} from '@angular/fire/storage';
+// @ts-ignore
 import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
+// @ts-ignore
 import {StatusReply} from '../model/status-reply';
 
 import {AuthService} from '../auth.service';
@@ -38,7 +40,7 @@ export class TimelineComponent implements OnInit {
   statuses: IStatus[];
 
   public userName: any;
-
+  public userNamePath: any;
   // @ts-ignore
   accountId: number;
   // @ts-ignore
@@ -64,8 +66,14 @@ export class TimelineComponent implements OnInit {
               private likeService: LikeService) {
 
     // @ts-ignore
-    this.id = this.route.snapshot.params.id;
-    this.userName = auth.currentUserValue.userName;
+    this.userNamePath = this.route.snapshot.params.userNamePath;
+
+    console.log('name path: ' + this.userNamePath);
+    if (this.userNamePath) {
+      this.userName = this.userNamePath;
+    } else {
+      this.userName = auth.currentUserValue.userName;
+    }
 
   }
 
@@ -82,12 +90,10 @@ export class TimelineComponent implements OnInit {
     });
   }
 
-
-
   // @ts-ignore
-  public save(statusId, wallId) {
+  public save( statusId, userName) {
     // @ts-ignore
-    this.statusService.addReplyStatus(statusId, wallId, this.createReplyStatus()).subscribe((data) => {
+    this.statusService.addReplyStatus(statusId, this.auth.currentUserValue.userName,  this.createReplyStatus()).subscribe((data) => {
       console.log('OK');
       this.replyStatusForm.reset();
     });
