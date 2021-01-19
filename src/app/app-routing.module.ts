@@ -12,6 +12,7 @@ import {SettingComponent} from './setting/setting.component';
 
 import {CreatePostComponent} from './create-post/create-post.component';
 import {PostListComponent} from './post-list/post-list.component';
+// @ts-ignore
 import {StatusEditComponent} from './status-edit/status-edit.component';
 import {StatusFormComponent} from './status-form/status-form.component';
 import {ProfileComponent} from './profile/profile.component';
@@ -23,6 +24,8 @@ import {InviteFriendComponent} from './invite-friend/invite-friend.component';
 import {HeaderComponent} from './header/header.component';
 
 import {ListFriendComponent} from './list-friend/list-friend.component';
+import {HelloComponent} from './hello/hello.component';
+import {AuthGuard} from './auth-guard';
 
 
 const routes: Routes = [
@@ -49,7 +52,8 @@ const routes: Routes = [
 
   {path: 'friend-list-suggest/:id', component: FriendListSuggestComponent},
   {path: 'invite-friend/:id', component: InviteFriendComponent},
-  {path: 'list-friend/:id', component: ListFriendComponent}
+  {path: 'list-friend/:id', component: ListFriendComponent},
+  {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]}
 
 
 ];
