@@ -45,17 +45,16 @@ export class RegisterComponent implements OnInit {
     const newAccount: IAccount = this.registerForm.value;
     console.log(newAccount);
     this.accountService.createAccount(newAccount).subscribe(
-        (data) => {
-          // @ts-ignore
-          // tslint:disable-next-line:triple-equals
-          if (data.message == 'Đăng ký thành công'){
-            console.log('Đăng ký thành công');
-
-            this.router.navigate(['login']);
-          }, () => {
-          console.log('Đăng kí không thành công');
-        }
-      );
+      (data) => {
+        // @ts-ignore
+        // tslint:disable-next-line:triple-equals
+        console.log('Đăng ký thành công');
+        this.router.navigate(['login']);
+        console.log(data); },
+      () => {
+        console.log('Đăng kí không thành công');
+      }
+    );
   }
 
   get userName(){

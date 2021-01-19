@@ -22,10 +22,6 @@ import {FriendListSuggestComponent} from './friend-list-suggest/friend-list-sugg
 import {InviteFriendComponent} from './invite-friend/invite-friend.component';
 import {HeaderComponent} from './header/header.component';
 
-
-import {HeaderComponent} from './header/header.component';
-
-
 import {ListFriendComponent} from './list-friend/list-friend.component';
 
 

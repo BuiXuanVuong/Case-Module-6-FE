@@ -4,7 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 
 // import {TokenStorageService} from '../service/token-storage.service';
-=======
+
 import {AuthenService} from '../service/authen.service';
 // @ts-ignore
 import {IAccount} from '../model/Iaccount';
@@ -53,7 +53,5 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         });
   }
-
-
 
 }
