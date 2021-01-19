@@ -41,10 +41,6 @@ import { HelloComponent } from './hello/hello.component';
 import {JwtInterceptor} from './jwt-interceptor';
 import {ErrorInterceptor} from './error-interceptor';
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
