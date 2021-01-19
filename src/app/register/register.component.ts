@@ -45,6 +45,7 @@ export class RegisterComponent implements OnInit {
     const newAccount: IAccount = this.registerForm.value;
     console.log(newAccount);
     this.accountService.createAccount(newAccount).subscribe(
+
       (data) => {
         // @ts-ignore
         // tslint:disable-next-line:triple-equals
@@ -55,9 +56,10 @@ export class RegisterComponent implements OnInit {
         console.log('Đăng kí không thành công');
       }
     );
+
   }
 
-  get userName(){
+  get userName() {
     return this.registerForm.get('userName');
   }
 

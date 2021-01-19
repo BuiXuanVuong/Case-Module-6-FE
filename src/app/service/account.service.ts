@@ -50,11 +50,11 @@ export class AccountService {
 
 
   getAccountProfile(id: string): Observable<IAccount> {
-    return this.httpClient.get<IAccount>(`${this.API_URL}/${1}`);
+    return this.httpClient.get<IAccount>(`${this.API_URL}/${3}`);
 
   }
   updateUserProfile(id: any, user: IAccount): Observable<IAccount> {
-    return this.httpClient.put<IAccount>(`${this.API_URL}/${1}`, user);
+    return this.httpClient.put<IAccount>(`${this.API_URL}/${3}`, user);
   }
 
 // @ts-ignore
