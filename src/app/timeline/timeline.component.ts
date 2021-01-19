@@ -1,3 +1,4 @@
+
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post';
 import {PostService} from '../post.service';
@@ -12,15 +13,21 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
 import {StatusReply} from '../model/status-reply';
+
+import {AuthService} from '../auth.service';
+
 import {LikeService} from '../service/like.service';
 
+
 // @ts-ignore
+
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent implements OnInit {
+
 
   public replyStatusForm = new FormGroup({
     statusReplyBody: new FormControl(''),
@@ -29,6 +36,9 @@ export class TimelineComponent implements OnInit {
   public id: any;
   // @ts-ignore
   statuses: IStatus[];
+
+  public userName: any;
+
   // @ts-ignore
   accountId: number;
   // @ts-ignore
@@ -44,23 +54,30 @@ export class TimelineComponent implements OnInit {
   };
   totalRecord = 0;
 
+
   constructor(private statusService: StatusService,
               private router: Router,
               private route: ActivatedRoute,
+
+              private auth: AuthService,
+
               private likeService: LikeService) {
+
     // @ts-ignore
     this.id = this.route.snapshot.params.id;
+    this.userName = auth.currentUserValue.userName;
+
   }
 
   ngOnInit(): void {
     // @ts-ignore
-    this.getStatuses(this.id);
+    this.getStatuses(this.userName);
     // @ts-ignore
   }
 
-  private getStatuses(id: any) {
+  private getStatuses(userName: any) {
     // @ts-ignore
-    this.statusService.getAllStatus(id).subscribe(data => {
+    this.statusService.getAllStatus(userName).subscribe(data => {
       this.statuses = data;
     });
   }
@@ -100,18 +117,20 @@ export class TimelineComponent implements OnInit {
     this.router.navigate(['status-form', statusId]);
   }
 
+
   searchAddFriend() {
-   this.router.navigate(['friend-list-suggest', this.id]);
+   this.router.navigate(['friend-list-suggest', this.userName]);
 
   }
 
   waitInvitation() {
-    this.router.navigate(['invite-friend', this.id]);
+    this.router.navigate(['invite-friend', this.userName]);
   }
 
   listFriends() {
     this.router.navigate(['list-friend', this.id]);
   }
+
 
   likeStatus(statusId: number, accountId: number){
     this.likeService.likeStatus(statusId, this.accountId ).subscribe(data => {
@@ -133,5 +152,6 @@ export class TimelineComponent implements OnInit {
     );
 
   }
+
 
 }

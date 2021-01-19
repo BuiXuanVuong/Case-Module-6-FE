@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IAccount} from '../model/iaccount';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AuthService} from '../auth.service';
 
 
 @Injectable({
@@ -12,7 +13,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class AccountService {
 
   constructor(private httpClient: HttpClient,
-              private sanitizer: DomSanitizer) { }
+              private sanitizer: DomSanitizer,
+              private auth: AuthService) { }
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -33,6 +35,7 @@ export class AccountService {
   }
 
   createAccount(data: IAccount): Observable<IAccount> {
+
     return this.httpClient.post<IAccount>(this.API_URL, data);
   }
 
@@ -55,25 +58,26 @@ export class AccountService {
   }
 
 // @ts-ignore
-  getAccountListSuggest(id: number): Observable<IAccount[]> {
-    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/search/` + id);
+  getAccountListSuggest(userName: string): Observable<IAccount[]> {
+    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/search/` + this.auth.currentUserValue.userName);
   }
 
-  requestFriend(idPost: number, idGet: number): Observable<any> {
-    return this.httpClient.get(`${this.BASE_URL}/invite/` + idPost + `/` + idGet);
+  requestFriend(userName: string, idGet: number): Observable<any> {
+    return this.httpClient.get(`${this.BASE_URL}/invite/` + userName + `/` + idGet);
   }
 
-  acceptFriend(idGet: number, idPost: number): Observable<any> {
-    return this.httpClient.get(`${this.BASE_URL}/connect/` + idGet + `/` + idPost);
+  acceptFriend(userName: string, idPost: number): Observable<any> {
+    return this.httpClient.get(`${this.BASE_URL}/connect/` + userName + `/` + idPost);
   }
 
-  getListInvite(id: number): Observable<any> {
-    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/user/invite/` + id);
+  getListInvite(userName: string): Observable<any> {
+    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/user/invite/` + this.auth.currentUserValue.userName);
   }
 
   getListFriends(id: number): Observable<any> {
-    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/list-friend/` + id);
+    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/list-friend/` + this.auth.currentUserValue.userName);
   }
+
 
 
 }

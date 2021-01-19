@@ -54,7 +54,7 @@ export class StatusFormComponent implements OnInit {
     });
 
     // @ts-ignore
-    this.id =+this.router.snapshot.paramMap.get('id');
+    this.id = +this.router.snapshot.paramMap.get('id');
     if (this.id > 0) {
       this.loadData(this.id);
     }
@@ -126,7 +126,7 @@ export class StatusFormComponent implements OnInit {
   public editStatus() {
     if (this.id > 0) {
       // @ts-ignore
-      this.statusService.modifyStatus(this.id, this.createNewStatus())
+      this.statusService.modifyStatus(this.id, this.editStatus())
         .subscribe((data) => {
 
         });

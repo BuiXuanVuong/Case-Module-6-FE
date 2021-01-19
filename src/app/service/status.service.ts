@@ -7,6 +7,7 @@ import {IStatus} from '../model/istatus';
 import {INewfeedResponse} from '../model/inewfeed-response';
 import {StatusReply} from '../model/status-reply';
 import {catchError} from 'rxjs/operators';
+import {AuthService} from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class StatusService {
 
 
   constructor(private http: HttpClient,
-              private token: TokenStorageService) { }
+              private token: TokenStorageService,
+              private auth: AuthService) { }
 
   deleteStatusById(id: number): Observable<any>{
     return this.http.delete(`${this.API_URL}/${id}`);
@@ -38,17 +40,17 @@ export class StatusService {
   getOneStatus(id: number): Observable<IStatus>{
     return this.http.get<IStatus>(`${this.API_URL}/${id}`);
   }
-  createStatus(id: number | undefined, data: IStatus): Observable<any>{
-    return this.http.post(`${this.API_URL}/${1}`, data);
+  createStatus(userName: string | undefined, data: IStatus): Observable<any>{
+    return this.http.post(`${this.API_URL}/` + this.auth.currentUserValue.userName, data);
   }
 
   editStatus( id: number, data: any): Observable<any>{
     return this.http.put(`${this.API_URL}/${id}`, data);
   }
 
-  modifyStatus(statusId: number, data: IStatus) {
+  modifyStatus(userName: string, data: IStatus) {
     return this.http
-      .put<any>(`${this.BASE_URL}/status/` + statusId, data, this.httpOptions)
+      .put<any>(`${this.BASE_URL}/status/` + this.auth.currentUserValue.userName, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
@@ -59,8 +61,8 @@ export class StatusService {
 
   // modifyStatus(statusId: number, data)
 
-  getAllStatus(wallId: number): Observable<IStatus[]> {
-    return this.http.get<IStatus[]>(`${this.BASE_URL}/home/` + wallId);
+  getAllStatus(userName: string): Observable<IStatus[]> {
+    return this.http.get<IStatus[]>(`${this.BASE_URL}/` + userName);
   }
 
   addReplyStatus(statusId: number, wallId: number, data: StatusReply): Observable<any> {
