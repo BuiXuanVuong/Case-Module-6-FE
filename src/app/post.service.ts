@@ -18,6 +18,7 @@ export class PostService {
     return this.httpClient.get<Post[]>(`${this.baseURL}`);
   }
 
+  // tslint:disable-next-line:ban-types
   createPost(post: Post): Observable<Object>{
     return this.httpClient.post(`${this.baseURL}`, post);
   }
