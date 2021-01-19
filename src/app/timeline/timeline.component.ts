@@ -137,6 +137,10 @@ export class TimelineComponent implements OnInit {
     this.router.navigate(['list-friend', this.userName]);
   }
 
+  postStatusOnWallFriend() {
+
+  }
+
 
   likeStatus(statusId: number, accountId: number){
     this.likeService.likeStatus(statusId, this.accountId ).subscribe(data => {
@@ -156,7 +160,6 @@ export class TimelineComponent implements OnInit {
         console.log('Không thể huỷ like');
       }
     );
-
   }
 
 

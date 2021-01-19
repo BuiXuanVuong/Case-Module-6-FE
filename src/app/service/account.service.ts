@@ -78,6 +78,4 @@ export class AccountService {
     return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/list-friend/` + this.auth.currentUserValue.userName);
   }
 
-
-
 }

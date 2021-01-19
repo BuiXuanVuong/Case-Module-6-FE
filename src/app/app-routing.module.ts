@@ -47,6 +47,7 @@ const routes: Routes = [
   {path: 'update-profile', component: UpdateProfileComponent},
 
   {path: 'status-form/:id', component: StatusFormComponent},
+  {path: 'status-form/:userName', component: StatusFormComponent},
   {path: 'status-edit', component: StatusEditComponent},
 
 
@@ -55,7 +56,6 @@ const routes: Routes = [
   {path: 'list-friend/:id', component: ListFriendComponent},
   {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent}
-
 
 ];
 
