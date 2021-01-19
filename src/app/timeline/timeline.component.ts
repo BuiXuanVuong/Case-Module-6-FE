@@ -13,6 +13,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
 import {StatusReply} from '../model/status-reply';
+import {AuthService} from '../auth.service';
 
 // @ts-ignore
 
@@ -31,23 +32,27 @@ export class TimelineComponent implements OnInit {
   public id: any;
   // @ts-ignore
   statuses: IStatus[];
+  public userName: any;
 
   constructor(private statusService: StatusService,
               private router: Router,
-              private route: ActivatedRoute ) {
+              private route: ActivatedRoute,
+              private auth: AuthService) {
     // @ts-ignore
     this.id = this.route.snapshot.params.id;
+    this.userName = auth.currentUserValue.userName;
+
   }
 
   ngOnInit(): void {
     // @ts-ignore
-    this.getStatuses(this.id);
+    this.getStatuses(this.userName);
     // @ts-ignore
   }
 
-  private getStatuses(id: any) {
+  private getStatuses(userName: any) {
     // @ts-ignore
-    this.statusService.getAllStatus(id).subscribe(data => {
+    this.statusService.getAllStatus(userName).subscribe(data => {
       this.statuses = data;
     });
   }
@@ -89,7 +94,7 @@ export class TimelineComponent implements OnInit {
 
 
   searchAddFriend() {
-   this.router.navigate(['friend-list-suggest', this.id]);
+   this.router.navigate(['friend-list-suggest', this.userName]);
 
   }
 

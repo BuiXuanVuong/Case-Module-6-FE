@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user.userName, this.user.password)
       .pipe(first())
       .subscribe(data => {
-        this.router.navigate([this.returnUrl]);
+        // this.router.navigate([this.returnUrl]);
+        this.router.navigate(['timeline', this.authService.currentUserValue.userName]);
       });
   }
 

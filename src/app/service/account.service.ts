@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IAccount} from '../model/iaccount';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AuthService} from '../auth.service';
 
 
 @Injectable({
@@ -12,7 +13,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class AccountService {
 
   constructor(private httpClient: HttpClient,
-              private sanitizer: DomSanitizer) { }
+              private sanitizer: DomSanitizer,
+              private auth: AuthService) { }
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -57,7 +59,7 @@ export class AccountService {
 
 // @ts-ignore
   getAccountListSuggest(id: number): Observable<IAccount[]> {
-    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/search/` + id);
+    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/search/` + this.auth.currentUserValue.userName);
   }
 
   requestFriend(idPost: number, idGet: number): Observable<any> {

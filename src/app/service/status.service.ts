@@ -59,8 +59,8 @@ export class StatusService {
 
   // modifyStatus(statusId: number, data)
 
-  getAllStatus(wallId: number): Observable<IStatus[]> {
-    return this.http.get<IStatus[]>(`${this.BASE_URL}/home/` + wallId);
+  getAllStatus(userName: string): Observable<IStatus[]> {
+    return this.http.get<IStatus[]>(`${this.BASE_URL}/` + userName);
   }
 
   addReplyStatus(statusId: number, wallId: number, data: StatusReply): Observable<any> {

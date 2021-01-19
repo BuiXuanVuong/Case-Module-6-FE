@@ -30,7 +30,7 @@ export class AuthService {
   login(userName: string, password: string) {
     return this.http.post(API_URL + '/login', {userName, password})
       .pipe(map(user => {
-        localStorage.setItem('user', user);
+        localStorage.setItem('user', JSON.stringify(user));
         this.currentUserSubject.next(user);
         this.update.emit('user');
         return user;
