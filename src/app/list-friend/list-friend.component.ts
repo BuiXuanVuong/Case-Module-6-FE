@@ -39,9 +39,8 @@ export class ListFriendComponent implements OnInit {
   }
 
   watchWallFriend(userNameFriend: string) {
-    this.statusService.getAllStatus(userNameFriend).subscribe(data => {
-      this.statuses = data;
-    });
+    this.router.navigate(['timeline', userNameFriend]);
+    console.log(userNameFriend);
   }
 
 }

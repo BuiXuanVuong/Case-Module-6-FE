@@ -134,7 +134,7 @@ export class TimelineComponent implements OnInit {
   }
 
   listFriends() {
-    this.router.navigate(['list-friend', this.id]);
+    this.router.navigate(['list-friend', this.userName]);
   }
 
 
