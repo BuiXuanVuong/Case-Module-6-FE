@@ -46,18 +46,9 @@ export class RegisterComponent implements OnInit {
         (data) => {
           // @ts-ignore
           // tslint:disable-next-line:triple-equals
-          if (data.message == 'Đăng ký thành công'){
             console.log('Đăng ký thành công');
             this.router.navigate(['login']);
-          }else {
-            // @ts-ignore
-            this.errorMessage = data.message;
-
-          }
-          this.isRegisterFail = true;
-
-
-          console.log(data); },
+            console.log(data); },
         () => {
           console.log('Đăng kí không thành công');
         }
