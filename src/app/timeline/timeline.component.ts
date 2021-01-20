@@ -146,7 +146,7 @@ export class TimelineComponent implements OnInit {
   likeStatus(statusId: number, accountId: number){
     this.likeService.likeStatus(statusId, this.accountId ).subscribe(data => {
       console.log('like status');
-      this.getStatuses(this.id);
+      this.getStatuses(this.userName);
     }, error => {
       console.log('Không thể like');
     });
@@ -156,7 +156,7 @@ export class TimelineComponent implements OnInit {
     this.likeService.unlikeStatus(statusId, this.accountId).subscribe(
       data => {
         console.log('Huỷ like thành công');
-        this.getStatuses(this.id);
+        this.getStatuses(this.userName);
       }, error => {
         console.log('Không thể huỷ like');
       }

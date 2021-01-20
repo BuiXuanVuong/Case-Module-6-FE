@@ -10,7 +10,8 @@ import {IResultReponse} from '../model/iresult-reponse';
 export class LikeService {
   private LIKE_URL = environment.LIKE;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
   // tslint:disable-next-line:variable-name
   likeStatus(status_id: number, account_id: number): Observable<any>{
     // @ts-ignore
