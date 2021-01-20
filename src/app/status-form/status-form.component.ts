@@ -9,6 +9,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
 import {IImage} from '../model/iimage';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-status-form',
@@ -38,14 +39,24 @@ export class StatusFormComponent implements OnInit {
   selectedImage: any = null;
 
 
+
+  public userNamePath: any;
+  public userNameLogin: any;
   constructor(private fb: FormBuilder,
               private token: TokenStorageService,
               private statusService: StatusService,
               private route: Router,
               private router: ActivatedRoute,
-              private storage: AngularFireStorage, ) {
+              private storage: AngularFireStorage,
+              private auth: AuthService) {
+
+
+    // @ts-ignore
+    this.userNamePath = +this.route.snapshot.paramMap.userNamePath;
+    this.userNameLogin = auth.currentUserValue.userName;
   }
   public id = 0;
+
   ngOnInit(): void {
     this.newStatus = this.fb.group({
       imageURL: [''],
@@ -54,7 +65,7 @@ export class StatusFormComponent implements OnInit {
     });
 
     // @ts-ignore
-    this.id =+this.router.snapshot.paramMap.get('id');
+    this.id = +this.router.snapshot.paramMap.get('id');
     if (this.id > 0) {
       this.loadData(this.id);
     }
@@ -102,6 +113,7 @@ export class StatusFormComponent implements OnInit {
      alert('Hãy điền vào form');
      return;
     } else {
+      // @ts-ignore
       this.statusService.createStatus(this.currentAccount.id, dataSent).subscribe(
         (data) => {
           // tslint:disable-next-line:triple-equals
@@ -123,10 +135,14 @@ export class StatusFormComponent implements OnInit {
     }
   }
 
+  public addStatusOnWallFriend() {
+
+  }
+
   public editStatus() {
     if (this.id > 0) {
       // @ts-ignore
-      this.statusService.modifyStatus(this.id, this.createNewStatus())
+      this.statusService.modifyStatus(this.id, this.editStatus())
         .subscribe((data) => {
 
         });

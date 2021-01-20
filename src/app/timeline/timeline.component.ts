@@ -31,6 +31,7 @@ export class TimelineComponent implements OnInit {
   public id: any;
   // @ts-ignore
   statuses: IStatus[];
+  public userName: any;
   // @ts-ignore
   accountId: number;
   // @ts-ignore
@@ -46,38 +47,33 @@ export class TimelineComponent implements OnInit {
 
   };
   totalRecord = 0;
-  // @ts-ignore
 
-  statusReply: StatusReply;
 
   constructor(private statusService: StatusService,
               private router: Router,
               private route: ActivatedRoute,
               private likeService: LikeService,
-              ) {
-    // @ts-ignore
-    this.id = this.route.snapshot.params.id;
-  }
+              ){}
+
+
 
   ngOnInit(): void {
     // @ts-ignore
-    this.getStatuses(this.id);
+    this.getStatuses(this.userName);
     // @ts-ignore
   }
 
-  private getStatuses(id: any) {
+  private getStatuses(userName: any) {
     // @ts-ignore
-    this.statusService.getAllStatus(id).subscribe(data => {
+    this.statusService.getAllStatus(userName).subscribe(data => {
       this.statuses = data;
     });
   }
 
-
-
   // @ts-ignore
-  public save(statusId, wallId) {
+  public save( statusId, userName) {
     // @ts-ignore
-    this.statusService.addReplyStatus(statusId, wallId, this.createReplyStatus()).subscribe((data) => {
+    this.statusService.addReplyStatus(statusId, this.auth.currentUserValue.userName,  this.createReplyStatus()).subscribe((data) => {
       console.log('OK');
       this.replyStatusForm.reset();
     });
@@ -107,23 +103,29 @@ export class TimelineComponent implements OnInit {
     this.router.navigate(['status-form', statusId]);
   }
 
+
   searchAddFriend() {
-   this.router.navigate(['friend-list-suggest', this.id]);
+   this.router.navigate(['friend-list-suggest', this.userName]);
 
   }
 
   waitInvitation() {
-    this.router.navigate(['invite-friend', this.id]);
+    this.router.navigate(['invite-friend', this.userName]);
   }
 
   listFriends() {
-    this.router.navigate(['list-friend', this.id]);
+    this.router.navigate(['list-friend', this.userName]);
   }
+
+  postStatusOnWallFriend() {
+
+  }
+
 
   likeStatus(statusId: number, accountId: number){
     this.likeService.likeStatus(statusId, this.accountId ).subscribe(data => {
       console.log('like status');
-      this.getStatuses(this.id);
+      this.getStatuses(this.userName);
     }, error => {
       console.log('Không thể like');
     });
@@ -133,7 +135,7 @@ export class TimelineComponent implements OnInit {
     this.likeService.unlikeStatus(statusId, this.accountId).subscribe(
       data => {
         console.log('Huỷ like thành công');
-        this.getStatuses(this.id);
+        this.getStatuses(this.userName);
       }, error => {
         console.log('Không thể huỷ like');
       }
