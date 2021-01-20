@@ -21,7 +21,7 @@ export class LikeService {
 
   }
   // tslint:disable-next-line:variable-name
-  unlikeStatus(status_id: number, userName: string): Observable<IResultReponse>{
+  unlikeStatus(status_id: number, userName: string | undefined): Observable<IResultReponse>{
     return this.httpClient.delete<IResultReponse>(`${this.LIKE_URL}/${this.auth.currentUserValue.userName}/unlike/${status_id}`);
   }
 

@@ -2,7 +2,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post';
 import {PostService} from '../post.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {IAccount} from '../model/iaccount';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 // import {IImage} from '../model/iimage';
@@ -19,6 +19,8 @@ import {StatusReply} from '../model/status-reply';
 import {AuthService} from '../auth.service';
 
 import {LikeService} from '../service/like.service';
+import {AccountService} from '../service/account.service';
+import {Iuser} from '../model/iuser';
 
 
 // @ts-ignore
@@ -55,7 +57,8 @@ export class TimelineComponent implements OnInit {
 
   };
   totalRecord = 0;
-
+  // @ts-ignore
+  public userPath: Iuser;
 
   constructor(private statusService: StatusService,
               private router: Router,
@@ -63,10 +66,21 @@ export class TimelineComponent implements OnInit {
 
               private auth: AuthService,
 
-              private likeService: LikeService) {
+              private likeService: LikeService,
+              private accountService: AccountService) {
 
     // @ts-ignore
     this.userNamePath = this.route.snapshot.params.userNamePath;
+
+    //
+    this.route.paramMap.subscribe((paraMap: ParamMap) => {
+      console.log(paraMap.get('userName'));
+      // @ts-ignore
+      accountService.getUserPathByUserName(this.userNamePath).subscribe(data => {
+        this.userPath = data;
+      });
+    });
+
 
     console.log('name path: ' + this.userNamePath);
     if (this.userNamePath) {
