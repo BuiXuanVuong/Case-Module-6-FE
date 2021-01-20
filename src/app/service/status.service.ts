@@ -72,6 +72,12 @@ export class StatusService {
       .pipe(catchError(this.handleError));
   }
 
+  addStatusOnWallFriend(userNameLogin: string, userNamePath: string, data: IStatus) {
+    // @ts-ignore
+    // tslint:disable-next-line:max-line-length
+    return this.http.post<any>(`${this.BASE_URL}/status/friend/` + this.auth.currentUserValue.userName + '/' + userNamePath, data, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

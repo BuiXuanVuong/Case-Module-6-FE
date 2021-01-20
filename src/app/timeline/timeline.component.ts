@@ -137,8 +137,9 @@ export class TimelineComponent implements OnInit {
     this.router.navigate(['list-friend', this.userName]);
   }
 
-  postStatusOnWallFriend() {
-
+  postWallFriend() {
+    this.router.navigate(['status-form', this.userName]);
+    console.log('OK');
   }
 
 
@@ -161,6 +162,5 @@ export class TimelineComponent implements OnInit {
       }
     );
   }
-
 
 }
