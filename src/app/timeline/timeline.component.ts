@@ -12,6 +12,9 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
 import {StatusReply} from '../model/status-reply';
+
+import {AuthService} from '../auth.service';
+
 import {LikeService} from '../service/like.service';
 
 // @ts-ignore
@@ -21,23 +24,21 @@ import {LikeService} from '../service/like.service';
   styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent implements OnInit {
-
   public replyStatusForm = new FormGroup({
     statusReplyBody: new FormControl(''),
   });
-  @Output()
-  statusReplyResp = new EventEmitter();
 
   public id: any;
   // @ts-ignore
   statuses: IStatus[];
+
   public userName: any;
+  public userNamePath: any;
   // @ts-ignore
   accountId: number;
   // @ts-ignore
   statusId: number;
   // @ts-ignore
-
   currentStatus: IStatus = {
     id: 0,
     content: '',
@@ -52,10 +53,22 @@ export class TimelineComponent implements OnInit {
   constructor(private statusService: StatusService,
               private router: Router,
               private route: ActivatedRoute,
-              private likeService: LikeService,
-              ){}
 
+              private auth: AuthService,
 
+              private likeService: LikeService) {
+
+    // @ts-ignore
+    this.userNamePath = this.route.snapshot.params.userNamePath;
+
+    console.log('name path: ' + this.userNamePath);
+    if (this.userNamePath) {
+      this.userName = this.userNamePath;
+    } else {
+      this.userName = auth.currentUserValue.userName;
+    }
+
+  }
 
   ngOnInit(): void {
     // @ts-ignore
@@ -105,7 +118,7 @@ export class TimelineComponent implements OnInit {
 
 
   searchAddFriend() {
-   this.router.navigate(['friend-list-suggest', this.userName]);
+    this.router.navigate(['friend-list-suggest', this.userName]);
 
   }
 
@@ -140,32 +153,8 @@ export class TimelineComponent implements OnInit {
         console.log('Không thể huỷ like');
       }
     );
-
   }
 
-  // @ts-ignore
-  // tslint:disable-next-line:variable-name
-  likeStatusReply(statusReply_id: number, event){
-    this.likeService.likeStatusReply(this.accountId, statusReply_id).subscribe((resp) => {
-      this.getStatuses(this.id);
-      console.log('Like thành công');
-
-    }, error => {
-      console.log('Không thể like');
-    });
-    this.statusReplyResp.emit(event);
-  }
-
-  // @ts-ignore
-  // tslint:disable-next-line:variable-name
-  unlikeStatusReply(statusReply_id: number, event){
-    this.likeService.unlikeStatusReply(this.accountId, statusReply_id).subscribe((resp) => {
-      console.log('Huỷ like thành công');
-      this.getStatuses(this.id);
-    }, error => {
-      console.log('Không thể huỷ like');
-    });
-    this.statusReplyResp.emit(event);
-  }
 
 }
+

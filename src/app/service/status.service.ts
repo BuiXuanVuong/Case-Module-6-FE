@@ -7,7 +7,7 @@ import {IStatus} from '../model/istatus';
 import {INewfeedResponse} from '../model/inewfeed-response';
 import {StatusReply} from '../model/status-reply';
 import {catchError} from 'rxjs/operators';
-import {AuthService} from '../auth.service';
+import {AuthenService} from './authen.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class StatusService {
 
   constructor(private http: HttpClient,
               private token: TokenStorageService,
-              private auth: AuthService) { }
+              private auth: AuthenService) { }
 
   deleteStatusById(id: number): Observable<any>{
     return this.http.delete(`${this.API_URL}/${id}`);

@@ -942,8 +942,8 @@
                             <div class="more">
                               <div class="more-post-optns"><i class="ti-more-alt"></i>
                                 <ul>
-                                  <li><i class="fa fa-pencil-square-o"></i>Edit Post</li>
-                                  <li><i class="fa fa-trash-o"></i>Delete Post</li>
+                                  <li (click)="editStatus(status.id)"><i class="fa fa-pencil-square-o"></i>Edit Post</li>
+                                  <li (click)="deleteStatus(status.id)"><i class="fa fa-trash-o"></i>Delete Post</li>
                                   <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
                                   <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
                                   <li><i class="fa fa-clock-o"></i>Schedule Post</li>
@@ -1055,7 +1055,7 @@
                                   <div class="inline-itms">
                                     <span>1 year ago</span>
                                     <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                    <a href="#" title=""><i (click)="likeStatusReply(statusReply.id,$event)" class="fa fa-heart"></i><span>{{statusReply.totalStatusReplyLike}}</span></a>
+                                    <a href="#" title=""><i  class="fa fa-heart"></i><span></span></a>
                                   </div>
                                 </div>
 
@@ -1134,8 +1134,8 @@
                         </div>
                       </div>
 
-                      <button (click)="editStatus(status.id)">Edit status</button>
-                      <button (click)="deleteStatus(status.id)">Delete status</button>
+<!--                      <button (click)="editStatus(status.id)">Edit status</button>-->
+<!--                      <button (click)="deleteStatus(status.id)">Delete status</button>-->
                     </div><!-- digital sponsors -->
 
 
@@ -1260,7 +1260,7 @@
                     </div>
                     <div class="widget">
                       <div class="banner medium-opacity purple">
-                        <div class="bg-image" style="background-image: url(images/resources/baner-widgetbg.jpg)"></div>
+                        <div class="bg-image" style="background-image: url(assets/images/resources/baner-widgetbg.jpg)"></div>
                         <div class="baner-top">
                           <span><img alt="" src="assets/images/book-icon.png"></span>
                           <i class="fa fa-ellipsis-h"></i>
@@ -1645,5 +1645,6 @@
 <!--  </tr>-->
 <!--  </tbody>-->
 <!--</table>-->
+
 
 

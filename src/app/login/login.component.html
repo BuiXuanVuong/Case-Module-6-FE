@@ -59,12 +59,11 @@
 <!--                <span>sign in now and meet the awesome Friends around the world.</span>-->
 <!--              </div>-->
 
-<!--              <form  class="we-form" [formGroup]="loginForm" (ngSubmit)="login()">-->
-<!--                <input type="text" formControlName="userName" id="exampleInputUserName1"-->
-<!--                       aria-describedby="emailHelp"-->
+<!--              <form  class="we-form" (ngSubmit)="login()">-->
+<!--                <input type="text" [(ngModel)]="user.userName"-->
 <!--                       placeholder="Enter username" >-->
 
-<!--                <input type="password" placeholder="Password"  formControlName="password" id="exampleInputPassword1"-->
+<!--                <input type="text" [(ngModel)]="user.password"-->
 <!--                       placeholder="Enter password">-->
 
 <!--                <input type="checkbox"><label>remember me</label>-->

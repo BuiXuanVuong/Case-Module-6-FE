@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import { first } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/timeline';
+    // this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/timeline';
   }
 
   login() {
@@ -35,9 +36,13 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user.userName, this.user.password)
       .pipe(first())
       .subscribe(data => {
-        this.router.navigate([this.returnUrl]);
-        // this.router.navigate(['timeline', this.authService.currentUserValue.userName]);
+        // this.router.navigate([this.returnUrl]);
+        this.router.navigate(['timeline', this.authService.currentUserValue.userName]);
       });
   }
+
+
+
+
 
 }
