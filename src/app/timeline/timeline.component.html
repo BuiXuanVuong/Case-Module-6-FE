@@ -838,6 +838,8 @@
                     </div>
 
                   </div><!-- add post new box -->
+
+                  <button (click)="postStatusOnWallFriend()">Post</button>
                   <div class="central-meta">
                     <span class="create-post">Suggested Friend's <a href="#" title="">See All</a></span>
                     <ul class="suggested-frnd-caro">
@@ -1120,7 +1122,7 @@
 
 
                                     <button type="submit" class="btn btn-success"
-                                    [disabled]="!replyStatusForm.valid" (click)="save(status.id, status.wallId)">Add Reply</button>
+                                    [disabled]="!replyStatusForm.valid" (click)="save( status.id , auth.currentUserValue.userName)">Add Reply</button>
                                   </form>
                                 </div>
 

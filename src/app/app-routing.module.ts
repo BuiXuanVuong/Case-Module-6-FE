@@ -38,7 +38,7 @@ const routes: Routes = [
   {path: 'video', component: VideoComponent},
   {path: 'register', component: RegisterComponent},
 
-  {path: 'timeline/:id', component: TimelineComponent},
+  {path: 'timeline/:userNamePath', component: TimelineComponent},
   {path: 'setting', component: SettingComponent},
   {path: 'create-post', component: CreatePostComponent},
   {path: 'posts', component: PostListComponent},
@@ -47,6 +47,7 @@ const routes: Routes = [
   {path: 'update-profile', component: UpdateProfileComponent},
 
   {path: 'status-form/:id', component: StatusFormComponent},
+  {path: 'status-form/:userName', component: StatusFormComponent},
   {path: 'status-edit', component: StatusEditComponent},
 
 
@@ -55,7 +56,6 @@ const routes: Routes = [
   {path: 'list-friend/:id', component: ListFriendComponent},
   {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent}
-
 
 ];
 
