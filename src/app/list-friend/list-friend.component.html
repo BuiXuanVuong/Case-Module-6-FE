@@ -1,20 +1,22 @@
-
 <h2>List Friend</h2>
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>List friends</th>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>List friends</th>
 
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let friend of listFriend">
-    <td> {{ friend.userName }} </td>
-    <td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let friend of listFriend">
+      <td (click)="watchWallFriend(friend.userName)"> {{ friend.userName }} </td>
+      <td>
 
-<!--      <button (click) = "" class="btn btn-danger" style="margin-left: 10px;">Delete</button>-->
+        <!--      <button (click) = "" class="btn btn-danger" style="margin-left: 10px;">Delete</button>-->
 
-    </td>
-  </tr>
-  </tbody>
-</table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+

@@ -756,7 +756,9 @@
                       </figure>
                       <div class="newpst-input">
 
+
                         <form method="post" [formGroup]="newStatus" (ngSubmit)="submit()">
+
 
                           <textarea rows="2" placeholder="Share some what you are thinking?"></textarea>
                         </form>
@@ -773,8 +775,7 @@
                             <label class="fileContainer">
 
                               <input type="file"
-                                     #userPhoto
-                                     (change)="getImgFromFireBase()"
+
                                      name="image"
                                      autocomplete="off">
 
@@ -785,8 +786,7 @@
                             <label class="fileContainer">
 
                               <input type="file"
-                                     #userPhoto
-                                     (change)="getImgFromFireBase()"
+
                                      name="image"
                                      autocomplete="off">
 
@@ -797,8 +797,7 @@
                             <label class="fileContainer">
 
                               <input type="file"
-                                     #userPhoto
-                                     (change)="getImgFromFireBase()"
+
                                      name="image"
                                      autocomplete="off">
 
@@ -809,8 +808,6 @@
                             <label class="fileContainer">
 
                               <input type="file"
-                                     #userPhoto
-                                     (change)="getImgFromFireBase()"
                                      name="image"
                                      autocomplete="off">
 
@@ -841,6 +838,8 @@
                     </div>
 
                   </div><!-- add post new box -->
+
+                  <button (click)="postStatusOnWallFriend()">Post</button>
                   <div class="central-meta">
                     <span class="create-post">Suggested Friend's <a href="#" title="">See All</a></span>
                     <ul class="suggested-frnd-caro">
@@ -967,8 +966,8 @@
                               <ul class="like-dislike">
                                 <li><a class="bg-purple" href="#" title="Save to Pin Post"><i
                                   class="fa fa-thumb-tack"></i></a></li>
-                                <li><a class="bg-blue" href="#" title="Like Post"><i class="ti-thumb-up"></i></a></li>
-                                <li><a class="bg-red" href="#" title="dislike Post"><i class="ti-thumb-down"></i></a>
+                                <li><a class="bg-blue" (click)="likeStatus(statusId, accountId)" title="Like Post"><i class="ti-thumb-up"></i></a></li>
+                                <li><a class="bg-red"  (click)="unlikeStatus(statusId, accountId)"  title="dislike Post"><i class="ti-thumb-down"></i></a>
                                 </li>
                               </ul>
                             </figure>
@@ -994,7 +993,7 @@
 																</span>
                                 </li>
                                 <li>
-                                  <div class="likes heart" title="Like/Dislike">❤ <span>2K</span></div>
+                                  <div class="likes heart" title="Like/Dislike">❤ <span> {{status.totalLikes}}</span></div>
                                 </li>
                                 <li>
 																<span class="comment" title="Comments">
@@ -1029,7 +1028,7 @@
                                   <img alt="" src="assets/images/resources/userlist-5.jpg">
                                 </a>
                                 <span><strong>You</strong>, <b>Sarah</b> and <a href="#"
-                                                                                title="">24+ more</a> liked</span>
+                                                                                title=""> {{status.totalLikes}}</a> liked</span>
                               </div>
                             </div>
                           </div>
@@ -1123,7 +1122,7 @@
 
 
                                     <button type="submit" class="btn btn-success"
-                                    [disabled]="!replyStatusForm.valid" (click)="save(status.id, status.wallId)">Add Reply</button>
+                                    [disabled]="!replyStatusForm.valid" (click)="save( status.id , auth.currentUserValue.userName)">Add Reply</button>
                                   </form>
                                 </div>
 

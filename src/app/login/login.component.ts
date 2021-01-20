@@ -1,15 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {UserToken} from '../user-token';
+import {User} from '../user';
 import {ActivatedRoute, Router} from '@angular/router';
-
-// import {TokenStorageService} from '../service/token-storage.service';
-=======
-import {AuthenService} from '../service/authen.service';
-// @ts-ignore
-import {IAccount} from '../model/Iaccount';
-import {first} from 'rxjs/operators';
-
+import {AuthService} from '../auth.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -17,43 +11,33 @@ import {first} from 'rxjs/operators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup = new FormGroup({
-    userName: new FormControl(''),
-    password: new FormControl('')
-  });
   // @ts-ignore
-  returnUrl: string;
-  error = '';
-  loading = false;
-  submitted = false;
-  constructor(private activatedRoute: ActivatedRoute,
-              private router: Router,
-              private authenticationService: AuthenService) {
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['timeline']);
-    }
+  currentUser: UserToken;
+  user: User = {
+    userName: '',
+    password: ''
+  };
+  returnUrl = '';
+
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private authService: AuthService) {
+    // @ts-ignore
+    this.authService.currentUser.subscribe(value => this.currentUser = value);
   }
 
   ngOnInit() {
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/';
   }
 
   login() {
-    this.submitted = true;
-    this.loading = true;
-    this.authenticationService.login(this.loginForm.value.userName, this.loginForm.value.password)
+    // @ts-ignore
+    this.authService.login(this.user.userName, this.user.password)
       .pipe(first())
-      .subscribe(
-        data => {
-          localStorage.setItem('ACCESS_TOKEN', data.accessToken);
-          this.router.navigate([this.returnUrl]);
-
-        },
-        error => {
-          this.error = 'Sai tên đăng nhập hoặc mật khẩu';
-          this.loading = false;
-        });
+      .subscribe(data => {
+        // this.router.navigate([this.returnUrl]);
+        this.router.navigate(['timeline', this.authService.currentUserValue.userName]);
+      });
   }
-
-
 
 }

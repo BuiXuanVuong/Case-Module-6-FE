@@ -5,8 +5,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {TokenStorageService} from './token-storage.service';
 import {IAccount} from '../model/iaccount';
 
-import {Observable} from 'rxjs';
-=======
+
 import {BehaviorSubject, Observable} from 'rxjs';
 
 import {map} from 'rxjs/operators';
@@ -17,7 +16,7 @@ import {map} from 'rxjs/operators';
 export class AuthenService {
 
   [x: string]: any;
-=======
+
   // @ts-ignore
   private currentUserSubject: BehaviorSubject<IAccount>;
   // @ts-ignore

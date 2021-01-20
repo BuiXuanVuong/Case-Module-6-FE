@@ -13,12 +13,13 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SettingComponent } from './setting/setting.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CreatePostComponent } from './create-post/create-post.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { PostListComponent } from './post-list/post-list.component';
+// @ts-ignore
 import { HeaderComponent } from './header/header.component';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
@@ -27,6 +28,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireStorage, AngularFireStorageModule} from '@angular/fire/storage';
 import { StatusComponent } from './status/status.component';
 import { StatusFormComponent } from './status-form/status-form.component';
+// @ts-ignore
 import { StatusEditComponent } from './status-edit/status-edit.component';
 
 import { ProfileComponent } from './profile/profile.component';
@@ -35,10 +37,9 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
 import { FriendListSuggestComponent } from './friend-list-suggest/friend-list-suggest.component';
 import { InviteFriendComponent } from './invite-friend/invite-friend.component';
 import { ListFriendComponent } from './list-friend/list-friend.component';
-
-
-
-
+import { HelloComponent } from './hello/hello.component';
+import {JwtInterceptor} from './jwt-interceptor';
+import {ErrorInterceptor} from './error-interceptor';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,9 @@ import { ListFriendComponent } from './list-friend/list-friend.component';
     ListFriendComponent,
 
 
+    HelloComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -86,8 +90,11 @@ import { ListFriendComponent } from './list-friend/list-friend.component';
 
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     AngularFirestoreModule,
     AngularFireStorage],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

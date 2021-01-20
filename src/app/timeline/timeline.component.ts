@@ -5,14 +5,21 @@ import {PostService} from '../post.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IAccount} from '../model/iaccount';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {IImage} from '../model/iimage';
-import {TokenStorageService} from '../service/token-storage.service';
+// import {IImage} from '../model/iimage';
+// import {TokenStorageService} from '../service/token-storage.service';
 import {StatusService} from '../service/status.service';
 
 import {AngularFireStorage} from '@angular/fire/storage';
+// @ts-ignore
 import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
+// @ts-ignore
 import {StatusReply} from '../model/status-reply';
+
+import {AuthService} from '../auth.service';
+
+import {LikeService} from '../service/like.service';
+
 
 // @ts-ignore
 
@@ -32,32 +39,61 @@ export class TimelineComponent implements OnInit {
   // @ts-ignore
   statuses: IStatus[];
 
+  public userName: any;
+  public userNamePath: any;
+  // @ts-ignore
+  accountId: number;
+  // @ts-ignore
+  statusId: number;
+  // @ts-ignore
+  currentStatus: IStatus = {
+    id: 0,
+    content: '',
+    images: [],
+    totalComments: 0,
+    totalLikes: 0,
+
+  };
+  totalRecord = 0;
+
+
   constructor(private statusService: StatusService,
               private router: Router,
-              private route: ActivatedRoute ) {
+              private route: ActivatedRoute,
+
+              private auth: AuthService,
+
+              private likeService: LikeService) {
+
     // @ts-ignore
-    this.id = this.route.snapshot.params.id;
+    this.userNamePath = this.route.snapshot.params.userNamePath;
+
+    console.log('name path: ' + this.userNamePath);
+    if (this.userNamePath) {
+      this.userName = this.userNamePath;
+    } else {
+      this.userName = auth.currentUserValue.userName;
+    }
+
   }
 
   ngOnInit(): void {
     // @ts-ignore
-    this.getStatuses(this.id);
+    this.getStatuses(this.userName);
     // @ts-ignore
   }
 
-  private getStatuses(id: any) {
+  private getStatuses(userName: any) {
     // @ts-ignore
-    this.statusService.getAllStatus(id).subscribe(data => {
+    this.statusService.getAllStatus(userName).subscribe(data => {
       this.statuses = data;
     });
   }
 
-
-
   // @ts-ignore
-  public save(statusId, wallId) {
+  public save( statusId, userName) {
     // @ts-ignore
-    this.statusService.addReplyStatus(statusId, wallId, this.createReplyStatus()).subscribe((data) => {
+    this.statusService.addReplyStatus(statusId, this.auth.currentUserValue.userName,  this.createReplyStatus()).subscribe((data) => {
       console.log('OK');
       this.replyStatusForm.reset();
     });
@@ -89,16 +125,41 @@ export class TimelineComponent implements OnInit {
 
 
   searchAddFriend() {
-   this.router.navigate(['friend-list-suggest', this.id]);
+   this.router.navigate(['friend-list-suggest', this.userName]);
 
   }
 
   waitInvitation() {
-    this.router.navigate(['invite-friend', this.id]);
+    this.router.navigate(['invite-friend', this.userName]);
   }
 
   listFriends() {
-    this.router.navigate(['list-friend', this.id]);
+    this.router.navigate(['list-friend', this.userName]);
+  }
+
+  postStatusOnWallFriend() {
+
+  }
+
+
+  likeStatus(statusId: number, accountId: number){
+    this.likeService.likeStatus(statusId, this.accountId ).subscribe(data => {
+      console.log('like status');
+      this.getStatuses(this.id);
+    }, error => {
+      console.log('Không thể like');
+    });
+  }
+
+  unlikeStatus(statusId: number, accountId: number){
+    this.likeService.unlikeStatus(statusId, this.accountId).subscribe(
+      data => {
+        console.log('Huỷ like thành công');
+        this.getStatuses(this.id);
+      }, error => {
+        console.log('Không thể huỷ like');
+      }
+    );
   }
 
 

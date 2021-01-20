@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../service/account.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IAccount} from '../model/iaccount';
+import {AuthService} from '../auth.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class FriendListSuggestComponent implements OnInit {
 
   constructor(private accountService: AccountService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private auth: AuthService) {
     // @ts-ignore
 
   }
@@ -39,9 +41,9 @@ export class FriendListSuggestComponent implements OnInit {
     });
   }
 
-  sentRequestFriend(idPost: number, idGet: number) {
+  sentRequestFriend(userName: string, idGet: number) {
     // @ts-ignore
-    this.accountService.requestFriend(this.id, idGet).subscribe(data => {
+    this.accountService.requestFriend(this.auth.currentUserValue.userName, idGet).subscribe(data => {
       alert('Bạn đã gửi lời mời kết bạn đến  user' + idGet );
     });
 

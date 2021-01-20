@@ -9,8 +9,7 @@
   <tr *ngFor="let friend of friendListSuggest">
     <td> {{friend.userName}}</td>
     <td>
-      <a (click)="acceptInvitation(this.id, friend.id)">Accept Invitation</a>
-
+      <a (click)="acceptInvitation(this.auth.currentUserValue.userName, friend.id)">Accept Invitation</a>
     </td>
   </tr>
   </tbody>
