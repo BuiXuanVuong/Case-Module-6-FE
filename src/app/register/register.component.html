@@ -66,6 +66,8 @@
 
                 </div>
 
+                <input type="text" formControlName="image" placeholder="Image" required="required">
+
                 <button [disabled]="registerForm.invalid"  type="submit" data-ripple="">Register</button>
                 <div *ngIf="isRegisterFail">
                   <div class="alert alert-danger">

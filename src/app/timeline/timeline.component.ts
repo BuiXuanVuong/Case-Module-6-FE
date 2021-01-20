@@ -143,8 +143,8 @@ export class TimelineComponent implements OnInit {
   }
 
 
-  likeStatus(statusId: number, accountId: number){
-    this.likeService.likeStatus(statusId, this.accountId ).subscribe(data => {
+  likeStatus(statusId: number, userName: string){
+    this.likeService.likeStatus(statusId, this.auth.currentUserValue.userName ).subscribe(data => {
       console.log('like status');
       this.getStatuses(this.userName);
     }, error => {
@@ -152,8 +152,8 @@ export class TimelineComponent implements OnInit {
     });
   }
 
-  unlikeStatus(statusId: number, accountId: number){
-    this.likeService.unlikeStatus(statusId, this.accountId).subscribe(
+  unlikeStatus(statusId: number, userName: string){
+    this.likeService.unlikeStatus(statusId, this.auth.currentUserValue.userName).subscribe(
       data => {
         console.log('Huỷ like thành công');
         this.getStatuses(this.userName);

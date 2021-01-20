@@ -57,7 +57,6 @@ const routes: Routes = [
   {path: 'list-friend/:id', component: ListFriendComponent},
   {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent}
-
 ];
 
 @NgModule({

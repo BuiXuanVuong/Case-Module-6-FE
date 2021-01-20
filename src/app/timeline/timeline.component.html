@@ -434,8 +434,8 @@
                           </div>
 
                           <div class="author-content">
-                            <a class="h4 author-name" href="about.html">Jack Carter</a>
-                            <div class="country">Ontario, CA</div>
+                            <a class="h4 author-name" href="about.html">{{this.userNamePath}}</a>
+<!--                            <div class="country">Ontario, CA</div>-->
                           </div>
                         </div>
                       </div>
@@ -966,8 +966,8 @@
                               <ul class="like-dislike">
                                 <li><a class="bg-purple" href="#" title="Save to Pin Post"><i
                                   class="fa fa-thumb-tack"></i></a></li>
-                                <li><a class="bg-blue" (click)="likeStatus(statusId, accountId)" title="Like Post"><i class="ti-thumb-up"></i></a></li>
-                                <li><a class="bg-red"  (click)="unlikeStatus(statusId, accountId)"  title="dislike Post"><i class="ti-thumb-down"></i></a>
+                                <li><a class="bg-blue" (click)="likeStatus(status.id, this.auth.currentUserValue.userName)" title="Like Post"><i class="ti-thumb-up"></i></a></li>
+                                <li><a class="bg-red"  (click)="unlikeStatus(status.id, this.auth.currentUserValue.userName)"  title="dislike Post"><i class="ti-thumb-down"></i></a>
                                 </li>
                               </ul>
                             </figure>
