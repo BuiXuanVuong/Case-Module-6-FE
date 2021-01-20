@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Post} from '../post';
 import {PostService} from '../post.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -25,6 +25,8 @@ export class TimelineComponent implements OnInit {
   public replyStatusForm = new FormGroup({
     statusReplyBody: new FormControl(''),
   });
+  @Output()
+  statusReplyResp = new EventEmitter();
 
   public id: any;
   // @ts-ignore
@@ -34,20 +36,25 @@ export class TimelineComponent implements OnInit {
   // @ts-ignore
   statusId: number;
   // @ts-ignore
+
   currentStatus: IStatus = {
     id: 0,
     content: '',
     images: [],
-    totalComments: 0,
+    totalStatusReplyLike: 0,
     totalLikes: 0,
 
   };
   totalRecord = 0;
+  // @ts-ignore
+
+  statusReply: StatusReply;
 
   constructor(private statusService: StatusService,
               private router: Router,
               private route: ActivatedRoute,
-              private likeService: LikeService) {
+              private likeService: LikeService,
+              ) {
     // @ts-ignore
     this.id = this.route.snapshot.params.id;
   }
@@ -132,6 +139,31 @@ export class TimelineComponent implements OnInit {
       }
     );
 
+  }
+
+  // @ts-ignore
+  // tslint:disable-next-line:variable-name
+  likeStatusReply(statusReply_id: number, event){
+    this.likeService.likeStatusReply(this.accountId, statusReply_id).subscribe((resp) => {
+      this.getStatuses(this.id);
+      console.log('Like thành công');
+
+    }, error => {
+      console.log('Không thể like');
+    });
+    this.statusReplyResp.emit(event);
+  }
+
+  // @ts-ignore
+  // tslint:disable-next-line:variable-name
+  unlikeStatusReply(statusReply_id: number, event){
+    this.likeService.unlikeStatusReply(this.accountId, statusReply_id).subscribe((resp) => {
+      console.log('Huỷ like thành công');
+      this.getStatuses(this.id);
+    }, error => {
+      console.log('Không thể huỷ like');
+    });
+    this.statusReplyResp.emit(event);
   }
 
 }

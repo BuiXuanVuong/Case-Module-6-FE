@@ -1026,7 +1026,7 @@
                                   <div class="inline-itms">
                                     <span>1 year ago</span>
                                     <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                    <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                    <a href="#" title=""><i (click)="likeStatusReply(statusReply.id,$event)" class="fa fa-heart"></i><span>{{statusReply.totalStatusReplyLike}}</span></a>
                                   </div>
                                 </div>
                               </li>

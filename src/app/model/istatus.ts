@@ -8,7 +8,7 @@ export interface IStatus {
   updatedAt: Date;
   images: any;
   imageURL: any;
-  totalComments?: number;
+  totalStatusReplyLike?: number;
   totalLikes?: number;
   repliedStatusMessages?: StatusReply[];
 
