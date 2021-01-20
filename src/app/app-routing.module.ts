@@ -31,7 +31,7 @@ import {AuthGuard} from './auth-guard';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
 
-  {path: 'about', component: AboutComponent},
+  // {path: 'about', component: AboutComponent},
   {path: 'friend', component: FriendComponent},
   {path: 'group', component: GroupComponent},
   {path: 'photo', component: PhotoComponent},
@@ -55,8 +55,7 @@ const routes: Routes = [
   {path: 'friend-list-suggest/:id', component: FriendListSuggestComponent},
   {path: 'invite-friend/:id', component: InviteFriendComponent},
   {path: 'list-friend/:id', component: ListFriendComponent},
-  {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent}
+  // {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

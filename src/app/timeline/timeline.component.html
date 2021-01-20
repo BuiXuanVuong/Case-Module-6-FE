@@ -1,18 +1,13 @@
-
-<app-header></app-header>
-
 <div>
   <div class="wavy-wraper">
     <div class="wavy">
-      <span style="--i:1;">p</span>
-      <span style="--i:2;">i</span>
-      <span style="--i:3;">t</span>
-      <span style="--i:4;">n</span>
-      <span style="--i:5;">i</span>
-      <span style="--i:6;">k</span>
+      <span style="--i:1;">N</span>
+      <span style="--i:2;">o</span>
+      <span style="--i:3;">v</span>
+      <span style="--i:4;">a</span>
+      <span style="--i:5;">.</span>
+      <span style="--i:6;">.</span>
       <span style="--i:7;">.</span>
-      <span style="--i:8;">.</span>
-      <span style="--i:9;">.</span>
     </div>
   </div>
   <div class="theme-layout">
@@ -230,7 +225,7 @@
     </div><!-- responsive header -->
 
     <!--  topbar-->
-
+    <app-header></app-header>
     <!--  /topbar-->
 
     <div class="fixed-sidebar right">
@@ -942,8 +937,8 @@
                             <div class="more">
                               <div class="more-post-optns"><i class="ti-more-alt"></i>
                                 <ul>
-                                  <li><i class="fa fa-pencil-square-o"></i>Edit Post</li>
-                                  <li><i class="fa fa-trash-o"></i>Delete Post</li>
+                                  <li (click)="editStatus(status.id)"><i class="fa fa-pencil-square-o"></i>Edit Post</li>
+                                  <li (click)="deleteStatus(status.id)"><i class="fa fa-trash-o"></i>Delete Post</li>
                                   <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
                                   <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
                                   <li><i class="fa fa-clock-o"></i>Schedule Post</li>
@@ -1119,23 +1114,15 @@
                                         <i class="em em-stuck_out_tongue"></i>
                                       </div>
                                     </div>
-
-
                                     <button type="submit" class="btn btn-success"
                                     [disabled]="!replyStatusForm.valid" (click)="save( status.id , auth.currentUserValue.userName)">Add Reply</button>
                                   </form>
                                 </div>
-
-
-
                               </li>
                             </ul>
                           </div>
                         </div>
                       </div>
-
-                      <button (click)="editStatus(status.id)">Edit status</button>
-                      <button (click)="deleteStatus(status.id)">Delete status</button>
                     </div><!-- digital sponsors -->
 
 
