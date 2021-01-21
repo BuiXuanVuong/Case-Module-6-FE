@@ -4,26 +4,32 @@ import {PostService} from '../post.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IAccount} from '../model/iaccount';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {IImage} from '../model/iimage';
-import {TokenStorageService} from '../service/token-storage.service';
+// import {IImage} from '../model/iimage';
+// import {TokenStorageService} from '../service/token-storage.service';
 import {StatusService} from '../service/status.service';
 
 import {AngularFireStorage} from '@angular/fire/storage';
+// @ts-ignore
 import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
+// @ts-ignore
 import {StatusReply} from '../model/status-reply';
 
 import {AuthService} from '../auth.service';
 
 import {LikeService} from '../service/like.service';
 
+
 // @ts-ignore
+
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent implements OnInit {
+
+
   public replyStatusForm = new FormGroup({
     statusReplyBody: new FormControl(''),
   });
@@ -118,7 +124,7 @@ export class TimelineComponent implements OnInit {
 
 
   searchAddFriend() {
-    this.router.navigate(['friend-list-suggest', this.userName]);
+   this.router.navigate(['friend-list-suggest', this.userName]);
 
   }
 
@@ -130,13 +136,19 @@ export class TimelineComponent implements OnInit {
     this.router.navigate(['list-friend', this.userName]);
   }
 
+  postWallFriend() {
+    this.router.navigate(['status-form', this.userName]);
+    console.log('OK');
+  }
+
   postStatusOnWallFriend() {
 
   }
 
 
-  likeStatus(statusId: number, accountId: number){
-    this.likeService.likeStatus(statusId, this.accountId ).subscribe(data => {
+
+  likeStatus(statusId: number, userName: string){
+    this.likeService.likeStatus(statusId, this.auth.currentUserValue.userName ).subscribe(data => {
       console.log('like status');
       this.getStatuses(this.userName);
     }, error => {
@@ -144,8 +156,8 @@ export class TimelineComponent implements OnInit {
     });
   }
 
-  unlikeStatus(statusId: number, accountId: number){
-    this.likeService.unlikeStatus(statusId, this.accountId).subscribe(
+  unlikeStatus(statusId: number, userName: string){
+    this.likeService.unlikeStatus(statusId, this.auth.currentUserValue.userName).subscribe(
       data => {
         console.log('Huỷ like thành công');
         this.getStatuses(this.userName);
@@ -155,6 +167,4 @@ export class TimelineComponent implements OnInit {
     );
   }
 
-
 }
-

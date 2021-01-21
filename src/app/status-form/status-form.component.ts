@@ -39,9 +39,9 @@ export class StatusFormComponent implements OnInit {
   selectedImage: any = null;
 
 
-
   public userNamePath: any;
   public userNameLogin: any;
+
   constructor(private fb: FormBuilder,
               private token: TokenStorageService,
               private statusService: StatusService,
@@ -52,9 +52,16 @@ export class StatusFormComponent implements OnInit {
 
 
     // @ts-ignore
-    this.userNamePath = +this.route.snapshot.paramMap.userNamePath;
+    // this.userNamePath = +this.route.snapshot.paramMap.userNamePath;
+    this.router.paramMap.subscribe((paraMap: ParamMap) => {
+      console.log(paraMap.get('userName'));
+      this.userNamePath = paraMap.get('userName');
+    });
     this.userNameLogin = auth.currentUserValue.userName;
+
+
   }
+
   public id = 0;
 
   ngOnInit(): void {
@@ -65,25 +72,28 @@ export class StatusFormComponent implements OnInit {
     });
 
     // @ts-ignore
+
+    // @ts-ignore
     this.id = +this.router.snapshot.paramMap.get('id');
     if (this.id > 0) {
       this.loadData(this.id);
     }
   }
-    // @ts-ignore
-  private loadData(id) {
-      this.statusService.getOneStatus(id).subscribe((data) => {
-        console.log('getStudent', data);
-        for (const controlName in this.newStatus.controls) {
-          if (controlName) {
-            // @ts-ignore
-            this.newStatus.controls[controlName].setValue(data[controlName]);
-          }
-        }
-      });
-    }
 
-    private createNewStatus() {
+  // @ts-ignore
+  private loadData(id) {
+    this.statusService.getOneStatus(id).subscribe((data) => {
+      console.log('getStudent', data);
+      for (const controlName in this.newStatus.controls) {
+        if (controlName) {
+          // @ts-ignore
+          this.newStatus.controls[controlName].setValue(data[controlName]);
+        }
+      }
+    });
+  }
+
+  private createNewStatus() {
     const newStatus = {};
 
     for (const controlName in this.newStatus.controls) {
@@ -93,7 +103,7 @@ export class StatusFormComponent implements OnInit {
       }
     }
     return newStatus as IStatus;
-    }
+  }
 
 
   addStatus(image?: any) {
@@ -103,18 +113,17 @@ export class StatusFormComponent implements OnInit {
       content: this.newStatus.value.content,
       imageURL: this.newStatus.value.imageURL,
     };
-    if (image != null){
+    if (image != null) {
       dataSent.images = [{
         url: image
       }];
     }
     // tslint:disable-next-line:triple-equals
     if (dataSent.content == '') {
-     alert('Hãy điền vào form');
-     return;
+      alert('Hãy điền vào form');
+      return;
     } else {
-      // @ts-ignore
-      this.statusService.createStatus(this.currentAccount.id, dataSent).subscribe(
+      this.statusService.createStatus(this.currentAccount.userName, dataSent).subscribe(
         (data) => {
           // tslint:disable-next-line:triple-equals
           if (data.message == 'success') {
@@ -134,6 +143,10 @@ export class StatusFormComponent implements OnInit {
       );
     }
   }
+
+
+  // @ts-ignore
+
 
   public addStatusOnWallFriend() {
 
@@ -189,8 +202,15 @@ export class StatusFormComponent implements OnInit {
 
   }
 
+  // @ts-ignore
+  // tslint:disable-next-line:adjacent-overload-signatures
+  public addStatusOnWallFriend(userNameLogin: string, userNamePath: string) {
+    this.statusService.addStatusOnWallFriend(userNameLogin, userNamePath, this.createNewStatus()).subscribe((data) => {
+      console.log('statusform.component.ts ' + userNameLogin + '/ ' + userNamePath);
+    });
+  }
 
-
+  // tslint:disable-next-line:adjacent-overload-signatures
 
 }
 

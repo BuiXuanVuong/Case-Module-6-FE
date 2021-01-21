@@ -10,7 +10,14 @@
         <input class="rounded-lg" formControlName="content"  type="text" placeholder="Bạn đang nghĩ gì?">
         <input class="rounded-lg" formControlName="imageURL"  type="text">
 
-        <button type="submit" class="btn btn-lg btn-primary ml-2">Đăng</button>
+
+<!--          <button type="submit" (click)="addStatusOnWallFriend(this.userNameLogin, this.userNamePath)" class="btn btn-lg btn-primary ml-2">Đăng trên tường bạn bè</button>-->
+        <a (click)="addStatusOnWallFriend(this.userNameLogin, this.userNamePath)">Đăng trên tường bạn bè<</a>
+
+
+          <button type="submit" class="btn btn-lg btn-primary ml-2">Đăng</button>
+
+
         <button type="submit" (click)="editStatus()" class="btn btn-lg btn-primary ml-2">Cập nhật</button>
       </div>
 
@@ -28,5 +35,7 @@
     <input hidden #fileUploader accept="image/*" (change)="showPreview($event)" type="file">
   </div>
 </form>
+
+
 
 

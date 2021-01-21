@@ -35,7 +35,8 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       userName: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      image: ['']
     });
 
   }
@@ -71,7 +72,9 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('password');
   }
 
-
+  get image() {
+    return this.registerForm.get('image');
+  }
 
 
 

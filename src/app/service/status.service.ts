@@ -7,7 +7,7 @@ import {IStatus} from '../model/istatus';
 import {INewfeedResponse} from '../model/inewfeed-response';
 import {StatusReply} from '../model/status-reply';
 import {catchError} from 'rxjs/operators';
-import {AuthenService} from './authen.service';
+import {AuthService} from '../auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class StatusService {
 
   constructor(private http: HttpClient,
               private token: TokenStorageService,
-              private auth: AuthenService) { }
+              private auth: AuthService) { }
 
   deleteStatusById(id: number): Observable<any>{
     return this.http.delete(`${this.API_URL}/${id}`);
@@ -62,7 +62,7 @@ export class StatusService {
   // modifyStatus(statusId: number, data)
 
   getAllStatus(userName: string): Observable<IStatus[]> {
-    return this.http.get<IStatus[]>(`${this.BASE_URL}/${userName}` );
+    return this.http.get<IStatus[]>(`${this.BASE_URL}/` + userName);
   }
 
   addReplyStatus(statusId: number, userName: string, data: StatusReply): Observable<any> {
@@ -70,6 +70,12 @@ export class StatusService {
     return this.http
       .post(`${this.BASE_URL}/status/reply/` + statusId + `/` + this.auth.currentUserValue.userName, data, this.httpOptions)
       .pipe(catchError(this.handleError));
+  }
+
+  addStatusOnWallFriend(userNameLogin: string, userNamePath: string, data: IStatus) {
+    // @ts-ignore
+    // tslint:disable-next-line:max-line-length
+    return this.http.post<any>(`${this.BASE_URL}/status/friend/` + this.auth.currentUserValue.userName + '/' + userNamePath, data, this.httpOptions).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
