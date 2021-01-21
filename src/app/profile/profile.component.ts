@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   currentAccount: IAccount;
   // @ts-ignore
   sub: Subscription;
-  email = '';
+  email: string | undefined = '';
   name = '';
   password = '';
   phone = '';

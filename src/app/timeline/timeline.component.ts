@@ -60,14 +60,12 @@ export class TimelineComponent implements OnInit {
   constructor(private statusService: StatusService,
               private router: Router,
               private route: ActivatedRoute,
-
               private auth: AuthService,
-
-              private likeService: LikeService) {
+              // private likeService: LikeService
+              ) {
 
     // @ts-ignore
     this.userNamePath = this.route.snapshot.params.userNamePath;
-
     console.log('name path: ' + this.userNamePath);
     if (this.userNamePath) {
       this.userName = this.userNamePath;
@@ -110,18 +108,18 @@ export class TimelineComponent implements OnInit {
     return newReplyStatus as StatusReply;
   }
 
-  // @ts-ignore
-  deleteStatus(statusId) {
-    // @ts-ignore
-    this.statusService.deleteStatus(statusId).subscribe(data => {
-      console.log('delete', data);
-    });
-  }
-
-  // @ts-ignore
-  editStatus(statusId) {
-    this.router.navigate(['status-form', statusId]);
-  }
+  // // @ts-ignore
+  // deleteStatus(statusId) {
+  //   // @ts-ignore
+  //   this.statusService.deleteStatus(statusId).subscribe(data => {
+  //     console.log('delete', data);
+  //   });
+  // }
+  //
+  // // @ts-ignore
+  // editStatus(statusId) {
+  //   this.router.navigate(['status-form', statusId]);
+  // }
 
 
   searchAddFriend() {
@@ -143,24 +141,24 @@ export class TimelineComponent implements OnInit {
   }
 
 
-  likeStatus(statusId: number, userName: string){
-    this.likeService.likeStatus(statusId, this.auth.currentUserValue.userName ).subscribe(data => {
-      console.log('like status');
-      this.getStatuses(this.userName);
-    }, error => {
-      console.log('Không thể like');
-    });
-  }
-
-  unlikeStatus(statusId: number, userName: string){
-    this.likeService.unlikeStatus(statusId, this.auth.currentUserValue.userName).subscribe(
-      data => {
-        console.log('Huỷ like thành công');
-        this.getStatuses(this.userName);
-      }, error => {
-        console.log('Không thể huỷ like');
-      }
-    );
-  }
+  // likeStatus(statusId: number, userName: string){
+  //   this.likeService.likeStatus(statusId, this.auth.currentUserValue.userName ).subscribe(data => {
+  //     console.log('like status');
+  //     this.getStatuses(this.userName);
+  //   }, error => {
+  //     console.log('Không thể like');
+  //   });
+  // }
+  //
+  // unlikeStatus(statusId: number, userName: string){
+  //   this.likeService.unlikeStatus(statusId, this.auth.currentUserValue.userName).subscribe(
+  //     data => {
+  //       console.log('Huỷ like thành công');
+  //       this.getStatuses(this.userName);
+  //     }, error => {
+  //       console.log('Không thể huỷ like');
+  //     }
+  //   );
+  // }
 
 }

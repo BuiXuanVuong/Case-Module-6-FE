@@ -58,8 +58,6 @@ export class StatusFormComponent implements OnInit {
       this.userNamePath = paraMap.get('userName');
     });
     this.userNameLogin = auth.currentUserValue.userName;
-
-
   }
 
   public id = 0;
@@ -71,13 +69,16 @@ export class StatusFormComponent implements OnInit {
       privacy: ['0'],
     });
 
-    // @ts-ignore
 
     // @ts-ignore
     this.id = +this.router.snapshot.paramMap.get('id');
     if (this.id > 0) {
       this.loadData(this.id);
     }
+  }
+
+  private back(userNameLogin: any) {
+    this.route.navigate(['timeline', this.userNameLogin]);
   }
 
   // @ts-ignore

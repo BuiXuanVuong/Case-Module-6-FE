@@ -26,6 +26,7 @@ import {HeaderComponent} from './header/header.component';
 import {ListFriendComponent} from './list-friend/list-friend.component';
 import {HelloComponent} from './hello/hello.component';
 import {AuthGuard} from './auth-guard';
+import {StatusComponent} from './status/status.component';
 
 
 const routes: Routes = [
@@ -38,7 +39,11 @@ const routes: Routes = [
   {path: 'video', component: VideoComponent},
   {path: 'register', component: RegisterComponent},
 
-  {path: 'timeline/:userNamePath', component: TimelineComponent},
+  {path: 'timeline/:userNamePath',
+    component: TimelineComponent,
+  children: [
+    {path: '**', component: StatusComponent}
+  ]},
   {path: 'setting', component: SettingComponent},
   {path: 'create-post', component: CreatePostComponent},
   {path: 'posts', component: PostListComponent},

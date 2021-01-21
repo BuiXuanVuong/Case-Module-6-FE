@@ -1,6 +1,6 @@
 <div>
-  <div class="wavy-wraper">
-    <div class="wavy">
+  <div class="wavy-wraper" style="background: #00ccff">
+    <div class="wavy" style="background: #00ccff">
       <span style="--i:1;">N</span>
       <span style="--i:2;">o</span>
       <span style="--i:3;">v</span>
@@ -430,7 +430,7 @@
 
                           <div class="author-content">
                             <a class="h4 author-name" href="about.html">{{this.userNamePath}}</a>
-<!--                            <div class="country">Ontario, CA</div>-->
+                            <!--                            <div class="country">Ontario, CA</div>-->
                           </div>
                         </div>
                       </div>
@@ -746,92 +746,89 @@
                   <div class="central-meta postbox">
                     <span class="create-post">Create post</span>
                     <div class="new-postbox">
-                      <figure>
-                        <img src="assets/images/resources/admin.jpg" alt="">
-                      </figure>
-                      <div class="newpst-input">
 
-
-                        <form method="post" [formGroup]="newStatus" (ngSubmit)="submit()">
-
+                      <form method="post" [formGroup]="newStatus" (ngSubmit)="submit()">
+                        <figure>
+                          <img src="assets/images/resources/admin.jpg" alt="">
+                        </figure>
+                        <div class="newpst-input">
 
                           <textarea rows="2" placeholder="Share some what you are thinking?"></textarea>
-                        </form>
-                      </div>
-                      <div class="attachments">
-                        <ul>
-                          <li>
+                        </div>
+                        <div class="attachments">
+                          <ul>
+                            <li>
 													<span class="add-loc">
 														<i class="fa fa-map-marker"></i>
 													</span>
-                          </li>
-                          <li>
-                            <i class="fa fa-music"></i>
-                            <label class="fileContainer">
+                            </li>
+                            <li>
+                              <i class="fa fa-music"></i>
+                              <label class="fileContainer">
 
-                              <input type="file"
+                                <input type="file"
 
-                                     name="image"
-                                     autocomplete="off">
+                                       name="image"
+                                       autocomplete="off">
 
-                            </label>
-                          </li>
-                          <li>
-                            <i class="fa fa-image"></i>
-                            <label class="fileContainer">
+                              </label>
+                            </li>
+                            <li>
+                              <i class="fa fa-image"></i>
+                              <label class="fileContainer">
 
-                              <input type="file"
+                                <input type="file"
 
-                                     name="image"
-                                     autocomplete="off">
+                                       name="image"
+                                       autocomplete="off">
 
-                            </label>
-                          </li>
-                          <li>
-                            <i class="fa fa-video-camera"></i>
-                            <label class="fileContainer">
+                              </label>
+                            </li>
+                            <li>
+                              <i class="fa fa-video-camera"></i>
+                              <label class="fileContainer">
 
-                              <input type="file"
+                                <input type="file"
 
-                                     name="image"
-                                     autocomplete="off">
+                                       name="image"
+                                       autocomplete="off">
 
-                            </label>
-                          </li>
-                          <li>
-                            <i class="fa fa-camera"></i>
-                            <label class="fileContainer">
+                              </label>
+                            </li>
+                            <li>
+                              <i class="fa fa-camera"></i>
+                              <label class="fileContainer">
 
-                              <input type="file"
-                                     name="image"
-                                     autocomplete="off">
+                                <input type="file"
+                                       name="image"
+                                       autocomplete="off">
 
-                            </label>
-                          </li>
-                          <li class="preview-btn">
-                            <button class="post-btn-preview" type="submit" data-ripple="">Preview</button>
-                          </li>
-                        </ul>
-                        <button class="post-btn" type="submit" data-ripple="">Post</button>
-                      </div>
-                      <div class="add-location-post">
-                        <span>Drag map point to selected area</span>
-                        <div class="row">
-
-                          <div class="col-lg-6">
-                            <label class="control-label">Lat :</label>
-                            <input type="text" class="" id="us3-lat"/>
-                          </div>
-                          <div class="col-lg-6">
-                            <label>Long :</label>
-                            <input type="text" class="" id="us3-lon"/>
-                          </div>
+                              </label>
+                            </li>
+                            <li class="preview-btn">
+                              <button class="post-btn-preview" type="submit" data-ripple="">Preview</button>
+                            </li>
+                          </ul>
+                          <button class="post-btn" type="submit" data-ripple="">Post</button>
                         </div>
-                        <!-- map -->
-                        <div id="us3"></div>
-                      </div>
-                    </div>
+                        <div class="add-location-post">
+                          <span>Drag map point to selected area</span>
+                          <div class="row">
 
+                            <div class="col-lg-6">
+                              <label class="control-label">Lat :</label>
+                              <input type="text" class="" id="us3-lat"/>
+                            </div>
+                            <div class="col-lg-6">
+                              <label>Long :</label>
+                              <input type="text" class="" id="us3-lon"/>
+                            </div>
+                          </div>
+                          <!-- map -->
+                          <div id="us3"></div>
+                        </div>
+                      </form>
+                    </div>
                   </div><!-- add post new box -->
 
                   <button (click)="postWallFriend()">Post</button>
@@ -920,215 +917,19 @@
                   </div><!-- suggested friends -->
                   <div class="loadMore">
 
-<!-- TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT-->
+                    <!-- TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT-->
 
                     <span *ngFor="let status of statuses">
-                    <p style="font-size: x-large; color: #0e0e0e">Xin chào, user{{status.wallId}}</p>
+                      <p style="font-size: x-large; color: #0e0e0e">Xin chào, user{{status.wallId}}</p>
 
 
-                    <div class="central-meta item">
-                      <div class="user-post">
-                        <div class="friend-info">
-                          <figure>
-<!--                            <img src="assets/images/resources/nearly1.jpg" alt="">-->
-                            <img src="assets/images/resources/nearly1.jpg" alt="">
-                          </figure>
-                          <div class="friend-name">
-                            <div class="more">
-                              <div class="more-post-optns"><i class="ti-more-alt"></i>
-                                <ul>
-                                  <li (click)="editStatus(status.id)"><i class="fa fa-pencil-square-o"></i>Edit Post</li>
-                                  <li (click)="deleteStatus(status.id)"><i class="fa fa-trash-o"></i>Delete Post</li>
-                                  <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
-                                  <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
-                                  <li><i class="fa fa-clock-o"></i>Schedule Post</li>
-
-                                  <li><i class="fa fa-wpexplorer"></i>Select as featured</li>
-
-                                  <li><i class="fa fa-bell-slash-o"></i>Turn off Notifications</li>
-                                </ul>
-                              </div>
-                            </div>
-                            <ins><a href="time-line.html" title="">Digital Market</a></ins>
-                            <span>sponsored <i class="fa fa-globe"></i></span>
-
-                          </div>
-                          <div class="post-meta">
-                            <figure>
-
-                              <img src="{{ status.imageURL }}" alt="">
-
-                              <ul class="like-dislike">
-                                <li><a class="bg-purple" href="#" title="Save to Pin Post"><i
-                                  class="fa fa-thumb-tack"></i></a></li>
-                                <li><a class="bg-blue" (click)="likeStatus(status.id, this.auth.currentUserValue.userName)" title="Like Post"><i class="ti-thumb-up"></i></a></li>
-                                <li><a class="bg-red"  (click)="unlikeStatus(status.id, this.auth.currentUserValue.userName)"  title="dislike Post"><i class="ti-thumb-down"></i></a>
-                                </li>
-                              </ul>
-                            </figure>
-                            <div class="description">
-                              <a href="#" class="learnmore" data-ripple="">Learn More</a>
-                              <p>
+                      <!--                      <router-outlet></router-outlet>-->
+                      <app-status [status]="status"></app-status><!-- digital sponsors -->
 
 
-                                <!--                              Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc.-->
+                    </span>
 
-                                  {{ status.content }}
-
-
-
-                              </p>
-                            </div>
-                            <div class="we-video-info">
-                              <ul>
-                                <li>
-																<span class="views" title="views">
-																	<i class="fa fa-eye"></i>
-																	<ins>1.2k</ins>
-																</span>
-                                </li>
-                                <li>
-                                  <div class="likes heart" title="Like/Dislike">❤ <span> {{status.totalLikes}}</span></div>
-                                </li>
-                                <li>
-																<span class="comment" title="Comments">
-																	<i class="fa fa-commenting"></i>
-																	<ins>52</ins>
-																</span>
-                                </li>
-
-                                <li>
-																<span>
-																	<a class="share-pst" href="#" title="Share">
-																		<i class="fa fa-share-alt"></i>
-																	</a>
-																	<ins>20</ins>
-																</span>
-                                </li>
-                              </ul>
-                              <div class="users-thumb-list">
-                                <a data-toggle="tooltip" title="Anderw" href="#">
-                                  <img alt="" src="assets/images/resources/userlist-1.jpg">
-                                </a>
-                                <a data-toggle="tooltip" title="frank" href="#">
-                                  <img alt="" src="assets/images/resources/userlist-2.jpg">
-                                </a>
-                                <a data-toggle="tooltip" title="Sara" href="#">
-                                  <img alt="" src="assets/images/resources/userlist-3.jpg">
-                                </a>
-                                <a data-toggle="tooltip" title="Amy" href="#">
-                                  <img alt="" src="assets/images/resources/userlist-4.jpg">
-                                </a>
-                                <a data-toggle="tooltip" title="Ema" href="#">
-                                  <img alt="" src="assets/images/resources/userlist-5.jpg">
-                                </a>
-                                <span><strong>You</strong>, <b>Sarah</b> and <a href="#"
-                                                                                title=""> {{status.totalLikes}}</a> liked</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="coment-area" style="display: block;">
-                            <ul class="we-comet">
-                              <li>
-                                <div class="comet-avatar">
-                                  <img src="assets/images/resources/nearly3.jpg" alt="">
-                                </div>
-
-
-                                <div class="we-comment">
-                                  <h5><a href="time-line.html" title="">Jason borne</a></h5>
-
-
-                                  <div *ngFor="let reply of status.repliedStatusMessages">
-                                    <p>{{reply.userReply}}</p>
-                                    <center><p>{{reply.statusReplyBody}}</p></center>
-
-                                  </div>
-
-
-
-                                  <div class="inline-itms">
-                                    <span>1 year ago</span>
-                                    <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                    <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
-                                  </div>
-                                </div>
-
-                              </li>
-
-
-                              <li>
-                                <div class="comet-avatar">
-                                  <img src="assets/images/resources/comet-4.jpg" alt="">
-                                </div>
-                                <div class="we-comment">
-                                  <h5><a href="time-line.html" title="">Sophia</a></h5>
-                                  <p>we are working for the dance and sing songs. this video is very awesome for the
-                                    youngster.
-                                    <i class="em em-smiley"></i>
-                                  </p>
-                                  <div class="inline-itms">
-                                    <span>1 year ago</span>
-                                    <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                    <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
-                                  </div>
-                                </div>
-                              </li>
-
-
-
-
-                              <li>
-                                <a href="#" title="" class="showmore underline">more comments+</a>
-                              </li>
-                              <li class="post-comment">
-                                <div class="comet-avatar">
-                                  <img src="assets/images/resources/nearly1.jpg" alt="">
-                                </div>
-
-
-                                <div class="post-comt-box">
-                                  <form [formGroup]="replyStatusForm" method="post">
-                                    <textarea formControlName="statusReplyBody" placeholder="Post your comment"></textarea>
-
-                                    <div class="add-smiles">
-                                      <div class="uploadimage">
-                                        <i class="fa fa-image"></i>
-                                        <label class="fileContainer">
-                                          <input type="file">
-                                        </label>
-                                      </div>
-                                      <span class="em em-expressionless" title="add icon"></span>
-                                      <div class="smiles-bunch">
-                                        <i class="em em---1"></i>
-                                        <i class="em em-smiley"></i>
-                                        <i class="em em-anguished"></i>
-                                        <i class="em em-laughing"></i>
-                                        <i class="em em-angry"></i>
-                                        <i class="em em-astonished"></i>
-                                        <i class="em em-blush"></i>
-                                        <i class="em em-disappointed"></i>
-                                        <i class="em em-worried"></i>
-                                        <i class="em em-kissing_heart"></i>
-                                        <i class="em em-rage"></i>
-                                        <i class="em em-stuck_out_tongue"></i>
-                                      </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-success"
-                                    [disabled]="!replyStatusForm.valid" (click)="save( status.id , auth.currentUserValue.userName)">Add Reply</button>
-                                  </form>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div><!-- digital sponsors -->
-
-
-</span>
-
-<!-- TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT-->
+                    <!-- TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT-->
 
 
                   </div>
@@ -1277,9 +1078,9 @@
                     </div><!-- little links -->
 
                     <div class="widget pitnik-links stick-widget">
-                        <a (click)="searchAddFriend()">List suggest friend</a>
-                        <a (click)="waitInvitation()">List of wait invitations</a>
-                        <a (click)="listFriends()">List friends</a>
+                      <a (click)="searchAddFriend()">List suggest friend</a>
+                      <a (click)="waitInvitation()">List of wait invitations</a>
+                      <a (click)="listFriends()">List friends</a>
                     </div><!-- little links -->
 
 
@@ -1602,8 +1403,6 @@
   </div><!-- report popup -->
 
 </div>
-
-
 
 
 <!--<h1>Time Line</h1>-->
