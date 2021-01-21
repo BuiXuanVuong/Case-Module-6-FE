@@ -61,7 +61,7 @@ export class AccountService {
 
 // @ts-ignore
   getAccountListSuggest(userName: string): Observable<IAccount[]> {
-    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/search/` + this.auth.currentUserValue.userName);
+    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/searchFriend/` + this.auth.currentUserValue.userName);
   }
 
   requestFriend(userName: string, idGet: number): Observable<any> {
