@@ -59,6 +59,8 @@ export class TimelineComponent implements OnInit {
   totalRecord = 0;
   // @ts-ignore
   public userPath: Iuser;
+  // @ts-ignore
+  public userLogin: Iuser;
 
   constructor(private statusService: StatusService,
               private router: Router,
@@ -79,6 +81,11 @@ export class TimelineComponent implements OnInit {
       accountService.getUserPathByUserName(this.userNamePath).subscribe(data => {
         this.userPath = data;
       });
+
+      accountService.getUserPathByUserName(this.auth.currentUserValue.userName).subscribe( data => {
+        this.userLogin = data;
+      });
+
     });
 
 
