@@ -29,7 +29,7 @@ export class CreateMessageComponent implements OnInit {
     this.route.paramMap.subscribe((paraMap: ParamMap) => {
       // @ts-ignore
       // this.userPath = paraMap.get('userName');
-      this.userPath = 'user2';
+      this.userPath = paraMap.get('userPath');
       console.log(this.userPath);
     });
     // @ts-ignore

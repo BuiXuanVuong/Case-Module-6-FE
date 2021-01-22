@@ -42,6 +42,7 @@ import {JwtInterceptor} from './jwt-interceptor';
 import {ErrorInterceptor} from './error-interceptor';
 import { CreateMessageComponent } from './create-message/create-message.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { ListMessageComponent } from './list-message/list-message.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 
     CreateMessageComponent,
+
+
+    ListMessageComponent,
 
 
   ],

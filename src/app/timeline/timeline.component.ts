@@ -114,9 +114,11 @@ export class TimelineComponent implements OnInit {
   // @ts-ignore
   public save( statusId, userName) {
     // @ts-ignore
+    // tslint:disable-next-line:max-line-length
     this.statusService.addReplyStatus(statusId, this.auth.currentUserValue.userName,  this.createReplyStatus()).subscribe((data) => {
       console.log('OK');
       this.replyStatusForm.reset();
+      this.getStatuses(userName);
     });
   }
 

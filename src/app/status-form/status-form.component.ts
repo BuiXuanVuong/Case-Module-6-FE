@@ -114,9 +114,9 @@ export class StatusFormComponent implements OnInit {
       imageURL: this.newStatus.value.imageURL,
     };
     if (image != null) {
-      dataSent.images = [{
-        url: image
-      }];
+      dataSent.imageURL = image;
+
+
     }
     // tslint:disable-next-line:triple-equals
     if (dataSent.content == '') {
