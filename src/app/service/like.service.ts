@@ -25,6 +25,14 @@ export class LikeService {
   unlikeStatus(status_id: number, userName: string | undefined): Observable<IResultReponse>{
     return this.httpClient.delete<IResultReponse>(`${this.LIKE_URL}/${this.auth.currentUserValue.userName}/unlike/${status_id}`);
   }
+  // tslint:disable-next-line:variable-name
+  likeStatusReply(userName: number, statusReplyId: string | undefined): Observable<any>{
+    return this.httpClient.post(`${this.LIKE_URL}/${this.auth.currentUserValue.userName}/like-status-reply/${statusReplyId}`, null);
+  }
+  // tslint:disable-next-line:variable-name
+  unlikeStatusReply(userName: number, statusReplyId: string | undefined): Observable<IResultReponse>{
+    return this.httpClient.delete<IResultReponse>(`${this.LIKE_URL}/${this.auth.currentUserValue.userName}/unlike-status-reply/${statusReplyId}`);
+  }
 
 }
 

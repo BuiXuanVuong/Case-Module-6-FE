@@ -507,7 +507,7 @@
                         </li>
                         <li>
                           <i class="ti-user"></i>
-                          <a href="timeline-friends.html" title="">friends</a>
+                          <a routerLink="/list-friend/:id" title="">friends</a>
                         </li>
                         <li>
                           <i class="ti-image"></i>
@@ -914,7 +914,7 @@
                                   <div class="inline-itms">
                                     <span>1 year ago</span>
                                     <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                    <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                    <a  title=""><i class="fa fa-heart" (click)="likeStatusReply(statusReplyId, this.auth.currentUserValue.userName)"></i><span>{{currentStatusReply.totalStatusReplyLike}}</span></a>
                                   </div>
                                 </div>
 

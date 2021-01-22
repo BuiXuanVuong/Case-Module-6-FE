@@ -26,6 +26,9 @@ import {HeaderComponent} from './header/header.component';
 import {ListFriendComponent} from './list-friend/list-friend.component';
 import {HelloComponent} from './hello/hello.component';
 import {AuthGuard} from './auth-guard';
+import {NewPostComponent} from './new-post/new-post.component';
+
+import {UserManagerComponent} from './user-manager/user-manager.component';
 
 
 const routes: Routes = [
@@ -53,7 +56,12 @@ const routes: Routes = [
   {path: 'invite-friend/:id', component: InviteFriendComponent},
   {path: 'list-friend/:id', component: ListFriendComponent},
   {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'newPost/:userName', component: NewPostComponent},
+
+
+
+  {path: 'user-manager', component: UserManagerComponent}
 ];
 
 @NgModule({

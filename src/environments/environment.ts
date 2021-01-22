@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiSource: 'http://localhost:8080/api/admin',
 
   apiUrl: 'http://localhost:8080',
 

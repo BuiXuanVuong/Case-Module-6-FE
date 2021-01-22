@@ -44,6 +44,9 @@ export class TimelineComponent implements OnInit {
   accountId: number;
   // @ts-ignore
   statusId: number;
+
+  // @ts-ignore
+  statusReplyId: number;
   // @ts-ignore
   currentStatus: IStatus = {
     id: 0,
@@ -52,6 +55,10 @@ export class TimelineComponent implements OnInit {
     totalStatusReplyLike: 0,
     totalLikes: 0,
 
+  };
+  currentStatusReply: { id: number; totalStatusReplyLike: number } = {
+    id: 0,
+    totalStatusReplyLike: 0,
   };
   totalRecord = 0;
 
@@ -62,7 +69,8 @@ export class TimelineComponent implements OnInit {
 
               private auth: AuthService,
 
-              private likeService: LikeService) {
+              private likeService: LikeService,
+              ) {
 
     // @ts-ignore
     this.userNamePath = this.route.snapshot.params.userNamePath;
@@ -88,6 +96,7 @@ export class TimelineComponent implements OnInit {
       this.statuses = data;
     });
   }
+
 
   // @ts-ignore
   public save( statusId, userName) {
@@ -158,6 +167,26 @@ export class TimelineComponent implements OnInit {
 
   unlikeStatus(statusId: number, userName: string){
     this.likeService.unlikeStatus(statusId, this.auth.currentUserValue.userName).subscribe(
+      data => {
+        console.log('Huỷ like thành công');
+        this.getStatuses(this.userName);
+      }, error => {
+        console.log('Không thể huỷ like');
+      }
+    );
+  }
+
+  likeStatusReply(statusReplyId: number, userName: string){
+    this.likeService.likeStatusReply(statusReplyId, this.auth.currentUserValue.userName ).subscribe(data => {
+      console.log('like status-reply');
+      this.getStatuses(this.userName);
+    }, error => {
+      console.log('Không thể like');
+    });
+  }
+
+  unlikeStatusReply(statusReplyId: number, userName: string){
+    this.likeService.unlikeStatusReply(statusReplyId, this.auth.currentUserValue.userName).subscribe(
       data => {
         console.log('Huỷ like thành công');
         this.getStatuses(this.userName);

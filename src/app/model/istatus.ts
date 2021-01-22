@@ -6,8 +6,8 @@ export interface IStatus {
   wallId: number;
   createdAt: Date;
   updatedAt: Date;
+  imageURL: string;
   images: any;
-  imageURL: any;
   totalStatusReplyLike?: number;
   totalLikes?: number;
   repliedStatusMessages?: StatusReply[];
