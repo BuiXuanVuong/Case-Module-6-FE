@@ -78,7 +78,7 @@ export class StatusFormComponent implements OnInit {
   }
 
   private back(userNameLogin: any) {
-    this.route.navigate(['timeline', this.userNameLogin]);
+    this.route.navigate(['timeline', this.userNamePath]);
   }
 
   // @ts-ignore

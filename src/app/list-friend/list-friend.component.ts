@@ -43,4 +43,8 @@ export class ListFriendComponent implements OnInit {
     console.log(userNameFriend);
   }
 
+  private back() {
+    this.router.navigate(['timeline', this.auth.currentUserValue.userName]);
+  }
+
 }

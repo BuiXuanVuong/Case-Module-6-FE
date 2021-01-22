@@ -109,8 +109,8 @@ export class StatusComponent implements OnInit {
     console.log(this.statuses);
     this.statusService.deleteStatus(statusId).subscribe(data => {
       console.log('delete', data);
-      this.getStatuses(this.userName);
-      console.log(this.getStatuses(this.userName));
+      this.getStatuses(this.userNamePath);
+      console.log(this.getStatuses(this.userNamePath));
       // this.router.navigate(['/timeline', this.userNamePath]);
 
     });

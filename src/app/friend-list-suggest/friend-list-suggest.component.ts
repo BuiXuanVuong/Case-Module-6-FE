@@ -46,11 +46,11 @@ export class FriendListSuggestComponent implements OnInit {
     this.accountService.requestFriend(this.auth.currentUserValue.userName, idGet).subscribe(data => {
       alert('Bạn đã gửi lời mời kết bạn đến  user' + idGet );
     });
-
-
   }
 
 
-
+  private back() {
+    this.router.navigate(['timeline', this.auth.currentUserValue.userName]);
+  }
 
 }

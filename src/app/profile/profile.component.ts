@@ -71,4 +71,8 @@ export class ProfileComponent implements OnInit {
       console.log('Loi' + this.arrayPicture);
     });
   }
+
+  private back(userNameLogin: any) {
+    // this.router.navigate(['timeline', this.]);
+  }
 }
