@@ -9,7 +9,10 @@ export interface IAccount {
   birthday?: string;
   image: string;
 
-  accessToken?: string;
   enabled?: boolean;
   status?: number;
+
+  avatarUrl: string;
+
+  accessToken?: string;
 }

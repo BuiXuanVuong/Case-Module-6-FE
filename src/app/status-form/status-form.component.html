@@ -3,8 +3,9 @@
     <div class="input-bar row p-3">
       <div class=" col-lg-1 col-md-2 small-avatar-container">
         <img class="small-avatar rounded-circle"
-             [src]="currentAccount.avatarUrl?currentAccount.avatarUrl:'../../../../assets/static/img/avatar-default.png'"
-             alt="avatar">
+             [src]="currentAccount.avatarUrl?currentAccount.avatarUrl:''" alt="avatar">
+<!--             [src]="currentAccount.avatarUrl?currentAccount.avatarUrl:'../../../../assets//images/anh2.jpg'"-->
+
       </div>
       <div  class=" col-lg-11 col-md-10 d-flex align-items-center">
         <input class="rounded-lg" formControlName="content"  type="text" placeholder="Bạn đang nghĩ gì?">
@@ -35,6 +36,10 @@
     <input hidden #fileUploader accept="image/*" (change)="showPreview($event)" type="file">
   </div>
 </form>
+
+<button (click)="back(userNamePath)" type="submit" class="btn btn-lg btn-primary ml-2">Back</button>
+
+
 
 
 

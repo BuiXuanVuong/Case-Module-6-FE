@@ -52,6 +52,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatTabsModule} from '@angular/material/tabs';
 
 import { UserManagerComponent } from './user-manager/user-manager.component';
+import { CreateMessageComponent } from './create-message/create-message.component';
+import { ListMessageComponent } from './list-message/list-message.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +99,11 @@ import { UserManagerComponent } from './user-manager/user-manager.component';
     UserManagerComponent,
 
 
+    CreateMessageComponent,
+
+
+    ListMessageComponent,
+
 
   ],
   imports: [
@@ -109,6 +116,7 @@ import { UserManagerComponent } from './user-manager/user-manager.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
+
     MatFormFieldModule,
     MatSelectModule,
     MatProgressBarModule,

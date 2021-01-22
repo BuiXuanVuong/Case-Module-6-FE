@@ -10,7 +10,9 @@ import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
 import {IImage} from '../model/iimage';
 import {AuthService} from '../auth.service';
+
 import {Observable} from 'rxjs';
+
 
 @Component({
   selector: 'app-status-form',
@@ -74,14 +76,28 @@ export class StatusFormComponent implements OnInit {
   public userNamePath: any;
   public userNameLogin: any;
 
+
+  constructor(private fb: FormBuilder,
+              private token: TokenStorageService,
+              private statusService: StatusService,
+              private route: Router,
+              private router: ActivatedRoute,
+              private storage: AngularFireStorage,
+              private auth: AuthService) {
+
+
+    // @ts-ignore
+    // this.userNamePath = +this.route.snapshot.paramMap.userNamePath;
+    this.router.paramMap.subscribe((paraMap: ParamMap) => {
+      console.log(paraMap.get('userName'));
+      this.userNamePath = paraMap.get('userName');
+    });
+    this.userNameLogin = auth.currentUserValue.userName;
+
+
+  }
+
   public id = 0;
-  // imageForm: FormGroup = this.fb.group({
-  //   content: n
-  // })
-  form: FormGroup = this.fb.group({
-    content: new FormControl(''),
-    images: new FormControl(''),
-  });
 
   ngOnInit(): void {
     this.newStatus = this.fb.group({
@@ -133,16 +149,18 @@ export class StatusFormComponent implements OnInit {
       imageURL: this.newStatus.value.imageURL,
     };
     if (image != null) {
-      dataSent.images = [{
-        url: image
-      }];
+
+      dataSent.imageURL = image;
+
+
     }
     // tslint:disable-next-line:triple-equals
     if (dataSent.content == '') {
       alert('Hãy điền vào form');
       return;
     } else {
-      this.statusService.createStatus(this.auth.currentUserValue.userName, dataSent).subscribe(
+
+      this.statusService.createStatus(this.currentAccount.userName, dataSent).subscribe(
         (data) => {
           // tslint:disable-next-line:triple-equals
             alert('Đăng thành công');
@@ -164,9 +182,6 @@ export class StatusFormComponent implements OnInit {
   // @ts-ignore
 
 
-  public addStatusOnWallFriend() {
-
-  }
 
   public editStatus() {
     if (this.id > 0) {
@@ -204,60 +219,18 @@ export class StatusFormComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:adjacent-overload-signatures
+
   // @ts-ignore
-  saveUrl(event) {
-    const n = Date.now();
-    const file = event.target.files[0];
-    const filePath = `RoomsImages/${n}`;
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(`RoomsImages/${n}`, file);
-    task
-      .snapshotChanges()
-      .pipe( finalize(() => {
-          this.downloadURL = fileRef.getDownloadURL();
-          this.downloadURL.subscribe(url => {
-            if (url) {
-              // @ts-ignore
-              this.fb = url;
-              this.url = url;
-            }
-            console.log(this.fb);
-          });
-        })
-      ).subscribe(url => {
-      if (url) {
-        console.log(url);
-      }
-    });
-  }
-  async setNewStatus(){
-    // @ts-ignore
-    const status: IStatus = {
-      content: this.form.get('content')?.value,
-      images: this.url,
-    };
-  }
-  async save(){
-    const newS: IStatus = await this.createNewStatus();
-    console.log(newS);
-    // @ts-ignore
-    this.statusService.createStatus(newS).subscribe(() => {
-      alert('Create Successfully');
-      this.route.navigate(['/timeline']);
-    }, error => {
-      alert('Error!');
+  // tslint:disable-next-line:adjacent-overload-signatures
+  public addStatusOnWallFriend(userNameLogin: string, userNamePath: string) {
+    this.statusService.addStatusOnWallFriend(userNameLogin, userNamePath, this.createNewStatus()).subscribe((data) => {
+      console.log('statusform.component.ts ' + userNameLogin + '/ ' + userNamePath);
     });
   }
 
-
-
-
-
-
-
-
-
-
+  // tslint:disable-next-line:adjacent-overload-signatures
+  private back(userNameLogin: any) {
+    this.route.navigate(['timeline', this.userNamePath]);
+  }
 }
 
