@@ -26,8 +26,14 @@ import {HeaderComponent} from './header/header.component';
 import {ListFriendComponent} from './list-friend/list-friend.component';
 import {HelloComponent} from './hello/hello.component';
 import {AuthGuard} from './auth-guard';
+
+import {NewPostComponent} from './new-post/new-post.component';
+
+import {UserManagerComponent} from './user-manager/user-manager.component';
+
 import {CreateMessageComponent} from './create-message/create-message.component';
 import {ListMessageComponent} from './list-message/list-message.component';
+
 
 
 const routes: Routes = [
@@ -46,10 +52,13 @@ const routes: Routes = [
   {path: 'posts', component: PostListComponent},
   {path: 'header', component: HeaderComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'update-profile', component: UpdateProfileComponent},
+  {path: 'update-profile/:id', component: UpdateProfileComponent},
 
-  // {path: 'status-form/:id', component: StatusFormComponent},
-  // {path: 'status-form/:userName', component: StatusFormComponent},
+
+  {path: 'status-form/:id', component: StatusFormComponent},
+
+  
+
   {path: 'status-form/:userName', component: StatusFormComponent},
   {path: 'status-edit', component: StatusEditComponent},
 
@@ -57,6 +66,14 @@ const routes: Routes = [
   {path: 'friend-list-suggest/:id', component: FriendListSuggestComponent},
   {path: 'invite-friend/:id', component: InviteFriendComponent},
   {path: 'list-friend/:id', component: ListFriendComponent},
+  {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent},
+  {path: 'newPost/:userName', component: NewPostComponent},
+
+
+
+  {path: 'user-manager', component: UserManagerComponent}
+
   // {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
   {path: 'create-message/:userPath', component: CreateMessageComponent},
   {path: 'list-message', component: ListMessageComponent}

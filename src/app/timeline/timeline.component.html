@@ -1,4 +1,5 @@
 
+
 <div>
 <!--  <div class="wavy-wraper" style="background: #00a6d3">-->
 <!--    <div class="wavy">-->
@@ -229,6 +230,7 @@
     <app-header></app-header>
     <!--  /topbar-->
 
+
     <!--    <div class="fixed-sidebar right">-->
     <!--      <div class="chat-friendz">-->
     <!--        <ul class="chat-users">-->
@@ -432,6 +434,7 @@
 
                           <div class="author-content">
                             <a class="h4 author-name" href="about.html">{{this.userNamePath}}</a>
+
                             <!--                            <div class="country">Ontario, CA</div>-->
                           </div>
                         </div>
@@ -645,7 +648,7 @@
                         </li>
                         <li>
                           <i class="ti-user"></i>
-                          <a href="timeline-friends.html" title="">friends</a>
+                          <a routerLink="/list-friend/:id" title="">friends</a>
                         </li>
                         <li>
                           <i class="ti-image"></i>
@@ -746,6 +749,7 @@
                   </aside>
                 </div><!-- sidebar -->
                 <div class="col-lg-6">
+
                   <!--                  <div class="central-meta postbox">-->
                   <!--                    <span class="create-post">Create post</span>-->
                   <!--                    <div class="new-postbox">-->
@@ -771,6 +775,7 @@
                   <!--                          <li>-->
                   <!--                            <i class="fa fa-music"></i>-->
                   <!--                            <label class="fileContainer">-->
+
 
                   <!--                              <input type="file"-->
 
@@ -929,6 +934,7 @@
 <!--                    <p style="font-size: x-large; color: #0e0e0e">Xin chào, user{{status.wallId}}</p>-->
 
 
+
                     <div class="central-meta item">
                       <div class="user-post">
                         <div class="friend-info">
@@ -965,6 +971,7 @@
                               <ul class="like-dislike">
                                 <li><a class="bg-purple" href="#" title="Save to Pin Post"><i
                                   class="fa fa-thumb-tack"></i></a></li>
+
                                 <li><a class="bg-blue"
                                        (click)="likeStatus(status.id, this.auth.currentUserValue.userName)"
                                        title="Like Post"><i class="ti-thumb-up"></i></a></li>
@@ -982,6 +989,7 @@
                                 <!--                              Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc.-->
 
                                 {{ status.content }}
+
 
 
 
@@ -1045,6 +1053,7 @@
                                 </div>
 
 
+
                                 <div class="we-comment">
 <!--                                  <h5><a href="time-line.html" title="">Jason borne</a></h5>-->
 
@@ -1052,6 +1061,7 @@
                                     <center><p>{{reply.statusReplyBody}}</p></center>
 
                                   </div>
+
 
 
                                   <!--                                  <div class="inline-itms">-->
@@ -1092,6 +1102,7 @@
                                 <div class="comet-avatar">
                                   <img src="{{userLogin.image}}" alt="">
                                 </div>
+
 
 
 
@@ -1138,6 +1149,7 @@
                                     </div>
 
 
+
 <!--                                    <button type="submit" class="btn btn-success"-->
 <!--                                            [disabled]="!replyStatusForm.valid"-->
 <!--                                            (click)="save( status.id , auth.currentUserValue.userName)">Add Reply</button>-->
@@ -1151,6 +1163,7 @@
                           </div>
                         </div>
                       </div>
+
 
                     </div><!-- digital sponsors -->
 
@@ -1257,6 +1270,7 @@
                         </div>
                       </div>
                     </div><!-- page like widget -->
+
                     <!--                    <div class="widget">-->
                     <!--                      <h4 class="widget-title">Profile intro</h4>-->
                     <!--                      <ul class="short-profile">-->
@@ -1328,7 +1342,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <span class="copyright">© Pitnik 2020. All rights reserved.</span>
+            <span class="copyright">© NoVa 2021. All rights reserved.</span>
             <i><img src="assets/images/credit-cards.png" alt=""></i>
           </div>
         </div>

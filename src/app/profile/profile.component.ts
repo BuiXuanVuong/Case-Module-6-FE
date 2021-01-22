@@ -8,6 +8,7 @@ import {AngularFireDatabase} from '@angular/fire/database';
 import {AuthService} from '../auth.service';
 
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
