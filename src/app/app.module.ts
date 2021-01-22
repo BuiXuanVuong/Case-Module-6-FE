@@ -40,6 +40,8 @@ import { ListFriendComponent } from './list-friend/list-friend.component';
 import { HelloComponent } from './hello/hello.component';
 import {JwtInterceptor} from './jwt-interceptor';
 import {ErrorInterceptor} from './error-interceptor';
+import { CreateMessageComponent } from './create-message/create-message.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,9 @@ import {ErrorInterceptor} from './error-interceptor';
     HelloComponent,
 
 
+    CreateMessageComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -86,7 +91,8 @@ import {ErrorInterceptor} from './error-interceptor';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MatFormFieldModule
 
   ],
   providers: [
