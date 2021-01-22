@@ -5,6 +5,8 @@ import {Observable} from 'rxjs';
 import {IAccount} from '../model/iaccount';
 import {DomSanitizer} from '@angular/platform-browser';
 import {AuthService} from '../auth.service';
+import {User} from '../user';
+import {Iuser} from '../model/iuser';
 
 
 @Injectable({
@@ -59,7 +61,7 @@ export class AccountService {
 
 // @ts-ignore
   getAccountListSuggest(userName: string): Observable<IAccount[]> {
-    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/search/` + this.auth.currentUserValue.userName);
+    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/searchFriend/` + this.auth.currentUserValue.userName);
   }
 
   requestFriend(userName: string, idGet: number): Observable<any> {
@@ -76,6 +78,14 @@ export class AccountService {
 
   getListFriends(id: number): Observable<any> {
     return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/list-friend/` + this.auth.currentUserValue.userName);
+  }
+
+  getUserLoginByUserName(userName: string | undefined): Observable<any> {
+    return this.httpClient.get<Iuser>(`${this.BASE_URL}/search/` + this.auth.currentUserValue.userName);
+  }
+
+  getUserPathByUserName(userNamePath: string | undefined): Observable<any> {
+    return this.httpClient.get<Iuser>(`${this.BASE_URL}/search/` + userNamePath);
   }
 
 }

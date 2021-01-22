@@ -26,6 +26,8 @@ import {HeaderComponent} from './header/header.component';
 import {ListFriendComponent} from './list-friend/list-friend.component';
 import {HelloComponent} from './hello/hello.component';
 import {AuthGuard} from './auth-guard';
+import {CreateMessageComponent} from './create-message/create-message.component';
+import {ListMessageComponent} from './list-message/list-message.component';
 
 
 const routes: Routes = [
@@ -55,9 +57,9 @@ const routes: Routes = [
   {path: 'friend-list-suggest/:id', component: FriendListSuggestComponent},
   {path: 'invite-friend/:id', component: InviteFriendComponent},
   {path: 'list-friend/:id', component: ListFriendComponent},
-  {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent}
-
+  // {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
+  {path: 'create-message/:userPath', component: CreateMessageComponent},
+  {path: 'list-message', component: ListMessageComponent}
 ];
 
 @NgModule({
