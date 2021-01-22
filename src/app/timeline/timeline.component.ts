@@ -186,4 +186,8 @@ export class TimelineComponent implements OnInit {
     );
   }
 
+  private back(userNameLogin: any) {
+    this.router.navigate(['timeline', this.userNamePath]);
+  }
+
 }

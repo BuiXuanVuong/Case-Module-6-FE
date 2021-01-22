@@ -52,7 +52,8 @@ export class FriendListSuggestComponent implements OnInit {
 
   }
 
+  private back() {
+    this.router.navigate(['timeline', this.auth.currentUserValue.userName]);
+  }
 
-
-
-}
+  }

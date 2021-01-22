@@ -207,6 +207,8 @@ export class StatusFormComponent implements OnInit {
   }
 
   // tslint:disable-next-line:adjacent-overload-signatures
-
+  private back(userNameLogin: any) {
+    this.route.navigate(['timeline', this.userNamePath]);
+  }
 }
 

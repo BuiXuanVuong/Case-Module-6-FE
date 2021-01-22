@@ -59,4 +59,8 @@ export class CreateMessageComponent implements OnInit {
     return newMessage as Message;
   }
 
+  private back() {
+    this.router.navigate(['timeline', this.auth.currentUserValue.userName]);
+  }
+
 }
