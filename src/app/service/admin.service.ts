@@ -17,11 +17,11 @@ export class AdminService {
     return this.httpClient.get<IAccount[]>(`${apiUrl}/users`);
   }
 
-  blockActiveUser(userId: IAccount, user: number): Observable<IAccount> {
+  blockActiveUser(userId: number, user: IAccount ): Observable<IAccount> {
     return this.httpClient.put<IAccount>(`${apiUrl}/users/${userId}/block`, user);
   }
 
-  unBlockActiveUser(userId: IAccount, user: number): Observable<IAccount>{
+  unBlockActiveUser(userId: number, user: IAccount): Observable<IAccount>{
     return this.httpClient.put<IAccount>(`${apiUrl}/users/${userId}/unblock`, user);
   }
 }

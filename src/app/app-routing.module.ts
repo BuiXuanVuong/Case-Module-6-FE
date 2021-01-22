@@ -46,7 +46,7 @@ const routes: Routes = [
   {path: 'posts', component: PostListComponent},
   {path: 'header', component: HeaderComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'update-profile', component: UpdateProfileComponent},
+  {path: 'update-profile/:id', component: UpdateProfileComponent},
 
   {path: 'status-form/:id', component: StatusFormComponent},
   {path: 'status-form/:userName', component: StatusFormComponent},

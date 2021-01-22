@@ -32,10 +32,10 @@ export class UserManagerComponent implements OnInit {
     });
   }
 
-  blockUser(user: IAccount, blockId: number): void {
+  blockUser(user: IAccount, userId: number): void {
     user.status = 0;
     if (confirm('Do you really want to block this user?')) {
-      this.adminService.blockActiveUser(user, blockId).subscribe(result => {
+      this.adminService.blockActiveUser( userId, user).subscribe(result => {
         console.log('block ok');
         // this.adminService.getAllUser().subscribe(result2 => {
         //   this.users = result2;
@@ -44,10 +44,10 @@ export class UserManagerComponent implements OnInit {
     }
   }
 
-  activeUser(user: IAccount, blockId: number): void {
+  activeUser(user: IAccount, userId: number): void {
     user.status = 1;
     if (confirm('Do you really want to unblock this user?')) {
-      this.adminService.unBlockActiveUser(user, blockId).subscribe(result => {
+      this.adminService.unBlockActiveUser(userId, user).subscribe(result => {
         console.log('active ok');
         //  this.adminService.getAllUser().subscribe(result1 => {
         //   this.users = result1;

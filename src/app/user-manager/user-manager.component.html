@@ -30,7 +30,7 @@
         <span style="font-size: 25px" *ngIf="user.status == 0" class="fa fa-lock text-danger"></span>
       </td>
       <td style="width: 20%">
-        <button class="btn btn-success fa fa-eye mr-3" [routerLink]="['/admin/view', user.id]" style="font-size: 20px; cursor: pointer"></button>
+        <button class="btn btn-success fa fa-eye mr-3" [routerLink]="['/update-profile', user.id]" style="font-sze: 20px; cursor: pointer"></button>
         <button *ngIf="user.status == 1" class="btn btn-danger fa fa-lock text-black-50" (click)="blockUser(user, user.id)"
                 style="font-size: 20px; cursor: pointer"></button>
         <button *ngIf="user.status == 0" class="btn btn-warning fa fa-unlock text-black-50" (click)="activeUser(user, user.id)"
