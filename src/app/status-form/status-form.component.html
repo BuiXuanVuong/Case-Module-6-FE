@@ -1,10 +1,12 @@
 <app-header></app-header>
 <center>
 <div class="col-lg-6">
+  <app-header-background></app-header-background>
 <form [formGroup]="newStatus" (ngSubmit)="submit()">
 
   <div class="central-meta postbox">
     <span class="create-post">Create post</span>
+
     <div class="new-postbox">
       <figure>
         <img src="assets/images/resources/admin.jpg" alt="">
@@ -63,7 +65,6 @@
         <div id="us3"></div>
       </div>
     </div>
-
   </div><!-- add post new box -->
 
   <button (click)="back(userNamePath)" type="submit" class="btn btn-lg btn-primary ml-2">Back</button>
