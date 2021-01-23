@@ -207,4 +207,6 @@ export class TimelineComponent implements OnInit {
     this.router.navigate(['timeline', this.userNamePath]);
   }
 
+
+
 }

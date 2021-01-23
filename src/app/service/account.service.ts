@@ -54,7 +54,7 @@ export class AccountService {
 
   createAccount(data: IAccount): Observable<IAccount> {
 
-    return this.httpClient.post<IAccount>(this.API_URL, data);
+    return this.httpClient.post<IAccount>(`${this.API_URL}`, data);
   }
 
   deleteAccount(id: number): Observable<any> {

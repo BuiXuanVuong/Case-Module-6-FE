@@ -79,6 +79,17 @@ export class StatusService {
       .pipe(catchError(this.handleError));
   }
 
+  editReplyStatus(statusReplyId: number, userId: number, data: StatusReply): Observable<any>{
+    return this.http
+      .put(`${this.BASE_URL}/status/reply/` + statusReplyId + `/` + userId, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+  deleteReplyStatus(statusReplyId: number): Observable<any>{
+    return this.http
+      .put(`${this.BASE_URL}/status/reply/` + statusReplyId , this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   addStatusOnWallFriend(userNameLogin: string, userNamePath: string, data: IStatus) {
     // @ts-ignore
     // tslint:disable-next-line:max-line-length
@@ -100,6 +111,7 @@ export class StatusService {
     return throwError(
       'Something bad happened; please try again later.');
   }
+
 
 
 }

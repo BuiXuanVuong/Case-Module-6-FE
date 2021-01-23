@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {IAccount} from '../model/iaccount';
 import {AuthenService} from '../service/authen.service';
 import {AccountService} from '../service/account.service';
+import {AuthService} from '../auth.service';
 
 
 
@@ -24,14 +25,10 @@ export class RegisterComponent implements OnInit {
   constructor(private accountService: AccountService,
               private formBuilder: FormBuilder,
               private router: Router,
-              private authenService: AuthenService,
+              private authenService: AuthService,
               ){ }
 
   ngOnInit(): void {
-    if (this.authenService.isLogin()){
-      alert('Bạn đã Đăng Nhập');
-      this.router.navigate(['login']);
-    }
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       userName: ['', [Validators.required]],
