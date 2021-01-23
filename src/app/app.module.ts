@@ -55,6 +55,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { UserManagerComponent } from './user-manager/user-manager.component';
 import {PipesModule} from 'w-ng5';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { CreateMessageComponent } from './create-message/create-message.component';
+import { ListMessageComponent } from './list-message/list-message.component';
+import { HeaderBackgroundComponent } from './header-background/header-background.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +105,14 @@ import {NgxPaginationModule} from 'ngx-pagination';
     UserManagerComponent,
 
 
+    CreateMessageComponent,
+
+
+    ListMessageComponent,
+
+
+    HeaderBackgroundComponent,
+
 
 
   ],
@@ -115,6 +126,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
+
     MatFormFieldModule,
     MatSelectModule,
     MatProgressBarModule,

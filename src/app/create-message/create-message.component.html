@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Send Message</h1>
+  <form [formGroup]="messageForm">
+
+      <label>Message Content</label>
+      <input placeholder="" formControlName="message_body" require />
+
+
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="!messageForm.valid"
+      (click)="saveMessage()"
+    >
+      Send message to {{this.userPath}}
+    </button> &nbsp;
+  </form>
+</div>
+
+<button (click)="back()" type="submit" class="btn btn-lg btn-primary ml-2">Back</button>

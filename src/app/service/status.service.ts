@@ -8,6 +8,7 @@ import {INewfeedResponse} from '../model/inewfeed-response';
 import {StatusReply} from '../model/status-reply';
 import {catchError} from 'rxjs/operators';
 import {AuthService} from '../auth.service';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class StatusService {
 
   constructor(private http: HttpClient,
               private token: TokenStorageService,
-              private auth: AuthService) { }
+              private auth: AuthService,
+              private router: Router) { }
 
   deleteStatusById(id: number): Observable<any>{
     return this.http.delete(`${this.API_URL}/${id}`);
@@ -40,6 +42,7 @@ export class StatusService {
   getOneStatus(id: number): Observable<IStatus>{
     return this.http.get<IStatus>(`${this.API_URL}/${id}`);
   }
+
   createStatus(userName: string | undefined, data: IStatus): Observable<any>{
     return this.http.post(`${this.API_URL}/` + this.auth.currentUserValue.userName, data);
   }
@@ -48,9 +51,9 @@ export class StatusService {
     return this.http.put(`${this.API_URL}/${id}`, data);
   }
 
-  modifyStatus(userName: string, data: IStatus) {
+  modifyStatus(id: number, data: IStatus) {
     return this.http
-      .put<any>(`${this.BASE_URL}/status/` + this.auth.currentUserValue.userName, data, this.httpOptions)
+      .put<any>(`${this.BASE_URL}/status/` + id, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
@@ -63,6 +66,10 @@ export class StatusService {
 
   getAllStatus(userName: string): Observable<IStatus[]> {
     return this.http.get<IStatus[]>(`${this.BASE_URL}/` + userName);
+  }
+
+  goToTimeLine() {
+    return this.http.get<IStatus[]>(`${this.BASE_URL}/` + this.auth.currentUserValue.userName);
   }
 
   addReplyStatus(statusId: number, userName: string, data: StatusReply): Observable<any> {

@@ -76,6 +76,4 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('image');
   }
 
-
-
 }
