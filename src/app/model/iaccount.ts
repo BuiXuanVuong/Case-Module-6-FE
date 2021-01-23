@@ -7,8 +7,12 @@ export interface IAccount {
   password?: string;
   phone?: number;
   birthday?: string;
+  image: string;
+
+  enabled?: boolean;
+  status?: number;
+
   avatarUrl: string;
 
   accessToken?: string;
-  enabled?: boolean;
 }

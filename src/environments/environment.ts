@@ -4,10 +4,11 @@
 
 export const environment = {
   production: false,
+  apiSource: 'http://localhost:8080/api/admin',
 
   apiUrl: 'http://localhost:8080',
 
-  LIKE: 'http://localhost:8080/api/',
+  LIKE: 'http://localhost:8080/api',
 
   URL: 'http://localhost:8080/users',
   API_URL: ' http://localhost:8080/status',
