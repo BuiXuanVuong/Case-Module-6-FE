@@ -51,10 +51,16 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTabsModule} from '@angular/material/tabs';
 
+
 import { UserManagerComponent } from './user-manager/user-manager.component';
+
+import {PipesModule} from 'w-ng5';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 import { CreateMessageComponent } from './create-message/create-message.component';
 import { ListMessageComponent } from './list-message/list-message.component';
 import { HeaderBackgroundComponent } from './header-background/header-background.component';
+
 
 @NgModule({
   declarations: [
@@ -92,6 +98,8 @@ import { HeaderBackgroundComponent } from './header-background/header-background
     HelloComponent,
 
 
+
+
     NewPostComponent,
 
 
@@ -107,6 +115,7 @@ import { HeaderBackgroundComponent } from './header-background/header-background
 
 
     HeaderBackgroundComponent,
+
 
 
   ],
@@ -128,6 +137,11 @@ import { HeaderBackgroundComponent } from './header-background/header-background
     MatFormFieldModule,
 
     MatButtonModule,
+    PipesModule,
+    NgxPaginationModule,
+
+
+
 
 
 

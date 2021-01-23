@@ -10,9 +10,13 @@ export interface IAccount {
   image: string;
 
   enabled?: boolean;
+
+  isNonBanned?: boolean;
+
   status?: number;
 
   avatarUrl: string;
 
   accessToken?: string;
+
 }

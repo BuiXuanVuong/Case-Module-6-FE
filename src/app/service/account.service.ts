@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {IAccount} from '../model/iaccount';
 import {DomSanitizer} from '@angular/platform-browser';
 import {AuthService} from '../auth.service';
+import {catchError, tap} from 'rxjs/operators';
 
 import {User} from '../user';
 import {Iuser} from '../model/iuser';
@@ -35,6 +36,20 @@ export class AccountService {
 
   getAccount(id: number): Observable<IAccount> {
     return this.httpClient.get<IAccount>(`${this.API_URL}/${id}`);
+  }
+
+  findUserByUserName(userName: string){
+    return this.httpClient.get(`${this.API_URL}/findUserByName/${userName}`).pipe(tap(
+      users => JSON.stringify(users)),
+      catchError(err => of([]))
+    );
+  }
+  findAllUser() {
+    return this.httpClient.get(this.API_URL + '/').pipe(
+      tap(
+        users => JSON.stringify(users)),
+      catchError(err => of([]))
+    );
   }
 
   createAccount(data: IAccount): Observable<IAccount> {
