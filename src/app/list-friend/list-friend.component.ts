@@ -46,4 +46,8 @@ export class ListFriendComponent implements OnInit {
   private back() {
     this.router.navigate(['timeline', this.auth.currentUserValue.userName]);
   }
+
+  sendMessage(userFriend: any) {
+    this.router.navigate(['create-message', userFriend]);
+  }
 }

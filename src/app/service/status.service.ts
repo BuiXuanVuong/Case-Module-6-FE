@@ -40,6 +40,7 @@ export class StatusService {
   getOneStatus(id: number): Observable<IStatus>{
     return this.http.get<IStatus>(`${this.API_URL}/${id}`);
   }
+
   createStatus(userName: string | undefined, data: IStatus): Observable<any>{
     return this.http.post(`${this.API_URL}/` + this.auth.currentUserValue.userName, data);
   }
@@ -48,9 +49,9 @@ export class StatusService {
     return this.http.put(`${this.API_URL}/${id}`, data);
   }
 
-  modifyStatus(userName: string, data: IStatus) {
+  modifyStatus(id: number, data: IStatus) {
     return this.http
-      .put<any>(`${this.BASE_URL}/status/` + this.auth.currentUserValue.userName, data, this.httpOptions)
+      .put<any>(`${this.BASE_URL}/status/` + id, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

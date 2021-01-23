@@ -9,10 +9,9 @@
     <tbody>
     <tr *ngFor="let friend of listFriend">
       <td (click)="watchWallFriend(friend.userName)"> {{ friend.userName }} </td>
-      <td>
-
+      <td (click)="sendMessage(friend.userName)">
+         Send message
         <!--      <button (click) = "" class="btn btn-danger" style="margin-left: 10px;">Delete</button>-->
-
       </td>
     </tr>
     </tbody>
