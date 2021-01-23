@@ -17871,8 +17871,9 @@ nav .main-btn{margin-left: 20px;}
   color: #fff;
   font-size: 2em;
   text-transform: uppercase;
-  animation: animate 2s ease-in-out infinite;
-  animation-delay: calc(.1s * var(--i))
+
+  animation: animate 1.5s ease-in-out infinite;
+  animation-delay: calc(1s * var(--i))
 }
 @keyframes animate {
   0%, 100% {

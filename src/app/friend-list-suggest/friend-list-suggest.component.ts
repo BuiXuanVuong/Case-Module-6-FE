@@ -12,6 +12,7 @@ import {AuthService} from '../auth.service';
 })
 export class FriendListSuggestComponent implements OnInit {
   public username: any;
+  public userName: any;
   public id: any;
   // @ts-ignore
   friendListSuggest: IAccount[];
@@ -26,16 +27,17 @@ export class FriendListSuggestComponent implements OnInit {
 
   ngOnInit(): void {
     // @ts-ignore
-    this.id = +this.route.snapshot.paramMap.get('id');
-    console.log(this.id);
+    // this.id = +this.route.snapshot.paramMap.get('userName');
+
     // @ts-ignore
-    this.getAccountListSuggest(this.id);
+    this.userName = this.getAccountListSuggest(this.auth.currentUserValue.userName);
+    console.log(this.userName);
   }
 
 
-  private getAccountListSuggest(id: number) {
+  private getAccountListSuggest(userName: any) {
     // @ts-ignore
-    this.accountService.getAccountListSuggest(id).subscribe(data => {
+    this.accountService.getAccountListSuggest(userName).subscribe(data => {
       // @ts-ignore
       this.friendListSuggest = data;
     });
@@ -50,7 +52,8 @@ export class FriendListSuggestComponent implements OnInit {
 
   }
 
+  private back() {
+    this.router.navigate(['timeline', this.auth.currentUserValue.userName]);
+  }
 
-
-
-}
+  }

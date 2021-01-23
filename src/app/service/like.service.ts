@@ -3,7 +3,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IResultReponse} from '../model/iresult-reponse';
-import {AuthenService} from './authen.service';
+
 import {AuthService} from '../auth.service';
 
 @Injectable({
@@ -24,6 +24,7 @@ export class LikeService {
   // tslint:disable-next-line:variable-name
   unlikeStatus(status_id: number, userName: string | undefined): Observable<IResultReponse>{
     return this.httpClient.delete<IResultReponse>(`${this.LIKE_URL}/${this.auth.currentUserValue.userName}/unlike/${status_id}`);
+
   }
   // tslint:disable-next-line:variable-name
   likeStatusReply(userName: number, statusReplyId: string | undefined): Observable<any>{
@@ -32,6 +33,7 @@ export class LikeService {
   // tslint:disable-next-line:variable-name
   unlikeStatusReply(userName: number, statusReplyId: string | undefined): Observable<IResultReponse>{
     return this.httpClient.delete<IResultReponse>(`${this.LIKE_URL}/${this.auth.currentUserValue.userName}/unlike-status-reply/${statusReplyId}`);
+
   }
 
 }

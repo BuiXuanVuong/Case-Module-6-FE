@@ -1,0 +1,52 @@
+<div class="user-profile">
+  <figure>
+    <div class="edit-pp">
+      <label class="fileContainer">
+        <i class="fa fa-camera"></i>
+        <input type="file">
+      </label>
+    </div>
+    <img style="height: 420px" src="https://file.vfo.vn/hinh/2016/08/bien-6.jpg" alt="">
+  </figure>
+
+  <div class="profile-section">
+    <div class="row">
+      <div class="col-lg-2 col-md-3">
+        <div class="profile-author">
+          <div class="profile-author-thumb">
+            <img alt="author" style=" width: 100px !important; height: 135px ; border-radius: 50%"
+                 src="{{this.userPath.image}}">
+            <div class="edit-dp">
+              <label class="fileContainer">
+                <i class="fa fa-camera"></i>
+                <input type="file">
+              </label>
+            </div>
+          </div>
+
+          <br>
+          <br>
+
+
+          <div class="author-content">
+            <a class="h4 author-name" href="about.html">{{this.userNamePath}}</a>
+            <!--                            <div class="country">Ontario, CA</div>-->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-10 col-md-9">
+        <ul class="profile-menu">
+          <li>
+            <a class="active" href="timeline.html">Timeline</a>
+          </li>
+          <li>
+            <a class="" href="about.html">About</a>
+          </li>
+          <li>
+            <p class="" (click)="listFriends()">Friends</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
