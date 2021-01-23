@@ -7,6 +7,7 @@ export interface StatusReply {
   createDate: Date;
   status: any;
   totalStatusReplyLike?: number;
+  totalLikes?: number;
 
   imageReply: string;
 }

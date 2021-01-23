@@ -60,9 +60,12 @@ export class TimelineComponent implements OnInit {
     totalLikes: 0,
 
   };
-  currentStatusReply: { id: number; totalStatusReplyLike: number } = {
+
+  // @ts-ignore
+  currentStatusReply: StatusReply = {
     id: 0,
     totalStatusReplyLike: 0,
+    totalLikes: 0,
   };
   totalRecord = 0;
   // @ts-ignore
@@ -129,6 +132,8 @@ export class TimelineComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     this.statusService.addReplyStatus(statusId, this.auth.currentUserValue.userName,  this.createReplyStatus()).subscribe((data) => {
       console.log('OK');
+      // @ts-ignore
+      this.currentStatusReply.totalLikes += 1;
       this.replyStatusForm.reset();
       this.getStatuses(this.userNamePath);
     });
@@ -144,6 +149,7 @@ export class TimelineComponent implements OnInit {
     }
     return newReplyStatus as StatusReply;
   }
+
 
   // @ts-ignore
   deleteStatus(statusId) {
@@ -206,6 +212,7 @@ export class TimelineComponent implements OnInit {
   private back(userNameLogin: any) {
     this.router.navigate(['timeline', this.userNamePath]);
   }
+
 
 
 
