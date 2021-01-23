@@ -54,6 +54,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { UserManagerComponent } from './user-manager/user-manager.component';
 import { CreateMessageComponent } from './create-message/create-message.component';
 import { ListMessageComponent } from './list-message/list-message.component';
+import { HeaderBackgroundComponent } from './header-background/header-background.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,9 @@ import { ListMessageComponent } from './list-message/list-message.component';
 
 
     ListMessageComponent,
+
+
+    HeaderBackgroundComponent,
 
 
   ],

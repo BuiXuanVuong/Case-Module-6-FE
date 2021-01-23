@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StatusEditComponent } from './status-edit.component';
+import { HeaderBackgroundComponent } from './header-background.component';
 
-describe('StatusEditComponent', () => {
-  let component: StatusEditComponent;
-  let fixture: ComponentFixture<StatusEditComponent>;
+describe('HeaderBackgroundComponent', () => {
+  let component: HeaderBackgroundComponent;
+  let fixture: ComponentFixture<HeaderBackgroundComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StatusEditComponent ]
+      declarations: [ HeaderBackgroundComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StatusEditComponent);
+    fixture = TestBed.createComponent(HeaderBackgroundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

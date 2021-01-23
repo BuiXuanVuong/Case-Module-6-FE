@@ -60,19 +60,13 @@ const routes: Routes = [
   
 
   {path: 'status-form/:userName', component: StatusFormComponent},
-  {path: 'status-edit', component: StatusEditComponent},
+  {path: 'status-edit/:id', component: StatusEditComponent},
 
 
   {path: 'friend-list-suggest/:id', component: FriendListSuggestComponent},
   {path: 'invite-friend/:id', component: InviteFriendComponent},
-  {path: 'list-friend/:id', component: ListFriendComponent},
-  {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent},
-  {path: 'newPost/:userName', component: NewPostComponent},
 
-
-
-  {path: 'user-manager', component: UserManagerComponent}
+  {path: 'list-friend/:userNamePath', component: ListFriendComponent},
 
   // {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
   {path: 'create-message/:userPath', component: CreateMessageComponent},

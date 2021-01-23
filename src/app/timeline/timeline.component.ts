@@ -115,7 +115,7 @@ export class TimelineComponent implements OnInit {
     // @ts-ignore
   }
 
-  private getStatuses(userName: any) {
+   getStatuses(userName: any) {
     // @ts-ignore
     this.statusService.getAllStatus(userName).subscribe(data => {
       this.statuses = data;
@@ -130,7 +130,7 @@ export class TimelineComponent implements OnInit {
     this.statusService.addReplyStatus(statusId, this.auth.currentUserValue.userName,  this.createReplyStatus()).subscribe((data) => {
       console.log('OK');
       this.replyStatusForm.reset();
-      this.getStatuses(userName);
+      this.getStatuses(this.userNamePath);
     });
   }
 
@@ -147,15 +147,19 @@ export class TimelineComponent implements OnInit {
 
   // @ts-ignore
   deleteStatus(statusId) {
-    // @ts-ignore
-    this.statusService.deleteStatus(statusId).subscribe(data => {
-      console.log('delete', data);
-    });
+    if (this.userName === this.auth.currentUserValue.userName) {
+      // @ts-ignore
+      this.statusService.deleteStatus(statusId).subscribe(data => {
+        console.log('delete', data);
+
+        this.getStatuses(this.userName);
+      });
+    }
   }
 
   // @ts-ignore
   editStatus(statusId) {
-    this.router.navigate(['status-form', statusId]);
+    this.router.navigate(['status-edit', statusId]);
   }
 
 
@@ -177,7 +181,6 @@ export class TimelineComponent implements OnInit {
     this.router.navigate(['status-form', this.userName]);
     console.log('OK');
   }
-
 
   likeStatus(statusId: number, userName: string){
     this.likeService.likeStatus(statusId, this.auth.currentUserValue.userName ).subscribe(data => {
