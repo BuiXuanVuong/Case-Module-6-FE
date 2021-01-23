@@ -135,6 +135,7 @@ export class StatusFormComponent implements OnInit {
             } else {
               alert('Đăng thất bại');
             }
+            this.goToTimeLine();
           }, () => {
             alert('Lỗi');
           }
@@ -143,10 +144,16 @@ export class StatusFormComponent implements OnInit {
         // @ts-ignore
         this.statusService.addStatusOnWallFriend(this.userNameLogin, this.userNamePath, dataSent).subscribe((data) => {
           console.log('statusform.component.ts ' + this.userNameLogin + '/ ' + this.userNamePath);
+          this.newStatus.reset();
         });
       }
     }
   }
+
+  goToTimeLine() {
+    this.route.navigate(['timeline', this.userNamePath]);
+  }
+
 
   // @ts-ignore
   // public editStatus() {

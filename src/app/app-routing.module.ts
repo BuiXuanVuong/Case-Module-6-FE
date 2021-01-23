@@ -51,7 +51,7 @@ const routes: Routes = [
   // {path: 'status-form/:id', component: StatusFormComponent},
   // {path: 'status-form/:userName', component: StatusFormComponent},
   {path: 'status-form/:userName', component: StatusFormComponent},
-  {path: 'status-edit', component: StatusEditComponent},
+  {path: 'status-edit/:id', component: StatusEditComponent},
 
 
   {path: 'friend-list-suggest/:id', component: FriendListSuggestComponent},

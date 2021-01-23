@@ -325,11 +325,17 @@ export class StatusEditComponent implements OnInit {
           } else {
             alert('Update fail');
           }
+          // tslint:disable-next-line:no-unused-expression
+          this.goToTimeLine();
         }, () => {
           alert('Fail');
         }
       );
     }
+  }
+
+  goToTimeLine() {
+    this.route.navigate(['timeline', this.auth.currentUserValue.userName]);
   }
 
 
@@ -360,7 +366,7 @@ export class StatusEditComponent implements OnInit {
         finalize(
           () => fileRef.getDownloadURL().subscribe(responseUrl => {
             alert('Up ảnh thành công');
-            this.addStatus(responseUrl);
+            this.editStatus(responseUrl);
           }, () => {
             alert('Up thất bại');
           })
@@ -375,11 +381,11 @@ export class StatusEditComponent implements OnInit {
 
   // @ts-ignore
   // tslint:disable-next-line:adjacent-overload-signatures
-  public addStatusOnWallFriend(userNameLogin: string, userNamePath: string) {
-    this.statusService.addStatusOnWallFriend(userNameLogin, userNamePath, this.createNewStatus()).subscribe((data) => {
-      console.log('statusform.component.ts ' + userNameLogin + '/ ' + userNamePath);
-    });
-  }
+  // public addStatusOnWallFriend(userNameLogin: string, userNamePath: string) {
+  //   this.statusService.addStatusOnWallFriend(userNameLogin, userNamePath, this.createNewStatus()).subscribe((data) => {
+  //     console.log('statusform.component.ts ' + userNameLogin + '/ ' + userNamePath);
+  //   });
+  // }
 
   // tslint:disable-next-line:adjacent-overload-signatures
   private back(userNameLogin: any) {

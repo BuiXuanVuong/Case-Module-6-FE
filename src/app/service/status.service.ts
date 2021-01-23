@@ -8,6 +8,7 @@ import {INewfeedResponse} from '../model/inewfeed-response';
 import {StatusReply} from '../model/status-reply';
 import {catchError} from 'rxjs/operators';
 import {AuthService} from '../auth.service';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class StatusService {
 
   constructor(private http: HttpClient,
               private token: TokenStorageService,
-              private auth: AuthService) { }
+              private auth: AuthService,
+              private router: Router) { }
 
   deleteStatusById(id: number): Observable<any>{
     return this.http.delete(`${this.API_URL}/${id}`);
@@ -64,6 +66,10 @@ export class StatusService {
 
   getAllStatus(userName: string): Observable<IStatus[]> {
     return this.http.get<IStatus[]>(`${this.BASE_URL}/` + userName);
+  }
+
+  goToTimeLine() {
+    return this.http.get<IStatus[]>(`${this.BASE_URL}/` + this.auth.currentUserValue.userName);
   }
 
   addReplyStatus(statusId: number, userName: string, data: StatusReply): Observable<any> {

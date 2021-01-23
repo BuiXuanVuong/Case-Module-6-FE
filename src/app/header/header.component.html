@@ -1,6 +1,6 @@
 <div class="topbar stick" style="background: #3a70b5">
   <div class="logo">
-    <a title="" style="width: 50px; height: 50px" href="newsfeed.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH3i8xLDCeDL6VTwQJzx_KbRwsTNZEWFwqFg&usqp=CAU" alt=""></a>
+    <a title="" (click)="clickGoToTimeLine()" style="width: 50px;  height: 50px" href="localhost:4200/timeline/user{{this.auth.currentUserValue.userName}}"><img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH3i8xLDCeDL6VTwQJzx_KbRwsTNZEWFwqFg&usqp=CAU" alt=""></a>
   </div>
 
 
@@ -539,7 +539,7 @@
     </ul>
     <div class="user-img">
       <h5>{{auth.currentUserValue.userName}}</h5>
-      <img style="width: 60px; height: 60px" src="{{userLogin.image}}" alt="">
+      <img style="width: 60px; height: 60px" src="{{userLogin.image}}" (click)="goToTimeLine()" alt="">
 <!--      <span class="status f-online"></span>-->
 <!--      <div class="user-setting">-->
 <!--        <span class="seting-title">Chat setting <a href="#" title="">see all</a></span>-->

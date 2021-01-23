@@ -104,7 +104,7 @@ export class TimelineComponent implements OnInit {
     // @ts-ignore
   }
 
-  private getStatuses(userName: any) {
+   getStatuses(userName: any) {
     // @ts-ignore
     this.statusService.getAllStatus(userName).subscribe(data => {
       this.statuses = data;
@@ -147,7 +147,7 @@ export class TimelineComponent implements OnInit {
 
   // @ts-ignore
   editStatus(statusId) {
-    this.router.navigate(['status-form', statusId]);
+    this.router.navigate(['status-edit', statusId]);
   }
 
 
