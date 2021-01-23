@@ -1,5 +1,5 @@
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
-import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post';
 import {PostService} from '../post.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
@@ -21,6 +21,7 @@ import {AuthService} from '../auth.service';
 import {LikeService} from '../service/like.service';
 import {AccountService} from '../service/account.service';
 import {Iuser} from '../model/iuser';
+
 
 
 // @ts-ignore
@@ -47,20 +48,28 @@ export class TimelineComponent implements OnInit {
   accountId: number;
   // @ts-ignore
   statusId: number;
+
+  // @ts-ignore
+  statusReplyId: number;
   // @ts-ignore
   currentStatus: IStatus = {
     id: 0,
     content: '',
     images: [],
-    totalComments: 0,
+    totalStatusReplyLike: 0,
     totalLikes: 0,
 
+  };
+  currentStatusReply: { id: number; totalStatusReplyLike: number } = {
+    id: 0,
+    totalStatusReplyLike: 0,
   };
   totalRecord = 0;
   // @ts-ignore
   public userPath: Iuser;
   // @ts-ignore
   public userLogin: Iuser;
+
 
   constructor(private statusService: StatusService,
               private router: Router,
@@ -71,8 +80,10 @@ export class TimelineComponent implements OnInit {
               private likeService: LikeService,
               private accountService: AccountService) {
 
+
     // @ts-ignore
     this.userNamePath = this.route.snapshot.params.userNamePath;
+
 
     //
     this.route.paramMap.subscribe((paraMap: ParamMap) => {
@@ -110,6 +121,7 @@ export class TimelineComponent implements OnInit {
       this.statuses = data;
     });
   }
+
 
   // @ts-ignore
   public save( statusId, userName) {
@@ -162,6 +174,7 @@ export class TimelineComponent implements OnInit {
 
   listFriends() {
     this.router.navigate(['list-friend', this.userName]);
+
   }
 
   postWallFriend() {
@@ -188,6 +201,7 @@ export class TimelineComponent implements OnInit {
       }
     );
   }
+
 
   private back(userNameLogin: any) {
     this.router.navigate(['timeline', this.userNamePath]);

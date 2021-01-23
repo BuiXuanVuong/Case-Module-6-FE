@@ -40,8 +40,19 @@ import { ListFriendComponent } from './list-friend/list-friend.component';
 import { HelloComponent } from './hello/hello.component';
 import {JwtInterceptor} from './jwt-interceptor';
 import {ErrorInterceptor} from './error-interceptor';
-import { CreateMessageComponent } from './create-message/create-message.component';
+import { NewPostComponent } from './new-post/new-post.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatTabsModule} from '@angular/material/tabs';
+
+import { UserManagerComponent } from './user-manager/user-manager.component';
+import { CreateMessageComponent } from './create-message/create-message.component';
 import { ListMessageComponent } from './list-message/list-message.component';
 import { HeaderBackgroundComponent } from './header-background/header-background.component';
 
@@ -67,6 +78,7 @@ import { HeaderBackgroundComponent } from './header-background/header-background
     StatusFormComponent,
     StatusEditComponent,
 
+
     ProfileComponent,
     UpdateProfileComponent,
 
@@ -78,6 +90,14 @@ import { HeaderBackgroundComponent } from './header-background/header-background
 
 
     HelloComponent,
+
+
+    NewPostComponent,
+
+
+
+
+    UserManagerComponent,
 
 
     CreateMessageComponent,
@@ -100,7 +120,17 @@ import { HeaderBackgroundComponent } from './header-background/header-background
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    MatFormFieldModule
+
+    MatFormFieldModule,
+    MatSelectModule,
+    MatProgressBarModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+
+    MatButtonModule,
+
+
+
 
   ],
   providers: [
