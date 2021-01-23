@@ -51,7 +51,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTabsModule} from '@angular/material/tabs';
 
+
 import { UserManagerComponent } from './user-manager/user-manager.component';
+import {PipesModule} from 'w-ng5';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -89,12 +92,15 @@ import { UserManagerComponent } from './user-manager/user-manager.component';
     HelloComponent,
 
 
+
+
     NewPostComponent,
 
 
 
 
     UserManagerComponent,
+
 
 
 
@@ -116,6 +122,11 @@ import { UserManagerComponent } from './user-manager/user-manager.component';
     MatFormFieldModule,
 
     MatButtonModule,
+    PipesModule,
+    NgxPaginationModule,
+
+
+
 
 
 

@@ -11,5 +11,5 @@ export interface IAccount {
 
   accessToken?: string;
   enabled?: boolean;
-  status?: number;
+  isNonBanned?: boolean;
 }
