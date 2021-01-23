@@ -56,7 +56,7 @@ const routes: Routes = [
 
   {path: 'friend-list-suggest/:id', component: FriendListSuggestComponent},
   {path: 'invite-friend/:id', component: InviteFriendComponent},
-  {path: 'list-friend/:id', component: ListFriendComponent},
+  {path: 'list-friend/:userNamePath', component: ListFriendComponent},
   // {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
   {path: 'create-message/:userPath', component: CreateMessageComponent},
   {path: 'list-message', component: ListMessageComponent}

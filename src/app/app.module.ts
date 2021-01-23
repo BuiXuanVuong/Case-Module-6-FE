@@ -43,6 +43,7 @@ import {ErrorInterceptor} from './error-interceptor';
 import { CreateMessageComponent } from './create-message/create-message.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ListMessageComponent } from './list-message/list-message.component';
+import { HeaderBackgroundComponent } from './header-background/header-background.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,9 @@ import { ListMessageComponent } from './list-message/list-message.component';
 
 
     ListMessageComponent,
+
+
+    HeaderBackgroundComponent,
 
 
   ],
