@@ -14,11 +14,17 @@
                 <div class="central-meta postbox">
                   <div class="container">
                     <h1>Send Message</h1>
+                    <div class="new-postbox">
+                    <figure>
+                      <img src="assets/images/resources/admin.jpg" alt="">
+                    </figure> &nbsp;
+                      <div class="newpst-input">
                     <form [formGroup]="messageForm">
                       <textarea placeholder="Message content" style="border: 1px solid #8c8ccb; outline: none !important; height: 200px; box-shadow: 0 0 10px #719ECE;
 }
 " formControlName="message_body">
       </textarea>
+
                       <button
                         type="submit"
                         class="btn btn-success"
@@ -26,10 +32,11 @@
                         (click)="saveMessage()"
                       >
                         Send message to {{this.userPath}}
-                      </button> &nbsp;
-                      &nbsp;
+                      </button>
+
+
 <!--                      <button (click)="back()" type="submit" class="btn  btn-success ml-2">Back</button>-->
-                      &nbsp;
+
                     </form>
                   </div>
                 </div><!-- add post new box -->
@@ -37,6 +44,8 @@
             </div>
           </div>
         </div>
+      </div>
+      </div>
       </div>
     </section><!-- content -->
     <div class="bottombar">

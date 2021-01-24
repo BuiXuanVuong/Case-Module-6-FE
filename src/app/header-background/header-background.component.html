@@ -14,8 +14,18 @@
       <div class="col-lg-2 col-md-3">
         <div class="profile-author">
           <div class="profile-author-thumb">
+            <div *ngIf="userPath">
             <img alt="author" style=" width: 100px !important; height: 135px ; border-radius: 50%"
-                 src="{{this.userPath.image}}">
+
+                   src="{{this.userPath.image}}">
+            </div>
+
+            <div *ngIf="!userPath">
+              <img alt="author" style=" width: 100px !important; height: 135px ; border-radius: 50%"
+
+                   src="{{this.userLogin.image}}">
+            </div>
+
             <div class="edit-dp">
               <label class="fileContainer">
                 <i class="fa fa-camera"></i>
@@ -28,10 +38,23 @@
           <br>
 
 
-          <div class="author-content">
-            <a class="h4 author-name" href="about.html">{{this.userNamePath}}</a>
-            <!--                            <div class="country">Ontario, CA</div>-->
+
+
+          <div *ngIf="userPath">
+            <div class="author-content">
+              <a class="h4 author-name" href="about.html">{{this.userNamePath}}</a>
+              <!--                            <div class="country">Ontario, CA</div>-->
+            </div>
           </div>
+
+          <div *ngIf="!userPath">
+            <div class="author-content">
+              <a class="h4 author-name" href="about.html">{{this.userName}}</a>
+              <!--                            <div class="country">Ontario, CA</div>-->
+            </div>
+          </div>
+
+
         </div>
       </div>
       <div class="col-lg-10 col-md-9">
