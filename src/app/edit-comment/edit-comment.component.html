@@ -1,0 +1,23 @@
+<div class="col-md-11" style="outline: 0;background-color:#dee2e6;border-radius: 10px;">
+  <p style="font-weight: bold; margin-top: 10px">{{comment.user.userName}} </p>
+  <ng-container *ngIf="!toggleEditFormComment">
+    <p>{{comment.statusReplyBody}}</p>
+  </ng-container>
+  <ng-container *ngIf="toggleEditFormComment">
+    <div>
+      <mat-form-field appearance="outline" fxFill>
+        <label for="post-content"></label>
+        <textarea id="post-content" matInput
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="3"
+                  style="font-size: 18px"
+                  type="text" id="content" [value]="comment.statusReplyBody">
+              </textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="editStatusReply()">Cập nhật</button>
+      <button mat-raised-button color="warn" style="margin-left: 10px; margin-bottom: 10px"
+              (click)="toggleForm()">Quay lại
+      </button>
+    </div>
+  </ng-container>
+</div>

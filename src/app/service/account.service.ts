@@ -33,6 +33,13 @@ export class AccountService {
 
     return this.httpClient.get(this.API_URL);
   }
+  getUserLoggedIn(): IAccount {
+    const dataLocalStorage = localStorage.getItem('user');
+    // @ts-ignore
+    this.user = JSON.parse(dataLocalStorage);
+    // @ts-ignore
+    return this.user;
+  }
 
   getAccount(id: number): Observable<IAccount> {
     return this.httpClient.get<IAccount>(`${this.API_URL}/${id}`);

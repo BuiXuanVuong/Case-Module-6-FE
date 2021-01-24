@@ -155,7 +155,9 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./status-edit.component.css']
 })
 export class StatusEditComponent implements OnInit {
+
   @Input()
+    // @ts-ignore
   currentAccount: IAccount = {
     avatarUrl: '',
     userName: '',

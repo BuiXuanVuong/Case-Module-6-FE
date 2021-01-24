@@ -37,6 +37,10 @@ export class TimelineComponent implements OnInit {
   public replyStatusForm = new FormGroup({
     statusReplyBody: new FormControl(''),
   });
+  @Output()
+    // tslint:disable-next-line:variable-name
+  delete_comment_id = new EventEmitter<number>();
+
 
 
   public id: any;
@@ -68,6 +72,20 @@ export class TimelineComponent implements OnInit {
     totalStatusReplyLike: 0,
     totalLikes: 0,
   };
+  // @ts-ignore
+  comment: StatusReply;
+  // @ts-ignore
+  editCommentID: number;
+
+   // @ts-ignore
+  comments: StatusReply = [{
+     id: 0,
+     statusReplyBody: '',
+     userReply: '',
+     imageReply: '',
+  }];
+  @Output()
+  commentResp = new EventEmitter();
 
   totalRecord = 0;
   // @ts-ignore
@@ -122,6 +140,9 @@ export class TimelineComponent implements OnInit {
     this.getStatuses(this.userName);
     // @ts-ignore
   }
+  getComment_id(id: number) {
+    this.delete_comment_id.emit(id);
+  }
 
    getStatuses(userName: any) {
     // @ts-ignore
@@ -166,6 +187,16 @@ export class TimelineComponent implements OnInit {
         this.getStatuses(this.userName);
       });
     }
+  }
+  // @ts-ignore
+  deleteStatusReply(statusReplyId: number){
+    this.statusService.deleteReplyStatus(statusReplyId).subscribe(data => {
+      console.log('delete', data);
+      this.getStatuses(this.userName);
+    }, error => {
+      console.log('không xoá đc');
+    });
+
   }
 
   // @ts-ignore
@@ -217,6 +248,11 @@ export class TimelineComponent implements OnInit {
   private back(userNameLogin: any) {
     this.router.navigate(['timeline', this.userNamePath]);
   }
+  // @ts-ignore
+ editStatusReply(statusReplyId){
+    this.router.navigate(['edit-comment', statusReplyId]);
+ }
+
 
 
 

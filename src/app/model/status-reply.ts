@@ -1,4 +1,5 @@
 import {Iuser} from './iuser';
+import {IAccount} from './iaccount';
 
 export interface StatusReply {
   id: number;
@@ -10,4 +11,5 @@ export interface StatusReply {
   totalLikes?: number;
 
   imageReply: string;
+  user?: IAccount;
 }

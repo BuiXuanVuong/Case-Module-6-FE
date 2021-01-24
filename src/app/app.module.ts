@@ -58,6 +58,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { CreateMessageComponent } from './create-message/create-message.component';
 import { ListMessageComponent } from './list-message/list-message.component';
 import { HeaderBackgroundComponent } from './header-background/header-background.component';
+import { EditCommentComponent } from './edit-comment/edit-comment.component';
 
 @NgModule({
   declarations: [
@@ -114,6 +115,9 @@ import { HeaderBackgroundComponent } from './header-background/header-background
     HeaderBackgroundComponent,
 
 
+    EditCommentComponent,
+
+
 
   ],
   imports: [
@@ -136,6 +140,9 @@ import { HeaderBackgroundComponent } from './header-background/header-background
     MatButtonModule,
     PipesModule,
     NgxPaginationModule,
+    MatTabsModule,
+    MatRadioModule,
+    MatDatepickerModule,
 
 
 

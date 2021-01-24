@@ -33,6 +33,7 @@ import {UserManagerComponent} from './user-manager/user-manager.component';
 
 import {CreateMessageComponent} from './create-message/create-message.component';
 import {ListMessageComponent} from './list-message/list-message.component';
+import {EditCommentComponent} from './edit-comment/edit-comment.component';
 
 
 
@@ -69,9 +70,10 @@ const routes: Routes = [
   {path: 'list-friend/:userNamePath', component: ListFriendComponent},
 
   // {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
-  // {path: 'create-message/:userPath', component: CreateMessageComponent},
+  {path: 'create-message/:userPath', component: CreateMessageComponent},
   {path: 'list-message', component: ListMessageComponent},
-  {path: 'user-manager', component: UserManagerComponent}
+  {path: 'user-manager', component: UserManagerComponent},
+  {path: 'edit-comment/:id', component: EditCommentComponent}
 ];
 
 @NgModule({

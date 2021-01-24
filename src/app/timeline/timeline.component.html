@@ -1116,6 +1116,12 @@
                                     <p>{{reply.userReply}}</p>
                                     <center><p>{{reply.statusReplyBody}}</p></center>
 
+<!--                                   <textarea id="post-content"-->
+<!--                                             type="text" id="statusReplyBody" [value]="comment.statusReplyBody">-->
+
+                                  <button type="submit" (click)= "deleteStatusReply(reply.id)"> Xoá</button>
+                                  <button type="submit" (click)="editStatusReply(statusReplyId)">Sủa</button>
+
                                   </div>
 
 
@@ -1182,7 +1188,10 @@
                         d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
                     </svg>
                   </button>
+
                 </div>
+
+
                                       <!--                                      <div class="uploadimage">-->
                                       <!--                                        <i class="fa fa-image"></i>-->
                                       <!--                                        <label class="fileContainer">-->
@@ -1212,11 +1221,15 @@
 <!--                                            [disabled]="!replyStatusForm.valid"-->
 <!--                                            (click)="save( status.id , auth.currentUserValue.userName)">Add Reply</button>-->
                                   </form>
+
                                 </div>
+<!--                                    <button type="submit" (click)="editComment(statusReplyId, $event)">SỬa Comment</button>-->
+
 
 
 
                               </li>
+
                             </ul>
                           </div>
                         </div>
@@ -1224,6 +1237,7 @@
 
 
                     </div><!-- digital sponsors -->
+
 
 
 </span>

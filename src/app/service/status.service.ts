@@ -71,6 +71,10 @@ export class StatusService {
   goToTimeLine() {
     return this.http.get<IStatus[]>(`${this.BASE_URL}/` + this.auth.currentUserValue.userName);
   }
+  // tslint:disable-next-line:variable-name
+  getCommentByID(status_reply_id: number): Observable<any>{
+    return this.http.get(`${this.BASE_URL}/status/reply/` + status_reply_id);
+  }
 
   addReplyStatus(statusId: number, userName: string, data: StatusReply): Observable<any> {
     // @ts-ignore
@@ -79,16 +83,14 @@ export class StatusService {
       .pipe(catchError(this.handleError));
   }
 
-  editReplyStatus(statusReplyId: number, userId: number, data: StatusReply): Observable<any>{
-    return this.http
-      .put(`${this.BASE_URL}/status/reply/` + statusReplyId + `/` + userId, data, this.httpOptions)
-      .pipe(catchError(this.handleError));
+  editReplyStatus(statusReplyId: number, userName: string, userNamePath: string): Observable<any>{
+    // @ts-ignore
+    return this.http.put(`${this.BASE_URL}/status/reply/${statusReplyId}/${userName}/${userNamePath}`);
   }
-  deleteReplyStatus(statusReplyId: number): Observable<any>{
-    return this.http
-      .put(`${this.BASE_URL}/status/reply/` + statusReplyId , this.httpOptions)
-      .pipe(catchError(this.handleError));
+   deleteReplyStatus(statusReplyId: number) {
+    return  this.http.delete<any>(`${this.BASE_URL}/status/reply/${statusReplyId}` );
   }
+
 
   addStatusOnWallFriend(userNameLogin: string, userNamePath: string, data: IStatus) {
     // @ts-ignore
