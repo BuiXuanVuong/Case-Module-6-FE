@@ -44,10 +44,10 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.currentAccount = {
-      id: 1,
-      email: 'a',
-      password: 'b',
-      userName: 'c',
+      id: 0,
+      email: '',
+      password: '',
+      userName: '',
     };
     this.getAccountProfile();
   }

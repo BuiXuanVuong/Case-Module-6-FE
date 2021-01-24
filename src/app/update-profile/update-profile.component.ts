@@ -44,7 +44,8 @@ export class UpdateProfileComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.currentAccount = {
-      id: 1,
+      id: 0,
+      userName: 'c',
       email: 'a',
       password: 'b'
     };
@@ -52,12 +53,12 @@ export class UpdateProfileComponent implements OnInit {
   }
   getAccountProfile() {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      const id = paramMap.get('id');
-      this.getUserProfileById(id);
+      const userName = paramMap.get('userName');
+      this.getUserProfileById(userName);
     });
   }
-  private getUserProfileById(id: any) {
-    this.accountService.getAccountProfile(id).subscribe(value => {
+  private getUserProfileById(userName: any) {
+    this.accountService.getAccountProfile(userName).subscribe(value => {
       this.currentAccount = value;
 
       // @ts-ignore
@@ -77,16 +78,17 @@ export class UpdateProfileComponent implements OnInit {
   }
   updateAccountProfile() {
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      const id = paramMap.get('id');
+      const userName = paramMap.get('userName');
       // @ts-ignore
-      this.accountService.getAccountProfile(id).subscribe(value => {
+      this.accountService.getAccountProfile(this.userName).subscribe(value => {
         this.currentAccount = value;
         // @ts-ignore
         const user: IAccount = {
-          id: this.currentAccount.id,
+          // id: this.currentAccount.id,
           email: this.userForm.get('email')?.value,
           password: this.userForm.get('password')?.value,
-          userName: this.userForm.get('userName')?.value,
+          userName: this.currentAccount.userName,
+          // userName: this.userForm.get('userName')?.value,
           phone: this.userForm.get('phone')?.value,
           birthday: this.userForm.get('birthday')?.value,
         };

@@ -52,8 +52,8 @@ const routes: Routes = [
   {path: 'create-post', component: CreatePostComponent},
   {path: 'posts', component: PostListComponent},
   {path: 'header', component: HeaderComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'update-profile/:id', component: UpdateProfileComponent},
+  {path: 'profile/:userNamePath', component: ProfileComponent},
+  {path: 'update-profile/:userNamePath', component: UpdateProfileComponent},
 
 
   {path: 'status-form/:id', component: StatusFormComponent},
@@ -73,7 +73,7 @@ const routes: Routes = [
   {path: 'create-message/:userPath', component: CreateMessageComponent},
   {path: 'list-message', component: ListMessageComponent},
   {path: 'user-manager', component: UserManagerComponent},
-  {path: 'edit-comment/:id', component: EditCommentComponent}
+  // {path: 'edit-comment/:id', component: EditCommentComponent}
 ];
 
 @NgModule({
