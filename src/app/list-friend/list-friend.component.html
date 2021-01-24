@@ -1,23 +1,3 @@
-<h2>List Friend</h2>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>List friends</th>
-
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let friend of listFriend">
-      <td (click)="watchWallFriend(friend.userName)"> {{ friend.userName }} </td>
-      <td (click)="sendMessage(friend.userName)">
-         Send message
-        <!--      <button (click) = "" class="btn btn-danger" style="margin-left: 10px;">Delete</button>-->
-      </td>
-    </tr>
-    </tbody>
-  </table>
-
-
 
 <app-header></app-header>
 <div>
@@ -248,147 +228,6 @@
 
     <!-- topbar -->
 
-    <div class="fixed-sidebar right">
-      <div class="chat-friendz">
-        <ul class="chat-users">
-          <li>
-            <div class="author-thmb">
-              <img src="assets/images/resources/side-friend1.jpg" alt="">
-              <span class="status f-online"></span>
-            </div>
-          </li>
-          <li>
-            <div class="author-thmb">
-              <img src="assets/images/resources/side-friend2.jpg" alt="">
-              <span class="status f-away"></span>
-            </div>
-          </li>
-          <li>
-            <div class="author-thmb">
-              <img src="assets/images/resources/side-friend3.jpg" alt="">
-              <span class="status f-online"></span>
-            </div>
-          </li>
-          <li>
-            <div class="author-thmb">
-              <img src="assets/images/resources/side-friend4.jpg" alt="">
-              <span class="status f-offline"></span>
-            </div>
-          </li>
-          <li>
-            <div class="author-thmb">
-              <img src="assets/images/resources/side-friend5.jpg" alt="">
-              <span class="status f-online"></span>
-            </div>
-          </li>
-          <li>
-            <div class="author-thmb">
-              <img src="assets/images/resources/side-friend6.jpg" alt="">
-              <span class="status f-online"></span>
-            </div>
-          </li>
-          <li>
-            <div class="author-thmb">
-              <img src="assets/images/resources/side-friend7.jpg" alt="">
-              <span class="status f-offline"></span>
-            </div>
-          </li>
-          <li>
-            <div class="author-thmb">
-              <img src="assets/images/resources/side-friend8.jpg" alt="">
-              <span class="status f-online"></span>
-            </div>
-          </li>
-          <li>
-            <div class="author-thmb">
-              <img src="assets/images/resources/side-friend9.jpg" alt="">
-              <span class="status f-away"></span>
-            </div>
-          </li>
-          <li>
-            <div class="author-thmb">
-              <img src="assets/images/resources/side-friend10.jpg" alt="">
-              <span class="status f-away"></span>
-            </div>
-          </li>
-          <li>
-            <div class="author-thmb">
-              <img src="assets/images/resources/side-friend8.jpg" alt="">
-              <span class="status f-online"></span>
-            </div>
-          </li>
-        </ul>
-        <div class="chat-box">
-          <div class="chat-head">
-            <span class="status f-online"></span>
-            <h6>Bucky Barnes</h6>
-            <div class="more">
-              <div class="more-optns"><i class="ti-more-alt"></i>
-                <ul>
-                  <li>block chat</li>
-                  <li>unblock chat</li>
-                  <li>conversation</li>
-                </ul>
-              </div>
-              <span class="close-mesage"><i class="ti-close"></i></span>
-            </div>
-          </div>
-          <div class="chat-list">
-            <ul>
-              <li class="me">
-                <div class="chat-thumb"><img src="assets/images/resources/chatlist1.jpg" alt=""></div>
-                <div class="notification-event">
-								<span class="chat-message-item">
-									HI, Jack i have faced a problem with your software. are you available now, when i install this i have to received an error.
-								</span>
-                  <span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Today at 2:12pm</time></span>
-                </div>
-              </li>
-              <li class="you">
-                <div class="chat-thumb"><img src="assets/images/resources/chatlist2.jpg" alt=""></div>
-                <div class="notification-event">
-								<span class="chat-message-item">
-									Hi tina, Please let me know your purchase code, and show me the screnshot of error.
-								</span>
-                  <span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Today at 2:14pm</time></span>
-                </div>
-              </li>
-              <li class="me">
-                <div class="chat-thumb"><img src="assets/images/resources/chatlist1.jpg" alt=""></div>
-                <div class="notification-event">
-								<span class="chat-message-item">
-									Yes, sure please wait a while, i ll show you the complete error list. Thank you.
-								</span>
-                  <span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Today at 2:15pm</time></span>
-                </div>
-              </li>
-            </ul>
-            <form class="text-box">
-              <textarea placeholder="Post enter to post..."></textarea>
-              <div class="add-smiles">
-                <span title="add icon" class="em em-expressionless"></span>
-                <div class="smiles-bunch">
-                  <i class="em em---1"></i>
-                  <i class="em em-smiley"></i>
-                  <i class="em em-anguished"></i>
-                  <i class="em em-laughing"></i>
-                  <i class="em em-angry"></i>
-                  <i class="em em-astonished"></i>
-                  <i class="em em-blush"></i>
-                  <i class="em em-disappointed"></i>
-                  <i class="em em-worried"></i>
-                  <i class="em em-kissing_heart"></i>
-                  <i class="em em-rage"></i>
-                  <i class="em em-stuck_out_tongue"></i>
-                </div>
-              </div>
-
-              <button type="submit"></button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div><!-- right sidebar user chat -->
 
 
     <section>
@@ -505,7 +344,7 @@
                       <div class="row">
                         <div class="col-lg-6">
                           <div class="align-left">
-                            <h5>Friends / Followers <span>44</span></h5>
+                            <h5>Friends <span>{{listFriend.length}}</span></h5>
                           </div>
                         </div>
                         <div class="col-lg-6">
@@ -548,32 +387,46 @@
                       <div *ngFor="let friend of listFriend" class="col-lg-3 col-md-6 col-sm-6">
                         <div class="friend-box">
                           <figure>
-                            <img src="assets/images/resources/frnd-cover3.jpg" alt="">
+<!--                            <img src="assets/images/resources/frnd-cover3.jpg" alt="">-->
                             <span>Followers: 50</span>
                           </figure>
                           <div class="frnd-meta">
-                            <img src="assets/images/resources/frnd-figure3.jpg" alt="">
+                            <img src="{{friend.image}}" style="width: 100px; height: 100px" alt="">
                             <div class="frnd-name">
                               <a href="#" title="">{{friend.userName}}</a>
-                              <span>Istanbul, Turky</span>
+<!--                              <span>Istanbul, Turky</span>-->
                             </div>
-                            <ul class="frnd-info">
-                              <li><span>Friends:</span> 223 (2 mutule friends)</li>
-                              <li><span>Videos:</span> 240</li>
-                              <li><span>Photos:</span> 144</li>
-                              <li><span>Post:</span> 250</li>
-                              <li><span>Since:</span> December, 2014</li>
-                            </ul>
-                            <p class="send-mesg" (click)="sendMessage(friend.userName)"  title="">Message</p>
-                            <div class="more-opotnz">
-                              <i class="fa fa-ellipsis-h"></i>
-                              <ul>
-                                <li><a href="#" title="">Block</a></li>
-                                <li><a href="#" title="">UnBlock</a></li>
-                                <li><a href="#" title="">Mute Notifications</a></li>
-                                <li><a href="#" title="">hide from friend list</a></li>
+<!--                            <ul class="frnd-info">-->
+<!--                              <li><span>Friends:</span> 223 (2 mutule friends)</li>-->
+<!--                              <li><span>Videos:</span> 240</li>-->
+<!--                              <li><span>Photos:</span> 144</li>-->
+<!--                              <li><span>Post:</span> 250</li>-->
+<!--                              <li><span>Since:</span> December, 2014</li>-->
+<!--                            </ul>-->
+                            <br>
+
+
+                            <div class="widget">
+                              <ul class="naves">
+                                <li style="list-style: none" >
+                                  <i class="ti-clipboard"></i>
+                                  <span style="color: #2a62bc" class="send-mesg" (click)="watchWallFriend(friend.userName)"> &nbsp;Timeline</span>
+                                </li>
+                                <li style="list-style: none" >
+                                  <i class="ti-comments-smiley"></i>
+                                  <span style="color: #2a62bc" class="send-mesg" (click)="sendMessage(friend.userName)"  title="">&nbsp;Message</span> &nbsp;
+                                </li>
                               </ul>
                             </div>
+<!--                            <div class="more-opotnz">-->
+<!--                              <i class="fa fa-ellipsis-h"></i>-->
+<!--                              <ul>-->
+<!--                                <li><a href="#" title="">Block</a></li>-->
+<!--                                <li><a href="#" title="">UnBlock</a></li>-->
+<!--                                <li><a href="#" title="">Mute Notifications</a></li>-->
+<!--                                <li><a href="#" title="">hide from friend list</a></li>-->
+<!--                              </ul>-->
+<!--                            </div>-->
                           </div>
                         </div>
                       </div>
@@ -581,8 +434,8 @@
 
                     </div>
                     <div class="lodmore">
-                      <span>Viewing 1-8 of 44 friends</span>
-                      <button class="btn-view btn-load-more"></button>
+<!--                      <span>Viewing 1-8 of 44 friends</span>-->
+<!--                      <button class="btn-view btn-load-more"></button>-->
                     </div>
                   </div>
                 </div>
@@ -593,14 +446,14 @@
       </div>
     </section><!-- content -->
 
-    <a title="Your Cart Items" href="shop-cart.html" class="shopping-cart" data-toggle="tooltip">Cart <i class="fa fa-shopping-bag"></i><span>02</span></a>
+<!--    <a title="Your Cart Items" href="shop-cart.html" class="shopping-cart" data-toggle="tooltip">Cart <i class="fa fa-shopping-bag"></i><span>02</span></a>-->
 
     <div class="bottombar">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <span class="copyright">© Pitnik 2020. All rights reserved.</span>
-            <i><img src="assets/images/credit-cards.png" alt=""></i>
+<!--            <i><img src="assets/images/credit-cards.png" alt=""></i>-->
           </div>
         </div>
       </div>

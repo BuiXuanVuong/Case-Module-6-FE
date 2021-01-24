@@ -1,20 +1,67 @@
-<div class="container">
-  <h1>Send Message</h1>
-  <form [formGroup]="messageForm">
 
-      <label>Message Content</label>
-      <input placeholder="" formControlName="message_body" require />
+<app-header></app-header>
+<div>
+  <div class="theme-layout">
+    <section>
+      <div class="gap2 gray-bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row merged20" id="page-contents">
+
+                <app-header-background></app-header-background>
+
+                <div class="central-meta postbox">
+                  <div class="container">
+                    <h1>Send Message</h1>
+                    <div class="new-postbox">
+                    <figure>
+                      <img style="width: 50px; height: 50px; border-radius: 50%" src="{{this.userLogin.image}}" alt="">
+                    </figure> &nbsp;
+                      <div class="newpst-input">
+                    <form [formGroup]="messageForm">
+                      <textarea placeholder="Message content" style="border: 1px solid #8c8ccb; outline: none !important; height: 200px; box-shadow: 0 0 10px #719ECE;
+}
+" formControlName="message_body">
+      </textarea>
+
+                      <button
+                        type="submit"
+                        class="btn btn-success"
+                        [disabled]="!messageForm.valid"
+                        (click)="saveMessage()"
+                      >
+                        Send message to {{this.userPath}}
+                      </button>
 
 
-    <button
-      type="submit"
-      class="btn btn-success"
-      [disabled]="!messageForm.valid"
-      (click)="saveMessage()"
-    >
-      Send message to {{this.userPath}}
-    </button> &nbsp;
-  </form>
+<!--                      <button (click)="back()" type="submit" class="btn  btn-success ml-2">Back</button>-->
+
+                    </form>
+                  </div>
+                </div><!-- add post new box -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </section><!-- content -->
+    <div class="bottombar">
+      <div class="container">
+        <div class="row">
+          <br>
+          <br>
+          <div class="col-md-12">
+            <span class="copyright">© Nova 2021. All rights reserved.</span>
+            <!--            <i><img src="assets/images/credit-cards.png" alt=""></i>-->
+          </div>
+        </div>
+      </div>
+    </div><!-- bottom bar -->
+  </div>
 </div>
 
-<button (click)="back()" type="submit" class="btn btn-lg btn-primary ml-2">Back</button>
+
+

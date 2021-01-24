@@ -10,6 +10,8 @@ import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
 import {IImage} from '../model/iimage';
 import {AuthService} from '../auth.service';
+import {AccountService} from '../service/account.service';
+import {Iuser} from '../model/iuser';
 
 import {Observable} from 'rxjs';
 
@@ -77,13 +79,18 @@ export class StatusFormComponent implements OnInit {
   public userNameLogin: any;
 
 
+  // @ts-ignore
+  public userLogin: Iuser;
+
+
   constructor(private fb: FormBuilder,
               private token: TokenStorageService,
               private statusService: StatusService,
               private route: Router,
               private router: ActivatedRoute,
               private storage: AngularFireStorage,
-              private auth: AuthService) {
+              private auth: AuthService,
+              private accountService: AccountService) {
 
 
     // @ts-ignore
@@ -94,6 +101,10 @@ export class StatusFormComponent implements OnInit {
     });
     this.userNameLogin = auth.currentUserValue.userName;
 
+    accountService.getUserPathByUserName(this.auth.currentUserValue.userName).subscribe( data => {
+      // @ts-ignore
+      this.userLogin = data;
+    });
 
   }
 

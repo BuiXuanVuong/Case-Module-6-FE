@@ -323,7 +323,7 @@ export class StatusEditComponent implements OnInit {
             console.log(dataSent);
 
           } else {
-            alert('Update fail');
+            // alert('Update fail');
           }
           // tslint:disable-next-line:no-unused-expression
           this.goToTimeLine();
@@ -365,10 +365,10 @@ export class StatusEditComponent implements OnInit {
       this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
         finalize(
           () => fileRef.getDownloadURL().subscribe(responseUrl => {
-            alert('Up ảnh thành công');
+            // alert('Up ảnh thành công');
             this.editStatus(responseUrl);
           }, () => {
-            alert('Up thất bại');
+            // alert('Up thất bại');
           })
         )
       ).subscribe();
