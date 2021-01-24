@@ -32,7 +32,7 @@ import {Iuser} from '../model/iuser';
   styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent implements OnInit {
-
+  // @ts-ignore
 
   public replyStatusForm = new FormGroup({
     statusReplyBody: new FormControl(''),
@@ -165,7 +165,6 @@ export class TimelineComponent implements OnInit {
 
   searchAddFriend() {
    this.router.navigate(['friend-list-suggest', this.userName]);
-
   }
 
   waitInvitation() {

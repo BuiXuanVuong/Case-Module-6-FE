@@ -14,6 +14,7 @@ export class InviteFriendComponent implements OnInit {
   public id = 0;
   // @ts-ignore
   friendListSuggest: IAccount[];
+  totalInvite = 0;
   constructor(private accountService: AccountService,
               private router: Router,
               private route: ActivatedRoute,
@@ -37,6 +38,7 @@ export class InviteFriendComponent implements OnInit {
     this.accountService.getListInvite(this.auth.currentUserValue.userName).subscribe(data => {
       // @ts-ignore
       this.friendListSuggest = data;
+      this.totalInvite = this.friendListSuggest.length;
     });
   }
 

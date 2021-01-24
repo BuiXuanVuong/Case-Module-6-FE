@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from '../service/token-storage.service';
 
-import {Router} from '@angular/router';
-
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {AccountService} from '../service/account.service';
@@ -11,6 +9,7 @@ import {Iuser} from '../model/iuser';
 import {first} from 'rxjs/operators';
 import {StatusService} from '../service/status.service';
 import {IStatus} from '../model/istatus';
+import {IAccount} from "../model/iaccount";
 
 @Component({
   selector: 'app-header',
@@ -18,9 +17,13 @@ import {IStatus} from '../model/istatus';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  // @ts-ignore
+  friendListSuggest: IAccount[];
+  totalInvite = 0;
 
 
-
+// @ts-ignore
+  keyword: string;
 
   public userLogin: Iuser | undefined;
   public userPath: Iuser | undefined;
@@ -75,5 +78,19 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.auth.logout();
     this.route.navigate(['/login']);
+  }
+
+  private getListInvite(userName: string) {
+    // @ts-ignore
+    this.accountService.getListInvite(this.auth.currentUserValue.userName).subscribe(data => {
+      // @ts-ignore
+      this.friendListSuggest = data;
+      this.totalInvite = this.friendListSuggest.length;
+    });
+  }
+
+  private goToSearch() {
+    this.route.navigate(['friend-list-suggest', this.userNameLogin]);
+    this.accountService.changeKeyword(this.keyword);
   }
 }
