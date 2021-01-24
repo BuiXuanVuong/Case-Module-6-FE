@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
   statuses: IStatus[];
   // @ts-ignore
 
-  totalMessage: 0;
+  totalMessage: number;
 
     // @ts-ignore
   messages: Message[];
@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
 
               ) {
     // @ts-ignore
-    this.totalMessage = this.messages.length;
+
     // @ts-ignore
     this.userNameLogin = this.auth.currentUserValue.userName;
     this.router.paramMap.subscribe((paraMap: ParamMap) => {
@@ -91,6 +91,8 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // @ts-ignore
+
 
   }
   logout() {
