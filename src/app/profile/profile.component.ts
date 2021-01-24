@@ -46,18 +46,20 @@ export class ProfileComponent implements OnInit {
     this.currentAccount = {
       id: 1,
       email: 'a',
-      password: 'b'
+      password: 'b',
+      userName: 'c',
     };
     this.getAccountProfile();
   }
   getAccountProfile(){
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      const id = paramMap.get('id');
-      this.getUserProfileById(id);
+      const userName = paramMap.get('userName');
+      // @ts-ignore
+      this.getUserProfileByUserName(userName);
     });
   }
-  private getUserProfileById(id: any) {
-    this.accountService.getAccountProfile(id).subscribe(value => {
+  private getUserProfileByUserName(userName: string) {
+    this.accountService.getAccountProfile(userName).subscribe(value => {
       this.currentAccount = value;
 
       // @ts-ignore

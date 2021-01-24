@@ -41,8 +41,8 @@ export class AccountService {
     return this.user;
   }
 
-  getAccount(id: number): Observable<IAccount> {
-    return this.httpClient.get<IAccount>(`${this.API_URL}/${id}`);
+  getAccount(userName: string): Observable<IAccount> {
+    return this.httpClient.get<IAccount>(`${this.API_URL}/${userName}`);
   }
 
   findUserByUserName(userName: string){
@@ -74,12 +74,13 @@ export class AccountService {
 
 
 
-  getAccountProfile(id: string): Observable<IAccount> {
-    return this.httpClient.get<IAccount>(`${this.API_URL}/${3}`);
+  getAccountProfile(userName: string): Observable<IAccount> {
+    return this.httpClient.get<IAccount>(`${this.API_URL}/${userName}`);
 
   }
-  updateUserProfile(id: any, user: IAccount): Observable<IAccount> {
-    return this.httpClient.put<IAccount>(`${this.API_URL}/${3}`, user);
+
+  updateUserProfile(userName: string | undefined, user: IAccount): Observable<IAccount> {
+    return this.httpClient.put<IAccount>(`${this.API_URL}/${userName}`, user);
   }
 
 // @ts-ignore

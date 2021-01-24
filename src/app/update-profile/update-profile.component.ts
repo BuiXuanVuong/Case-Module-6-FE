@@ -107,9 +107,9 @@ export class UpdateProfileComponent implements OnInit {
         if (user.birthday === '') {
           user.birthday = this.birthday;
         }
-        this.accountService.updateUserProfile(this.currentAccount.id, user).subscribe(() => {
+        this.accountService.updateUserProfile(this.currentAccount.userName, user).subscribe(() => {
           alert('Cap nhat thanh cong');
-          this.router.navigate(['/profile' + this.currentAccount.id]);
+          this.router.navigate(['/profile' + this.currentAccount.userName]);
           console.log(this.currentAccount);
         }, () => {
           console.log('Loi');
