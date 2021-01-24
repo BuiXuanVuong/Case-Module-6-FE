@@ -22,7 +22,7 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let friend of friendListSuggest">
-                    <td><img src="{{friend.image}}"></td>
+                    <td><img style="width: 50px; height: 50px; border-radius: 50%" src="{{friend.image}}"></td>
                     <td> {{friend.userName}}</td>
                     <td>
                       <button class="btn btn-primary" (click)="acceptInvitation(this.auth.currentUserValue.userName, friend.id)">Accept Invitation</button>
