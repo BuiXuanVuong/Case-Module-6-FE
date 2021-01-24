@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
   password = '';
   phone = '';
   birthday = '';
-  arrayPicture = '';
+
 
   constructor(private accountService: AccountService,
               private auth: AuthService,
@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.currentAccount = {
-      id: 0,
+      // id: 0,
       email: '',
       password: '',
       userName: '',
@@ -74,7 +74,7 @@ export class ProfileComponent implements OnInit {
       // @ts-ignore
       this.avatarUrl = this.currentAccount.avatarUrl;
     }, () => {
-      console.log('Loi' + this.arrayPicture);
+      console.log('Loi');
     });
   }
 
