@@ -57,4 +57,8 @@ export class HeaderBackgroundComponent implements OnInit {
   listFriends() {
     this.router.navigate(['list-friend', this.userName]);
   }
+
+  profile() {
+    this.router.navigate(['about', this.userName]);
+  }
 }

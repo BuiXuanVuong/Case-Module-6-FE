@@ -6,9 +6,6 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AuthService} from '../auth.service';
-
-
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -24,8 +21,6 @@ export class ProfileComponent implements OnInit {
   password = '';
   phone = '';
   birthday = '';
-  arrayPicture = '';
-
   constructor(private accountService: AccountService,
               private auth: AuthService,
               private router: Router,
@@ -38,28 +33,27 @@ export class ProfileComponent implements OnInit {
     password: new FormControl('', Validators.required),
     phone: new FormControl('', [Validators.required]),
     birthday: new FormControl('', Validators.required),
-
   });
-
   ngOnInit(): void {
     // @ts-ignore
     this.currentAccount = {
-      id: 1,
-      email: 'a',
-      password: 'b'
+      // id: 0,
+      email: '',
+      password: '',
+      userName: '',
     };
     this.getAccountProfile();
   }
   getAccountProfile(){
     this.sub = this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      const id = paramMap.get('id');
-      this.getUserProfileById(id);
+      const userName = paramMap.get('userName');
+      // @ts-ignore
+      this.getUserProfileByUserName(userName);
     });
   }
-  private getUserProfileById(id: any) {
-    this.accountService.getAccountProfile(id).subscribe(value => {
+  private getUserProfileByUserName(userName: string) {
+    this.accountService.getAccountProfile(userName).subscribe(value => {
       this.currentAccount = value;
-
       // @ts-ignore
       this.email = this.currentAccount.email;
       // @ts-ignore
@@ -72,10 +66,9 @@ export class ProfileComponent implements OnInit {
       // @ts-ignore
       this.avatarUrl = this.currentAccount.avatarUrl;
     }, () => {
-      console.log('Loi' + this.arrayPicture);
+      console.log('Loi');
     });
   }
-
   private back() {
     this.router.navigate(['timeline', this.auth.currentUserValue.userName]);
   }

@@ -39,7 +39,7 @@ import {ListMessageComponent} from './list-message/list-message.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
 
-  {path: 'about', component: AboutComponent},
+  {path: 'about/:userNamePath', component: AboutComponent},
   {path: 'friend', component: FriendComponent},
   {path: 'group', component: GroupComponent},
   {path: 'photo', component: PhotoComponent},

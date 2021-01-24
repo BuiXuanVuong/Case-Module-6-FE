@@ -9,7 +9,7 @@ import {Iuser} from '../model/iuser';
 import {first} from 'rxjs/operators';
 import {StatusService} from '../service/status.service';
 import {IStatus} from '../model/istatus';
-import {IAccount} from "../model/iaccount";
+import {IAccount} from '../model/iaccount';
 
 @Component({
   selector: 'app-header',

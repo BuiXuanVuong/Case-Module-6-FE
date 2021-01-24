@@ -74,9 +74,7 @@ export class TimelineComponent implements OnInit {
   constructor(private statusService: StatusService,
               private router: Router,
               private route: ActivatedRoute,
-
               private auth: AuthService,
-
               private likeService: LikeService,
               private accountService: AccountService) {
 
@@ -93,7 +91,7 @@ export class TimelineComponent implements OnInit {
         this.userPath = data;
       });
 
-      accountService.getUserPathByUserName(this.auth.currentUserValue.userName).subscribe( data => {
+      accountService.getUserPathByUserName(this.auth.currentUserValue.userName).subscribe(data => {
         this.userLogin = data;
       });
 
@@ -112,10 +110,9 @@ export class TimelineComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.getStatuses(this.userName);
-    // @ts-ignore
   }
 
-   getStatuses(userName: any) {
+  getStatuses(userName: any) {
     // @ts-ignore
     this.statusService.getAllStatus(userName).subscribe(data => {
       this.statuses = data;
@@ -124,10 +121,10 @@ export class TimelineComponent implements OnInit {
 
 
   // @ts-ignore
-  public save( statusId, userName) {
+  public save(statusId, userName) {
     // @ts-ignore
     // tslint:disable-next-line:max-line-length
-    this.statusService.addReplyStatus(statusId, this.auth.currentUserValue.userName,  this.createReplyStatus()).subscribe((data) => {
+    this.statusService.addReplyStatus(statusId, this.auth.currentUserValue.userName, this.createReplyStatus()).subscribe((data) => {
       console.log('OK');
       this.replyStatusForm.reset();
       this.getStatuses(this.userNamePath);
@@ -164,7 +161,7 @@ export class TimelineComponent implements OnInit {
 
 
   searchAddFriend() {
-   this.router.navigate(['friend-list-suggest', this.userName]);
+    this.router.navigate(['friend-list-suggest', this.userName]);
   }
 
   waitInvitation() {
@@ -181,8 +178,8 @@ export class TimelineComponent implements OnInit {
     console.log('OK');
   }
 
-  likeStatus(statusId: number, userName: string){
-    this.likeService.likeStatus(statusId, this.auth.currentUserValue.userName ).subscribe(data => {
+  likeStatus(statusId: number, userName: string) {
+    this.likeService.likeStatus(statusId, this.auth.currentUserValue.userName).subscribe(data => {
       console.log('like status');
       this.getStatuses(this.userName);
     }, error => {
@@ -190,7 +187,7 @@ export class TimelineComponent implements OnInit {
     });
   }
 
-  unlikeStatus(statusId: number, userName: string){
+  unlikeStatus(statusId: number, userName: string) {
     this.likeService.unlikeStatus(statusId, this.auth.currentUserValue.userName).subscribe(
       data => {
         console.log('Huỷ like thành công');
@@ -202,8 +199,7 @@ export class TimelineComponent implements OnInit {
   }
 
 
-  private back(userNameLogin: any) {
-    this.router.navigate(['timeline', this.userNamePath]);
+  private goAbout(userNameLogin: any) {
+    this.router.navigate(['about', this.userNamePath]);
   }
-
 }
