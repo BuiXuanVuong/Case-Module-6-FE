@@ -1,22 +1,63 @@
-<h2>List Friend Suggest</h2>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>User Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let username of friendListSuggest">
-      <td> {{username.userName}}</td>
 
-      <td>
-<!--        <a [routerLink]="http://localhost:8080/invite/8">Invite</a>-->
-        <a (click)="sentRequestFriend(this.auth.currentUserValue.userName , username.id)" >Invite</a>
-      </td>
-    </tr>
-  </tbody>
+<app-header></app-header>
+<div>
+  <div class="theme-layout">
+    <section>
+      <div class="gap2 gray-bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row merged20" id="page-contents">
+
+                <app-header-background></app-header-background>
+
+                <h2>List Friend Suggest</h2>
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>Avatar</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let username of friendListSuggest">
+                    <td>
+                      <img style="width:50px; height: 50px; border-radius: 50%" src="{{username.image}}">
+                    </td>
+                    <td> {{username.userName}}</td>
+
+                    <td>
+                      <!--        <a [routerLink]="http://localhost:8080/invite/8">Invite</a>-->
+                      <button class="btn btn-primary" (click)="sentRequestFriend(this.auth.currentUserValue.userName , username.id, username.userName)" >Invite</button>
+                    </td>
+                  </tr>
+                  </tbody>
 
 
-</table>
+                </table>
 
-<button (click)="back()" type="submit" class="btn btn-lg btn-primary ml-2">Back</button>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- content -->
+
+    <div class="bottombar">
+      <div class="container">
+        <div class="row">
+          <br>
+          <br>
+          <div class="col-md-12">
+            <span class="copyright">© Nova 2021. All rights reserved.</span>
+            <!--            <i><img src="assets/images/credit-cards.png" alt=""></i>-->
+          </div>
+        </div>
+      </div>
+    </div><!-- bottom bar -->
+  </div>
+</div>
+

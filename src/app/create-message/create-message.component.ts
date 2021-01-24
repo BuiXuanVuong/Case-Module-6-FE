@@ -5,6 +5,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Iuser} from '../model/iuser';
 import {AuthService} from '../auth.service';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {AccountService} from '../service/account.service';
 
 @Component({
   selector: 'app-create-message',
@@ -25,7 +26,8 @@ export class CreateMessageComponent implements OnInit {
               private router: Router,
               private auth: AuthService,
               private route: ActivatedRoute,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private accountService: AccountService) {
     this.route.paramMap.subscribe((paraMap: ParamMap) => {
       // @ts-ignore
       // this.userPath = paraMap.get('userName');
@@ -34,6 +36,9 @@ export class CreateMessageComponent implements OnInit {
     });
     // @ts-ignore
     this.userLogin = auth.currentUserValue.userName;
+    accountService.getUserPathByUserName(this.auth.currentUserValue.userName).subscribe( data => {
+      this.userLogin = data;
+    });
   }
 
   ngOnInit(): void {

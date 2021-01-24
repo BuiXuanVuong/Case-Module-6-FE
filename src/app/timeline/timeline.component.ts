@@ -21,6 +21,9 @@ import {AuthService} from '../auth.service';
 import {LikeService} from '../service/like.service';
 import {AccountService} from '../service/account.service';
 import {Iuser} from '../model/iuser';
+import {FriendListSuggestComponent} from '../friend-list-suggest/friend-list-suggest.component';
+import {MessageService} from '../service/message.service';
+import {Message} from '../model/message';
 
 
 // @ts-ignore
@@ -40,6 +43,8 @@ export class TimelineComponent implements OnInit {
   public id: any;
   // @ts-ignore
   statuses: IStatus[];
+  // @ts-ignore
+  friendListSuggest: IAccount[];
 
   public userName: any;
   public userNamePath: any;
@@ -62,6 +67,8 @@ export class TimelineComponent implements OnInit {
   // @ts-ignore
   public userLogin: Iuser;
 
+  messages: Message[] | undefined;
+
   constructor(private statusService: StatusService,
               private router: Router,
               private route: ActivatedRoute,
@@ -69,7 +76,9 @@ export class TimelineComponent implements OnInit {
               private auth: AuthService,
 
               private likeService: LikeService,
-              private accountService: AccountService) {
+              private accountService: AccountService,
+              private messageService: MessageService
+              ) {
 
     // @ts-ignore
     this.userNamePath = this.route.snapshot.params.userNamePath;
@@ -101,6 +110,7 @@ export class TimelineComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.getStatuses(this.userName);
+    this.getAccountListSuggest(this.auth.currentUserValue.userName);
     // @ts-ignore
   }
 
@@ -189,8 +199,27 @@ export class TimelineComponent implements OnInit {
     );
   }
 
+  private getAccountListSuggest(userName: any) {
+    // @ts-ignore
+    this.accountService.getAccountListSuggest(userName).subscribe(data => {
+      // @ts-ignore
+      this.friendListSuggest = data;
+    });
+  }
+
+  sentRequestFriend(userName: string, idGet: number, userNameFriend: string) {
+    // @ts-ignore
+    this.accountService.requestFriend(this.auth.currentUserValue.userName, idGet).subscribe(data => {
+      alert('Bạn đã gửi lời mời kết bạn đến ' + userNameFriend );
+    });
+  }
+
   private back(userNameLogin: any) {
     this.router.navigate(['timeline', this.userNamePath]);
+  }
+
+  getListMessages() {
+    this.router.navigate(['list-message']);
   }
 
 }

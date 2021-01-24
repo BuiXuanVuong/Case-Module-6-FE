@@ -665,9 +665,7 @@
 
 
 
-
-
-                    <div class="widget">
+                    <div class="widget stick-widget">
                       <h4 class="widget-title">Shortcuts</h4>
                       <ul class="naves">
                         <li>
@@ -679,14 +677,15 @@
 <!--                          <i class="ti-mouse-alt"></i>-->
 <!--                          <a href="inbox.html" title="">Inbox</a>-->
 <!--                        </li>-->
+
 <!--                        <li>-->
 <!--                          <i class="ti-files"></i>-->
 <!--                          <a href="fav-page.html" title="">My pages</a>-->
 <!--                        </li>-->
-<!--                        <li>-->
-<!--                          <i class="ti-user"></i>-->
-<!--                          <a href="timeline-friends.html" title="">friends</a>-->
-<!--                        </li>-->
+                        <li>
+                          <i class="ti-user"></i>
+                          <a (click)="searchAddFriend()" title="">Suggest friends</a>
+                        </li>
 <!--                        <li>-->
 <!--                          <i class="ti-image"></i>-->
 <!--                          <a href="timeline-photos.html" title="">images</a>-->
@@ -698,16 +697,19 @@
 
                         <li>
                           <i class="ti-comments-smiley"></i>
-                          <a href="messages.html" title="">Messages</a>
+                          <a (click)="getListMessages()"  title="">Messages</a>
                         </li>
 <!--                        <li>-->
 <!--                          <i class="ti-bell"></i>-->
 <!--                          <a href="notifications.html" title="">Notifications</a>-->
 <!--                        </li>-->
-<!--                        <li>-->
-<!--                          <i class="ti-share"></i>-->
-<!--                          <a href="people-nearby.html" title="">People Nearby</a>-->
-<!--                        </li>-->
+
+
+                        <li>
+                          <i class="ti-share"></i>
+                          <a (click)="waitInvitation()" title="">Invitations</a>
+                        </li>
+
 <!--                        <li>-->
 <!--                          <i class="fa fa-bar-chart-o"></i>-->
 <!--                          <a href="insights.html" title="">insights</a>-->
@@ -979,7 +981,9 @@
                           <figure>
 <!--                            <img src="assets/images/resources/nearly1.jpg" alt="">-->
                             <img src="{{status.imageWhoPostStatus}}" alt="">
+
                           </figure>
+<!--                          <span>{{status.createdAt}}</span>-->
                           <div class="friend-name">
                             <div class="more">
                               <div class="more-post-optns"><i class="ti-more-alt"></i>
@@ -987,6 +991,7 @@
                                   <li (click)="editStatus(status.id)"><i
                                     class="fa fa-pencil-square-o"></i>Edit Post</li>
                                   <li (click)="deleteStatus(status.id)"><i class="fa fa-trash-o"></i>Delete Post</li>
+                                  <li>{{status.createdAt}}</li>
 <!--                                  <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>-->
 <!--                                  <li><i class="fa fa-address-card-o"></i>Boost This Post</li>-->
 <!--                                  <li><i class="fa fa-clock-o"></i>Schedule Post</li>-->
@@ -1360,50 +1365,26 @@
                     <!--                      <p>© Pitnik 2020. All Rights Reserved.</p>-->
                     <!--                    </div>&lt;!&ndash; little links &ndash;&gt;-->
 
-                    <div class="widget pitnik-links stick-widget">
-                      <a (click)="searchAddFriend()">List suggest friend</a>
-                      <a (click)="waitInvitation()">List of wait invitations</a>
-                      <a (click)="listFriends()">List friends</a>
-                    </div><!-- little links -->
+<!--                    <div class="widget pitnik-links stick-widget">-->
+<!--                      <a (click)="searchAddFriend()">List suggest friend</a>-->
+<!--                      <a (click)="waitInvitation()">List of wait invitations</a>-->
+<!--                      <a (click)="listFriends()">List friends</a>-->
+<!--                    </div>&lt;!&ndash; little links &ndash;&gt;-->
 
                     <div class="widget stick-widget">
                       <h4 class="widget-title">Who's follownig</h4>
                       <ul class="followers">
-                        <li>
-                          <figure><img src="assets/images/resources/friend-avatar2.jpg" alt=""></figure>
-                          <div class="friend-meta">
-                            <h4><a href="time-line.html" title="">Kelly Bill</a></h4>
-                            <a href="#" title="" class="underline">Add Friend</a>
-                          </div>
-                        </li>
-                        <li>
-                          <figure><img src="assets/images/resources/friend-avatar4.jpg" alt=""></figure>
-                          <div class="friend-meta">
-                            <h4><a href="time-line.html" title="">Issabel</a></h4>
-                            <a href="#" title="" class="underline">Add Friend</a>
-                          </div>
-                        </li>
-                        <li>
-                          <figure><img src="assets/images/resources/friend-avatar6.jpg" alt=""></figure>
-                          <div class="friend-meta">
-                            <h4><a href="time-line.html" title="">Andrew</a></h4>
-                            <a href="#" title="" class="underline">Add Friend</a>
-                          </div>
-                        </li>
-                        <li>
-                          <figure><img src="assets/images/resources/friend-avatar8.jpg" alt=""></figure>
-                          <div class="friend-meta">
-                            <h4><a href="time-line.html" title="">Sophia</a></h4>
-                            <a href="#" title="" class="underline">Add Friend</a>
-                          </div>
-                        </li>
-                        <li>
-                          <figure><img src="assets/images/resources/friend-avatar3.jpg" alt=""></figure>
-                          <div class="friend-meta">
-                            <h4><a href="time-line.html" title="">Allen</a></h4>
-                            <a href="#" title="" class="underline">Add Friend</a>
-                          </div>
-                        </li>
+                        <div *ngFor="let friend of friendListSuggest ">
+                          <li>
+                            <figure><img style="border-radius: 50%; width: 50px; height: 50px" src="{{friend.image}}" alt=""></figure>
+
+                            <div class="friend-meta">
+                              <h4><a style="color: black" title="">{{friend.userName}}</a></h4>
+                              <a style="color: black; font-size: 10px" (click)="sentRequestFriend(this.auth.currentUserValue.userName , friend.id, friend.userName)" title="" class="underline">Add Friend</a>
+                            </div>
+
+                          </li>
+                        </div>
                       </ul>
                     </div><!-- who's following -->
 
@@ -1430,6 +1411,8 @@
         </div>
       </div>
     </div><!-- bottom bar -->
+
+
   </div>
   <div class="side-panel">
     <h4 class="panel-title">General Setting</h4>

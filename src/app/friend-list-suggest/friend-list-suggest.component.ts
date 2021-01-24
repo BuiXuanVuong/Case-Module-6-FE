@@ -43,13 +43,11 @@ export class FriendListSuggestComponent implements OnInit {
     });
   }
 
-  sentRequestFriend(userName: string, idGet: number) {
+  sentRequestFriend(userName: string, idGet: number, userNameFriend: string) {
     // @ts-ignore
     this.accountService.requestFriend(this.auth.currentUserValue.userName, idGet).subscribe(data => {
-      alert('Bạn đã gửi lời mời kết bạn đến  user' + idGet );
+      alert('Bạn đã gửi lời mời kết bạn đến ' + userNameFriend );
     });
-
-
   }
 
   private back() {
