@@ -37,7 +37,7 @@ import {ListMessageComponent} from './list-message/list-message.component';
 
 
 const routes: Routes = [
-  // {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
 
   {path: 'about', component: AboutComponent},
   {path: 'friend', component: FriendComponent},
@@ -57,8 +57,6 @@ const routes: Routes = [
 
   {path: 'status-form/:id', component: StatusFormComponent},
 
-  
-
   {path: 'status-form/:userName', component: StatusFormComponent},
   {path: 'status-edit/:id', component: StatusEditComponent},
 
@@ -70,7 +68,10 @@ const routes: Routes = [
 
   // {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
   {path: 'create-message/:userPath', component: CreateMessageComponent},
-  {path: 'list-message', component: ListMessageComponent}
+  {path: 'list-message', component: ListMessageComponent},
+  {path: 'admin', component: UserManagerComponent}
+
+
 ];
 
 @NgModule({

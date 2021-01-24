@@ -16,6 +16,9 @@ export class AdminService {
   getAllUser(): Observable<IAccount[]>{
     return this.httpClient.get<IAccount[]>(`${apiUrl}/users`);
   }
+  searchUser(keyword: string): Observable<IAccount[]>{
+    return this.httpClient.get<IAccount[]>(`${apiUrl}/users` + '?search=' + keyword) ;
+  }
 
   blockActiveUser(userId: number, user: IAccount ): Observable<IAccount> {
     return this.httpClient.put<IAccount>(`${apiUrl}/users/${userId}/block`, user);

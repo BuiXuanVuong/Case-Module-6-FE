@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {IAccount} from '../model/iaccount';
 import {AuthService} from '../auth.service';
 import {AdminService} from '../service/admin.service';
+import {concatAll} from "rxjs/operators";
 
 @Component({
   selector: 'app-user-manager',
@@ -17,13 +18,17 @@ export class UserManagerComponent implements OnInit {
   page = 1;
   // @ts-ignore
   blockId: number;
+  // @ts-ignore
+  keyword: string;
 
 
   constructor(private adminService: AdminService,
               private authService: AuthService) { }
 
   ngOnInit(): void {
-
+    this.getAllUser();
+  }
+  getAllUser(){
     this.adminService.getAllUser().subscribe(data => {
       this.users = data;
       this.records = data.length;
@@ -54,6 +59,15 @@ export class UserManagerComponent implements OnInit {
         // });
       }, error => console.log(error));
     }
+  }
+
+  search(){
+    this.adminService.searchUser(this.keyword).subscribe(data => {
+      this.users = data;
+      this.records = data.length;
+    }, error => {
+      console.log(error);
+    });
   }
 
 
