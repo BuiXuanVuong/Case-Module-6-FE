@@ -1,5 +1,5 @@
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
-import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post';
 import {PostService} from '../post.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
@@ -24,6 +24,7 @@ import {Iuser} from '../model/iuser';
 import {FriendListSuggestComponent} from '../friend-list-suggest/friend-list-suggest.component';
 import {MessageService} from '../service/message.service';
 import {Message} from '../model/message';
+
 
 
 // @ts-ignore
@@ -52,14 +53,21 @@ export class TimelineComponent implements OnInit {
   accountId: number;
   // @ts-ignore
   statusId: number;
+
+  // @ts-ignore
+  statusReplyId: number;
   // @ts-ignore
   currentStatus: IStatus = {
     id: 0,
     content: '',
     images: [],
-    totalComments: 0,
+    totalStatusReplyLike: 0,
     totalLikes: 0,
 
+  };
+  currentStatusReply: { id: number; totalStatusReplyLike: number } = {
+    id: 0,
+    totalStatusReplyLike: 0,
   };
   totalRecord = 0;
   // @ts-ignore
@@ -67,7 +75,9 @@ export class TimelineComponent implements OnInit {
   // @ts-ignore
   public userLogin: Iuser;
 
+
   messages: Message[] | undefined;
+
 
   constructor(private statusService: StatusService,
               private router: Router,
@@ -80,8 +90,10 @@ export class TimelineComponent implements OnInit {
               private messageService: MessageService
               ) {
 
+
     // @ts-ignore
     this.userNamePath = this.route.snapshot.params.userNamePath;
+
 
     //
     this.route.paramMap.subscribe((paraMap: ParamMap) => {
@@ -120,6 +132,7 @@ export class TimelineComponent implements OnInit {
       this.statuses = data;
     });
   }
+
 
   // @ts-ignore
   public save( statusId, userName) {
@@ -172,6 +185,7 @@ export class TimelineComponent implements OnInit {
 
   listFriends() {
     this.router.navigate(['list-friend', this.userName]);
+
   }
 
   postWallFriend() {
@@ -199,6 +213,7 @@ export class TimelineComponent implements OnInit {
     );
   }
 
+
   private getAccountListSuggest(userName: any) {
     // @ts-ignore
     this.accountService.getAccountListSuggest(userName).subscribe(data => {
@@ -213,6 +228,7 @@ export class TimelineComponent implements OnInit {
       alert('Bạn đã gửi lời mời kết bạn đến ' + userNameFriend );
     });
   }
+
 
   private back(userNameLogin: any) {
     this.router.navigate(['timeline', this.userNamePath]);

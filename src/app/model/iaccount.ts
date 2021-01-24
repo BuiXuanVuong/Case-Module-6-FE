@@ -8,8 +8,12 @@ export interface IAccount {
   phone?: number;
   image?: string;
   birthday?: string;
+  image: string;
+
+  enabled?: boolean;
+  status?: number;
+
   avatarUrl: string;
 
   accessToken?: string;
-  enabled?: boolean;
 }

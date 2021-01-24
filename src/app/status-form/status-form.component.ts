@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IAccount} from '../model/iaccount';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {TokenStorageService} from '../service/token-storage.service';
 import {StatusService} from '../service/status.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -13,14 +13,48 @@ import {AuthService} from '../auth.service';
 import {AccountService} from '../service/account.service';
 import {Iuser} from '../model/iuser';
 
+import {Observable} from 'rxjs';
+
+
 @Component({
   selector: 'app-status-form',
   templateUrl: './status-form.component.html',
   styleUrls: ['./status-form.component.css']
 })
 export class StatusFormComponent implements OnInit {
+
+  constructor(private fb: FormBuilder,
+              private token: TokenStorageService,
+              private statusService: StatusService,
+              private route: Router,
+              private router: ActivatedRoute,
+              private storage: AngularFireStorage,
+              private auth: AuthService) {
+
+
+    // @ts-ignore
+    // this.userNamePath = +this.route.snapshot.paramMap.userNamePath;
+    this.router.paramMap.subscribe((paraMap: ParamMap) => {
+      console.log(paraMap.get('userName'));
+      this.userNamePath = paraMap.get('userName');
+    });
+    this.userNameLogin = auth.currentUserValue.userName;
+
+
+  }
+
+  url = '';
+  avatar = '';
+  // @ts-ignore
+  selectedFile: File = null;
+  title = 'cloudsSorage';
+  // @ts-ignore
+  downloadURL: Observable<string>;
+  failMessage = '';
+
+
   @Input()
-  currentAccount: IAccount = {
+  currentAccount: { password: string; avatarUrl: string; userName: string; email: string } = {
     avatarUrl: '',
     userName: '',
     email: '',
@@ -44,8 +78,10 @@ export class StatusFormComponent implements OnInit {
   public userNamePath: any;
   public userNameLogin: any;
 
+
   // @ts-ignore
   public userLogin: Iuser;
+
 
   constructor(private fb: FormBuilder,
               private token: TokenStorageService,
@@ -123,6 +159,7 @@ export class StatusFormComponent implements OnInit {
       imageURL: this.newStatus.value.imageURL,
     };
     if (image != null) {
+
       dataSent.imageURL = image;
     }
     // tslint:disable-next-line:triple-equals
@@ -189,21 +226,25 @@ export class StatusFormComponent implements OnInit {
       alert('Hãy điền vào form');
       return;
     } else {
+
       // @ts-ignore
       this.statusService.modifyStatus(this.id, dataSent).subscribe(
         (data) => {
           // tslint:disable-next-line:triple-equals
           if (data.message == 'success') {
             alert('Upadete success');
+
             window.location.reload();
             this.newStatus = this.fb.group({
               content: [''],
             });
             console.log(dataSent);
 
+
           } else {
             alert('Update fail');
           }
+
         }, () => {
           alert('Fail');
         }
@@ -213,6 +254,7 @@ export class StatusFormComponent implements OnInit {
 
 
   // @ts-ignore
+
   showPreview(event) {
     if (event.target.files && event.target.files[0]) {
       const imgReader = new FileReader();
@@ -227,28 +269,14 @@ export class StatusFormComponent implements OnInit {
     }
   }
 
-  submit() {
-    this.getImgFromFireBase();
-  }
 
-  getImgFromFireBase() {
-    if (this.selectedImage !== null) {
-      const filePath = `status/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
-      const fileRef = this.storage.ref(filePath);
-      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
-        finalize(
-          () => fileRef.getDownloadURL().subscribe(responseUrl => {
-            alert('Up ảnh thành công');
-            this.addStatus(responseUrl);
-          }, () => {
-            alert('Up thất bại');
-          })
-        )
-      ).subscribe();
-    } else {
-      this.addStatus();
-    }
 
+  // @ts-ignore
+  // tslint:disable-next-line:adjacent-overload-signatures
+  public addStatusOnWallFriend(userNameLogin: string, userNamePath: string) {
+    this.statusService.addStatusOnWallFriend(userNameLogin, userNamePath, this.createNewStatus()).subscribe((data) => {
+      console.log('statusform.component.ts ' + userNameLogin + '/ ' + userNamePath);
+    });
   }
 
 
