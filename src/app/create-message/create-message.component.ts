@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Message} from '../model/message';
 import {MessageService} from '../service/message.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
@@ -16,9 +16,13 @@ export class CreateMessageComponent implements OnInit {
   public userLogin: Iuser;
   // @ts-ignore
   public userPath: Iuser;
+  // @ts-ignore
+  @Output() totalMessages = new EventEmitter();
+  totalMessage = 0;
 
   public messageForm = new FormGroup({
-    message_body: new FormControl('')
+    message_body: new FormControl(''),
+
   });
 
   constructor(private messageService: MessageService,
@@ -44,6 +48,9 @@ export class CreateMessageComponent implements OnInit {
     // @ts-ignore
     this.messageService.createMessage(this.userLogin, this.userPath, this.createNewMessage()).subscribe((data) => {
       alert('Đã gửi tin nhắn đến' + this.userPath);
+      this.totalMessage ++;
+      this.totalMessages.emit(this.totalMessage);
+      // @ts-ignore
       this.messageForm.reset();
     });
   }

@@ -38,6 +38,7 @@ export class TimelineComponent implements OnInit {
     statusReplyBody: new FormControl(''),
   });
 
+
   public id: any;
   // @ts-ignore
   statuses: IStatus[];
@@ -67,6 +68,7 @@ export class TimelineComponent implements OnInit {
     totalStatusReplyLike: 0,
     totalLikes: 0,
   };
+
   totalRecord = 0;
   // @ts-ignore
   public userPath: Iuser;
@@ -111,6 +113,9 @@ export class TimelineComponent implements OnInit {
     }
 
   }
+
+
+  // @ts-ignore
 
   ngOnInit(): void {
     // @ts-ignore

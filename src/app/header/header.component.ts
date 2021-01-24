@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from '../service/token-storage.service';
 
-import {Router} from '@angular/router';
+
 
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AuthService} from '../auth.service';
@@ -11,6 +11,9 @@ import {Iuser} from '../model/iuser';
 import {first} from 'rxjs/operators';
 import {StatusService} from '../service/status.service';
 import {IStatus} from '../model/istatus';
+import {Message} from '../model/message';
+import {MessageService} from '../service/message.service';
+import {IAccount} from '../model/iaccount';
 
 @Component({
   selector: 'app-header',
@@ -30,14 +33,28 @@ export class HeaderComponent implements OnInit {
 
   // @ts-ignore
   statuses: IStatus[];
+  // @ts-ignore
+
+  totalMessage: 0;
+
+    // @ts-ignore
+  messages: Message[];
+  // @ts-ignore
+  friendListSuggest: IAccount[];
+
+
 
   constructor(private route: Router,
               private auth: AuthService,
               private accountService: AccountService,
               private router: ActivatedRoute,
               private statusService: StatusService,
-              private authService: AuthService
+              private authService: AuthService,
+              private messageService: MessageService,
+
               ) {
+    // @ts-ignore
+    this.totalMessage = this.messages.length;
     // @ts-ignore
     this.userNameLogin = this.auth.currentUserValue.userName;
     this.router.paramMap.subscribe((paraMap: ParamMap) => {
@@ -56,6 +73,10 @@ export class HeaderComponent implements OnInit {
     });
 
   }
+  // @ts-ignore
+
+
+
 
 
   clickGoToTimeLine() {

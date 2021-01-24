@@ -11,6 +11,8 @@ import {Router} from '@angular/router';
 export class ListMessageComponent implements OnInit {
 
   messages: Message[] | undefined;
+  // @ts-ignore
+  message: 0;
   constructor(private messageService: MessageService,
               private router: Router) { }
 
@@ -20,6 +22,9 @@ export class ListMessageComponent implements OnInit {
 
   private getMessages() {
     this.messageService.getMessageList().subscribe(data => {
+      // @ts-ignore
+      this.message += this.messages?.length;
+
       this.messages = data;
     });
   }
