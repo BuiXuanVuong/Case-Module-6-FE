@@ -101,5 +101,9 @@ export class StatusService {
       'Something bad happened; please try again later.');
   }
 
+  deleteReplyStatus(statusReplyId: number) {
+    return  this.http.delete<any>(`${this.BASE_URL}/status/reply/${statusReplyId}` );
+  }
+
 
 }

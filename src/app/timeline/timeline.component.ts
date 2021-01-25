@@ -222,4 +222,13 @@ export class TimelineComponent implements OnInit {
     this.router.navigate(['list-message']);
   }
 
+  deleteStatusReply(statusReplyId: number){
+    this.statusService.deleteReplyStatus(statusReplyId).subscribe(data => {
+      console.log('delete', data);
+      this.getStatuses(this.userName);
+    }, error => {
+      console.log('không xoá đc');
+    });
+  }
+
 }

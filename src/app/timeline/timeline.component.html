@@ -1105,9 +1105,11 @@
 
                                 <div class="we-comment">
 <!--                                  <h5><a href="time-line.html" title="">Jason borne</a></h5>-->
-
-                                    <p>{{reply.userReply}}</p>
+                                    <p>{{reply.userReply}}</p> &nbsp;
+                                  <a type="submit" (click)= "deleteStatusReply(reply.id)">Delete</a>
                                     <center><p>{{reply.statusReplyBody}}</p></center>
+
+
 
                                   </div>
 

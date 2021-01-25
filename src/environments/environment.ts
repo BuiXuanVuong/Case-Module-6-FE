@@ -8,7 +8,7 @@ export const environment = {
   apiUrl: 'http://localhost:8080',
 
   LIKE: 'http://localhost:8080/api',
-
+  apiSource: 'http://localhost:8080/api/admin',
   URL: 'http://localhost:8080/users',
   API_URL: ' http://localhost:8080/status',
   BASE_URL: 'http://localhost:8080',

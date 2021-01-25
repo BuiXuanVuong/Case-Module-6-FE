@@ -44,6 +44,8 @@ import { CreateMessageComponent } from './create-message/create-message.componen
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ListMessageComponent } from './list-message/list-message.component';
 import { HeaderBackgroundComponent } from './header-background/header-background.component';
+import { UserManagerComponent } from './user-manager/user-manager.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -89,20 +91,24 @@ import { HeaderBackgroundComponent } from './header-background/header-background
     HeaderBackgroundComponent,
 
 
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
+    UserManagerComponent,
 
-    FormsModule,
-    ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    AngularFireDatabaseModule,
-    MatFormFieldModule
 
   ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+
+        FormsModule,
+        ReactiveFormsModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
+        AngularFireDatabaseModule,
+        MatFormFieldModule,
+        NgxPaginationModule
+
+    ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
