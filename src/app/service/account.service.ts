@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {IAccount} from '../model/iaccount';
 import {DomSanitizer} from '@angular/platform-browser';
 import {AuthService} from '../auth.service';
@@ -14,10 +14,15 @@ import {Iuser} from '../model/iuser';
 })
 export class AccountService {
 
+
   constructor(private httpClient: HttpClient,
               private sanitizer: DomSanitizer,
               private auth: AuthService) { }
-  private httpOptions = {
+
+  keyword = new BehaviorSubject<string>('');
+  currentKeyword = this.keyword.asObservable();
+
+   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
       // Authorization: 'my-auth-token'
@@ -25,6 +30,11 @@ export class AccountService {
   };
   private API_URL = environment.URL;
   private BASE_URL = environment.BASE_URL;
+
+  // @ts-ignore
+  changeKeyword(keyword){
+    this.keyword.next(keyword);
+  }
 
 
   getAccountList(): Observable<any> {
@@ -88,5 +98,8 @@ export class AccountService {
     return this.httpClient.get<Iuser>(`${this.BASE_URL}/search/` + userNamePath);
   }
 
+  getSearchAccountListSuggest(userName: string, keyword: string): Observable<IAccount[]> {
+    return this.httpClient.get<IAccount[]>(`${this.BASE_URL}/searchFriend/` + this.auth.currentUserValue.userName + '?search=' + keyword);
+  }
 
 }

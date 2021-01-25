@@ -19,10 +19,11 @@ import {MessageService} from '../service/message.service';
 })
 export class HeaderComponent implements OnInit {
 
-
-
   public userLogin: Iuser | undefined;
   public userPath: Iuser | undefined;
+
+  // @ts-ignore
+  keyword: string;
 
   // @ts-ignore
   userNameLogin: string;
@@ -82,9 +83,6 @@ export class HeaderComponent implements OnInit {
     // });
   }
 
-
-
-
   ngOnInit(): void {
 
   }
@@ -92,4 +90,10 @@ export class HeaderComponent implements OnInit {
     this.auth.logout();
     this.route.navigate(['/login']);
   }
+
+  private goToSearch() {
+    this.route.navigate(['friend-list-suggest', this.userNameLogin]);
+    this.accountService.changeKeyword(this.keyword);
+  }
+
 }

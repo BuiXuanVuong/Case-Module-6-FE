@@ -17,6 +17,9 @@ export class FriendListSuggestComponent implements OnInit {
   // @ts-ignore
   friendListSuggest: IAccount[];
 
+  // @ts-ignore
+  public keyword: string;
+
   constructor(private accountService: AccountService,
               private router: Router,
               private route: ActivatedRoute,
@@ -30,8 +33,10 @@ export class FriendListSuggestComponent implements OnInit {
     // this.id = +this.route.snapshot.paramMap.get('userName');
 
     // @ts-ignore
-    this.userName = this.getAccountListSuggest(this.auth.currentUserValue.userName);
-    console.log(this.userName);
+    // this.userName = this.getAccountListSuggest(this.auth.currentUserValue.userName);
+    // console.log(this.userName);
+    this.accountService.currentKeyword.subscribe(keyword => this.keyword = keyword);
+    this.search();
   }
 
 
@@ -52,6 +57,16 @@ export class FriendListSuggestComponent implements OnInit {
 
   private back() {
     this.router.navigate(['timeline', this.auth.currentUserValue.userName]);
+  }
+
+  search(){
+    // this.accountService.currentKeyword.subscribe(keyword => this.keyword = keyword);
+    // @ts-ignore
+    this.accountService.getSearchAccountListSuggest(this.userName, this.keyword).subscribe(data => {
+      this.friendListSuggest = data;
+    }, error => {
+      console.log(error);
+    });
   }
 
   }
