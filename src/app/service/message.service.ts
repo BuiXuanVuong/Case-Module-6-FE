@@ -31,7 +31,7 @@ export class MessageService {
 
   createMessage(userLogin: Iuser, userPath: Iuser, message: Message) {
     // @ts-ignore
-    return this.httpClient.post<any>(`${this.BASE_URL}/message/` + userLogin + `/` + userPath, message, this.httpOptions);
+    return this.httpClient.post<any>(`${this.BASE_URL}/message/` + this.auth.currentUserValue.userName + `/` + userPath, message, this.httpOptions);
   }
 
 }

@@ -26,7 +26,7 @@
       <li><a href="newsfeed.html" title="Home" data-ripple=""><i class="fa fa-home"></i></a></li>
       <li>
         <a href="#" title="Friend Requests" data-ripple="">
-          <i class="fa fa-user"></i><em class="bg-red">5</em>
+          <i class="fa fa-user"></i><em class="bg-red">{{this.friendListSuggest.length}}</em>
         </a>
         <div class="dropdowns">
           <span>5 New Requests <a href="#" title="">View all Requests</a></span>
@@ -209,7 +209,7 @@
 
 
       <li>
-        <a href="#" title="Messages" data-ripple=""><i class="fa fa-commenting"></i><em class="bg-blue">9</em></a>
+        <a href="#" title="Messages" data-ripple=""><i class="fa fa-commenting"></i><em class="bg-blue">{{this.messages.length}}</em></a>
         <div class="dropdowns">
           <span>5 New Messages <a href="#" title="">Mark all as read</a></span>
           <ul class="drops-menu">

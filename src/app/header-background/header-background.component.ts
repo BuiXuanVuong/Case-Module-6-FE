@@ -5,6 +5,7 @@ import {StatusService} from '../service/status.service';
 import {AuthService} from '../auth.service';
 import {LikeService} from '../service/like.service';
 import {AccountService} from '../service/account.service';
+import {IAccount} from '../model/iaccount';
 
 @Component({
   selector: 'app-header-background',
@@ -42,6 +43,8 @@ export class HeaderBackgroundComponent implements OnInit {
         this.userLogin = data;
       });
     });
+
+
 
     console.log('name path: ' + this.userNamePath);
     if (this.userNamePath) {

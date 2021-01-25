@@ -8,6 +8,9 @@ import {Iuser} from '../model/iuser';
 import {first} from 'rxjs/operators';
 import {StatusService} from '../service/status.service';
 import {IStatus} from '../model/istatus';
+import {IAccount} from '../model/iaccount';
+import {Message} from '../model/message';
+import {MessageService} from '../service/message.service';
 
 @Component({
   selector: 'app-header',
@@ -27,12 +30,18 @@ export class HeaderComponent implements OnInit {
   // @ts-ignore
   statuses: IStatus[];
 
+  // @ts-ignore
+  friendListSuggest: IAccount[];
+
+  messages: Message[] | undefined;
+
   constructor(private route: Router,
               private auth: AuthService,
               private accountService: AccountService,
               private router: ActivatedRoute,
               private statusService: StatusService,
-              private authService: AuthService
+              private authService: AuthService,
+              private messageService: MessageService
               ) {
     // @ts-ignore
     this.userNameLogin = this.auth.currentUserValue.userName;
@@ -49,6 +58,17 @@ export class HeaderComponent implements OnInit {
       console.log('ok', data);
       this.userLogin = data;
 
+    });
+
+    // @ts-ignore
+    this.messageService.getMessageList().subscribe(data => {
+      this.messages = data;
+    });
+
+    // @ts-ignore
+    this.accountService.getListInvite(this.auth.currentUserValue.userName).subscribe(data => {
+      // @ts-ignore
+      this.friendListSuggest = data;
     });
 
   }
