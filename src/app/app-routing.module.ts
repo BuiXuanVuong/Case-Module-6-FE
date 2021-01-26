@@ -61,7 +61,8 @@ const routes: Routes = [
   // {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
   {path: 'create-message/:userPath', component: CreateMessageComponent},
   {path: 'list-message', component: ListMessageComponent},
-  {path: 'admin', component: UserManagerComponent}
+  {path: 'admin', component: UserManagerComponent},
+  {path: 'about/:userNamePath', component: AboutComponent},
 ];
 
 @NgModule({

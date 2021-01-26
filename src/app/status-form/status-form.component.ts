@@ -135,7 +135,7 @@ export class StatusFormComponent implements OnInit {
           (data) => {
             // tslint:disable-next-line:triple-equals
             if (data.message == 'success') {
-              alert('Đăng thành công');
+              alert('Success');
               window.location.reload();
               this.newStatus = this.fb.group({
                 content: [''],
@@ -143,7 +143,7 @@ export class StatusFormComponent implements OnInit {
               console.log(dataSent);
 
             } else {
-              alert('Đăng thất bại');
+              // alert('Đăng thất bại');
             }
             this.goToTimeLine();
           }, () => {
@@ -202,7 +202,7 @@ export class StatusFormComponent implements OnInit {
             console.log(dataSent);
 
           } else {
-            alert('Update fail');
+
           }
         }, () => {
           alert('Fail');
@@ -238,10 +238,10 @@ export class StatusFormComponent implements OnInit {
       this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
         finalize(
           () => fileRef.getDownloadURL().subscribe(responseUrl => {
-            alert('Up ảnh thành công');
+            alert('Success');
             this.addStatus(responseUrl);
           }, () => {
-            alert('Up thất bại');
+            // alert('Up thất bại');
           })
         )
       ).subscribe();
