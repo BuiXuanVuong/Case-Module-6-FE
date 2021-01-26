@@ -35,7 +35,8 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       userName: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      image: ['']
     });
 
   }
@@ -45,6 +46,7 @@ export class RegisterComponent implements OnInit {
     const newAccount: IAccount = this.registerForm.value;
     console.log(newAccount);
     this.accountService.createAccount(newAccount).subscribe(
+
       (data) => {
         // @ts-ignore
         // tslint:disable-next-line:triple-equals
@@ -55,9 +57,10 @@ export class RegisterComponent implements OnInit {
         console.log('Đăng kí không thành công');
       }
     );
+
   }
 
-  get userName(){
+  get userName() {
     return this.registerForm.get('userName');
   }
 
@@ -69,7 +72,8 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('password');
   }
 
-
-
+  get image() {
+    return this.registerForm.get('image');
+  }
 
 }

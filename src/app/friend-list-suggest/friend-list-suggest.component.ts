@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../service/account.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IAccount} from '../model/iaccount';
+import {AuthService} from '../auth.service';
 
 
 @Component({
@@ -11,44 +12,61 @@ import {IAccount} from '../model/iaccount';
 })
 export class FriendListSuggestComponent implements OnInit {
   public username: any;
+  public userName: any;
   public id: any;
   // @ts-ignore
   friendListSuggest: IAccount[];
 
+  // @ts-ignore
+  public keyword: string;
+
   constructor(private accountService: AccountService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private auth: AuthService) {
     // @ts-ignore
 
   }
 
   ngOnInit(): void {
     // @ts-ignore
-    this.id = +this.route.snapshot.paramMap.get('id');
-    console.log(this.id);
+    // this.id = +this.route.snapshot.paramMap.get('userName');
+
     // @ts-ignore
-    this.getAccountListSuggest(this.id);
+    // this.userName = this.getAccountListSuggest(this.auth.currentUserValue.userName);
+    // console.log(this.userName);
+    this.accountService.currentKeyword.subscribe(keyword => this.keyword = keyword);
+    this.search();
   }
 
 
-  private getAccountListSuggest(id: number) {
+  private getAccountListSuggest(userName: any) {
     // @ts-ignore
-    this.accountService.getAccountListSuggest(id).subscribe(data => {
+    this.accountService.getAccountListSuggest(userName).subscribe(data => {
       // @ts-ignore
       this.friendListSuggest = data;
     });
   }
 
-  sentRequestFriend(idPost: number, idGet: number) {
+  sentRequestFriend(userName: string, idGet: number, userNameFriend: string) {
     // @ts-ignore
-    this.accountService.requestFriend(this.id, idGet).subscribe(data => {
-      alert('Bạn đã gửi lời mời kết bạn đến  user' + idGet );
+    this.accountService.requestFriend(this.auth.currentUserValue.userName, idGet).subscribe(data => {
+      alert('Bạn đã gửi lời mời kết bạn đến ' + userNameFriend );
     });
-
-
   }
 
+  private back() {
+    this.router.navigate(['timeline', this.auth.currentUserValue.userName]);
+  }
 
+  search(){
+    // this.accountService.currentKeyword.subscribe(keyword => this.keyword = keyword);
+    // @ts-ignore
+    this.accountService.getSearchAccountListSuggest(this.userName, this.keyword).subscribe(data => {
+      this.friendListSuggest = data;
+    }, error => {
+      console.log(error);
+    });
+  }
 
-
-}
+  }

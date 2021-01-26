@@ -1,0 +1,83 @@
+<app-header></app-header>
+<center>
+  <div class="col-lg-6">
+    <app-header-background></app-header-background>
+
+    <form [formGroup]="newStatus" (ngSubmit)="submit()">
+
+      <div class="central-meta postbox">
+        <span class="create-post">Edit post</span>
+        <div class="new-postbox">
+          <figure>
+            <img src="assets/images/resources/admin.jpg" alt="">
+          </figure>
+          <div class="newpst-input">
+
+
+        <textarea style="height: 200px" formControlName="content" rows="2" placeholder="Share some what you are thinking?">
+
+
+                              </textarea>
+            <div *ngIf="totalImg != 0" class="status-img d-flex flex-row justify-content-start p-3">
+              <div [hidden]="totalImg < 1" class="img-box" style="max-height: 300px">
+                <img class="img-thumbnail" [style]="'max-width: '+100/totalImg+'%;max-height: inherit'" [src]="imgOne"
+                     alt="img1">
+              </div>
+              <img [hidden]="totalImg < 2" [src]="imgTwo" alt="img2">
+              <img [hidden]="totalImg < 3" [src]="imgThree" alt="img3">
+            </div>
+
+            <!--        <input hidden #fileUploader accept="image/*" (change)="showPreview($event)" type="file">-->
+
+          </div>
+          <div class="attachments">
+            <ul>
+              <li>
+                <i class="fa fa-image"></i>
+                <label class="fileContainer">
+
+                  <!--              <input type="file" (click)="fileUploader.click()"-->
+                  <input type="file" accept="image/*" (change)="showPreview($event)"
+                         name="image"
+                         autocomplete="off">
+
+                </label>
+              </li>
+
+
+            </ul>
+            <!--        <button class="post-btn" type="submit" data-ripple="">Post</button>-->
+          </div>
+          <div class="add-location-post">
+            <span>Drag map point to selected area</span>
+            <div class="row">
+
+              <div class="col-lg-6">
+                <label class="control-label">Lat :</label>
+                <input type="text" class="" id="us3-lat"/>
+              </div>
+              <div class="col-lg-6">
+                <label>Long :</label>
+                <input type="text" class="" id="us3-lon"/>
+              </div>
+            </div>
+            <!-- map -->
+            <div id="us3"></div>
+          </div>
+        </div>
+
+      </div><!-- add post new box -->
+
+      <button (click)="back(userNamePath)" type="submit" class="btn btn-lg btn-primary ml-2">Back</button>
+
+
+
+      <!--  <div *ngIf="this.userNamePath != this.userNameLogin">-->
+      <!--    <a class="btn btn-lg btn-primary ml-2" (click)="addStatusOnWallFriend(this.userNameLogin, this.userNamePath)">Đăng trên tường bạn bè</a>-->
+      <!--  </div>-->
+
+      <button type="submit"  class="btn btn-lg btn-primary ml-2">Cập nhật</button>
+
+    </form>
+  </div>
+</center>

@@ -1,22 +1,65 @@
-<h2>List Invite Friend</h2>
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>User Name</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let friend of friendListSuggest">
-    <td> {{friend.userName}}</td>
-    <td>
-      <a (click)="acceptInvitation(this.id, friend.id)">Accept Invitation</a>
 
-    </td>
-  </tr>
-  </tbody>
+<app-header></app-header>
+<div>
+  <div class="theme-layout">
+    <section>
+      <div class="gap2 gray-bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row merged20" id="page-contents">
+
+                <app-header-background></app-header-background>
+
+                <h2>List Invite Friend</h2>
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>Avatar</th>
+                    <th>User Name</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let friend of friendListSuggest">
+                    <td><img style="width: 50px; height: 50px; border-radius: 50%" src="{{friend.image}}"></td>
+                    <td> {{friend.userName}}</td>
+                    <td>
+                      <button class="btn btn-primary" (click)="acceptInvitation(this.auth.currentUserValue.userName, friend.id)">Accept Invitation</button>
+                    </td>
+                  </tr>
+                  </tbody>
 
 
-</table>
+                </table>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- content -->
+
+<!--    <div class="bottombar">-->
+<!--      <div class="container">-->
+<!--        <div class="row">-->
+<!--          <br>-->
+<!--          <br>-->
+<!--          <div class="col-md-12">-->
+<!--            <span class="copyright">© Nova 2021. All rights reserved.</span>-->
+<!--            &lt;!&ndash;            <i><img src="assets/images/credit-cards.png" alt=""></i>&ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>&lt;!&ndash; bottom bar &ndash;&gt;-->
+
+
+  </div>
+</div>
 
 
 

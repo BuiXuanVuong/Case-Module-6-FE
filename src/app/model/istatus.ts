@@ -11,6 +11,6 @@ export interface IStatus {
   totalComments?: number;
   totalLikes?: number;
   repliedStatusMessages?: StatusReply[];
-
-
+  imageWhoPostStatus?: string;
+  nameWhoPostStatus?: string;
 }

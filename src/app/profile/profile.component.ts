@@ -5,6 +5,7 @@ import {AccountService} from '../service/account.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AngularFireDatabase} from '@angular/fire/database';
+import {AuthService} from '../auth.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit {
   arrayPicture = '';
 
   constructor(private accountService: AccountService,
+              private auth: AuthService,
               private router: Router,
               private fb: FormBuilder,
               private db: AngularFireDatabase,
@@ -57,6 +59,7 @@ export class ProfileComponent implements OnInit {
     this.accountService.getAccountProfile(id).subscribe(value => {
       this.currentAccount = value;
 
+      // @ts-ignore
       this.email = this.currentAccount.email;
       // @ts-ignore
       this.userName = this.currentAccount.userName;
@@ -70,5 +73,9 @@ export class ProfileComponent implements OnInit {
     }, () => {
       console.log('Loi' + this.arrayPicture);
     });
+  }
+
+  private back() {
+    this.router.navigate(['timeline', this.auth.currentUserValue.userName]);
   }
 }

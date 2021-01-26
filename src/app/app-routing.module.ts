@@ -26,6 +26,9 @@ import {HeaderComponent} from './header/header.component';
 import {ListFriendComponent} from './list-friend/list-friend.component';
 import {HelloComponent} from './hello/hello.component';
 import {AuthGuard} from './auth-guard';
+import {CreateMessageComponent} from './create-message/create-message.component';
+import {ListMessageComponent} from './list-message/list-message.component';
+import {UserManagerComponent} from './user-manager/user-manager.component';
 
 
 const routes: Routes = [
@@ -38,7 +41,7 @@ const routes: Routes = [
   {path: 'video', component: VideoComponent},
   {path: 'register', component: RegisterComponent},
 
-  {path: 'timeline/:id', component: TimelineComponent},
+  {path: 'timeline/:userNamePath', component: TimelineComponent},
   {path: 'setting', component: SettingComponent},
   {path: 'create-post', component: CreatePostComponent},
   {path: 'posts', component: PostListComponent},
@@ -46,17 +49,20 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'update-profile', component: UpdateProfileComponent},
 
-  {path: 'status-form/:id', component: StatusFormComponent},
-  {path: 'status-edit', component: StatusEditComponent},
+  // {path: 'status-form/:id', component: StatusFormComponent},
+  // {path: 'status-form/:userName', component: StatusFormComponent},
+  {path: 'status-form/:userName', component: StatusFormComponent},
+  {path: 'status-edit/:id', component: StatusEditComponent},
 
 
   {path: 'friend-list-suggest/:id', component: FriendListSuggestComponent},
   {path: 'invite-friend/:id', component: InviteFriendComponent},
-  {path: 'list-friend/:id', component: ListFriendComponent},
-  {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent}
-
-
+  {path: 'list-friend/:userNamePath', component: ListFriendComponent},
+  // {path: 'hello', component: HelloComponent, canActivate: [AuthGuard]},
+  {path: 'create-message/:userPath', component: CreateMessageComponent},
+  {path: 'list-message', component: ListMessageComponent},
+  {path: 'admin', component: UserManagerComponent},
+  {path: 'about/:userNamePath', component: AboutComponent},
 ];
 
 @NgModule({

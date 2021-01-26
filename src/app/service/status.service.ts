@@ -7,6 +7,8 @@ import {IStatus} from '../model/istatus';
 import {INewfeedResponse} from '../model/inewfeed-response';
 import {StatusReply} from '../model/status-reply';
 import {catchError} from 'rxjs/operators';
+import {AuthService} from '../auth.service';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +25,9 @@ export class StatusService {
 
 
   constructor(private http: HttpClient,
-              private token: TokenStorageService) { }
+              private token: TokenStorageService,
+              private auth: AuthService,
+              private router: Router) { }
 
   deleteStatusById(id: number): Observable<any>{
     return this.http.delete(`${this.API_URL}/${id}`);
@@ -38,17 +42,18 @@ export class StatusService {
   getOneStatus(id: number): Observable<IStatus>{
     return this.http.get<IStatus>(`${this.API_URL}/${id}`);
   }
-  createStatus(id: number | undefined, data: IStatus): Observable<any>{
-    return this.http.post(`${this.API_URL}/${1}`, data);
+
+  createStatus(userName: string | undefined, data: IStatus): Observable<any>{
+    return this.http.post(`${this.API_URL}/` + this.auth.currentUserValue.userName, data);
   }
 
   editStatus( id: number, data: any): Observable<any>{
     return this.http.put(`${this.API_URL}/${id}`, data);
   }
 
-  modifyStatus(statusId: number, data: IStatus) {
+  modifyStatus(id: number, data: IStatus) {
     return this.http
-      .put<any>(`${this.BASE_URL}/status/` + statusId, data, this.httpOptions)
+      .put<any>(`${this.BASE_URL}/status/` + id, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
@@ -63,11 +68,21 @@ export class StatusService {
     return this.http.get<IStatus[]>(`${this.BASE_URL}/` + userName);
   }
 
-  addReplyStatus(statusId: number, wallId: number, data: StatusReply): Observable<any> {
+  goToTimeLine() {
+    return this.http.get<IStatus[]>(`${this.BASE_URL}/` + this.auth.currentUserValue.userName);
+  }
+
+  addReplyStatus(statusId: number, userName: string, data: StatusReply): Observable<any> {
     // @ts-ignore
     return this.http
-      .post(`${this.BASE_URL}/status/reply/` + statusId + `/` + wallId, data, this.httpOptions)
+      .post(`${this.BASE_URL}/status/reply/` + statusId + `/` + this.auth.currentUserValue.userName, data, this.httpOptions)
       .pipe(catchError(this.handleError));
+  }
+
+  addStatusOnWallFriend(userNameLogin: string, userNamePath: string, data: IStatus) {
+    // @ts-ignore
+    // tslint:disable-next-line:max-line-length
+    return this.http.post<any>(`${this.BASE_URL}/status/friend/` + this.auth.currentUserValue.userName + '/' + userNamePath, data, this.httpOptions).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -84,6 +99,10 @@ export class StatusService {
     // Return an observable with a user-facing error message.
     return throwError(
       'Something bad happened; please try again later.');
+  }
+
+  deleteReplyStatus(statusReplyId: number) {
+    return  this.http.delete<any>(`${this.BASE_URL}/status/reply/${statusReplyId}` );
   }
 
 

@@ -9,6 +9,9 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {IStatus} from '../model/istatus';
 import {finalize} from 'rxjs/operators';
 import {IImage} from '../model/iimage';
+import {AuthService} from '../auth.service';
+import {AccountService} from '../service/account.service';
+import {Iuser} from '../model/iuser';
 
 @Component({
   selector: 'app-status-form',
@@ -38,14 +41,39 @@ export class StatusFormComponent implements OnInit {
   selectedImage: any = null;
 
 
+  public userNamePath: any;
+  public userNameLogin: any;
+
+  // @ts-ignore
+  public userLogin: Iuser;
+
   constructor(private fb: FormBuilder,
               private token: TokenStorageService,
               private statusService: StatusService,
               private route: Router,
               private router: ActivatedRoute,
-              private storage: AngularFireStorage, ) {
+              private storage: AngularFireStorage,
+              private auth: AuthService,
+              private accountService: AccountService) {
+
+
+    // @ts-ignore
+    // this.userNamePath = +this.route.snapshot.paramMap.userNamePath;
+    this.router.paramMap.subscribe((paraMap: ParamMap) => {
+      console.log(paraMap.get('userName'));
+      this.userNamePath = paraMap.get('userName');
+    });
+    this.userNameLogin = auth.currentUserValue.userName;
+
+    accountService.getUserPathByUserName(this.auth.currentUserValue.userName).subscribe( data => {
+      // @ts-ignore
+      this.userLogin = data;
+    });
+
   }
+
   public id = 0;
+
   ngOnInit(): void {
     this.newStatus = this.fb.group({
       imageURL: [''],
@@ -54,25 +82,28 @@ export class StatusFormComponent implements OnInit {
     });
 
     // @ts-ignore
+
+    // @ts-ignore
     this.id = +this.router.snapshot.paramMap.get('id');
     if (this.id > 0) {
       this.loadData(this.id);
     }
   }
-    // @ts-ignore
-  private loadData(id) {
-      this.statusService.getOneStatus(id).subscribe((data) => {
-        console.log('getStudent', data);
-        for (const controlName in this.newStatus.controls) {
-          if (controlName) {
-            // @ts-ignore
-            this.newStatus.controls[controlName].setValue(data[controlName]);
-          }
-        }
-      });
-    }
 
-    private createNewStatus() {
+  // @ts-ignore
+  private loadData(id) {
+    this.statusService.getOneStatus(id).subscribe((data) => {
+      console.log('getStudent', data);
+      for (const controlName in this.newStatus.controls) {
+        if (controlName) {
+          // @ts-ignore
+          this.newStatus.controls[controlName].setValue(data[controlName]);
+        }
+      }
+    });
+  }
+
+  private createNewStatus() {
     const newStatus = {};
 
     for (const controlName in this.newStatus.controls) {
@@ -82,31 +113,88 @@ export class StatusFormComponent implements OnInit {
       }
     }
     return newStatus as IStatus;
-    }
+  }
 
 
   addStatus(image?: any) {
-
     // @ts-ignore
     const dataSent: IStatus = {
       content: this.newStatus.value.content,
       imageURL: this.newStatus.value.imageURL,
     };
-    if (image != null){
-      dataSent.images = [{
-        url: image
-      }];
+    if (image != null) {
+      dataSent.imageURL = image;
     }
     // tslint:disable-next-line:triple-equals
     if (dataSent.content == '') {
-     alert('Hãy điền vào form');
-     return;
+      alert('Hãy điền vào form');
+      return;
     } else {
-      this.statusService.createStatus(this.currentAccount.id, dataSent).subscribe(
+      if (this.userNameLogin === this.userNamePath) {
+        this.statusService.createStatus(this.currentAccount.userName, dataSent).subscribe(
+          (data) => {
+            // tslint:disable-next-line:triple-equals
+            if (data.message == 'success') {
+              alert('Success');
+              window.location.reload();
+              this.newStatus = this.fb.group({
+                content: [''],
+              });
+              console.log(dataSent);
+
+            } else {
+              // alert('Đăng thất bại');
+            }
+            this.goToTimeLine();
+          }, () => {
+            alert('Lỗi');
+          }
+        );
+      } else {
+        // @ts-ignore
+        this.statusService.addStatusOnWallFriend(this.userNameLogin, this.userNamePath, dataSent).subscribe((data) => {
+          console.log('statusform.component.ts ' + this.userNameLogin + '/ ' + this.userNamePath);
+          this.newStatus.reset();
+        });
+      }
+    }
+  }
+
+  goToTimeLine() {
+    this.route.navigate(['timeline', this.userNamePath]);
+  }
+
+
+  // @ts-ignore
+  // public editStatus() {
+  //   if (this.id > 0) {
+  //     // @ts-ignore
+  //     this.statusService.modifyStatus(this.id, this.updateStatus())
+  //       .subscribe((data) => {
+  //       });
+  //   }
+  // }
+
+  private editStatus(image?: any) {
+    // @ts-ignore
+    const dataSent: IStatus = {
+      content: this.newStatus.value.content,
+      imageURL: this.newStatus.value.imageURL,
+    };
+    if (image != null) {
+      dataSent.imageURL = image;
+    }
+    // tslint:disable-next-line:triple-equals
+    if (dataSent.content == '') {
+      alert('Hãy điền vào form');
+      return;
+    } else {
+      // @ts-ignore
+      this.statusService.modifyStatus(this.id, dataSent).subscribe(
         (data) => {
           // tslint:disable-next-line:triple-equals
           if (data.message == 'success') {
-            alert('Đăng thành công');
+            alert('Upadete success');
             window.location.reload();
             this.newStatus = this.fb.group({
               content: [''],
@@ -114,24 +202,15 @@ export class StatusFormComponent implements OnInit {
             console.log(dataSent);
 
           } else {
-            alert('Đăng thất bại');
+
           }
         }, () => {
-          alert('Lỗi');
+          alert('Fail');
         }
       );
     }
   }
 
-  public editStatus() {
-    if (this.id > 0) {
-      // @ts-ignore
-      this.statusService.modifyStatus(this.id, this.createNewStatus())
-        .subscribe((data) => {
-
-        });
-    }
-  }
 
   // @ts-ignore
   showPreview(event) {
@@ -146,7 +225,6 @@ export class StatusFormComponent implements OnInit {
     } else {
       this.selectedImage = null;
     }
-
   }
 
   submit() {
@@ -160,10 +238,10 @@ export class StatusFormComponent implements OnInit {
       this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
         finalize(
           () => fileRef.getDownloadURL().subscribe(responseUrl => {
-            alert('Up ảnh thành công');
+            alert('Success');
             this.addStatus(responseUrl);
           }, () => {
-            alert('Up thất bại');
+            // alert('Up thất bại');
           })
         )
       ).subscribe();
@@ -174,7 +252,17 @@ export class StatusFormComponent implements OnInit {
   }
 
 
+  // @ts-ignore
+  // tslint:disable-next-line:adjacent-overload-signatures
+  public addStatusOnWallFriend(userNameLogin: string, userNamePath: string) {
+    this.statusService.addStatusOnWallFriend(userNameLogin, userNamePath, this.createNewStatus()).subscribe((data) => {
+      console.log('statusform.component.ts ' + userNameLogin + '/ ' + userNamePath);
+    });
+  }
 
-
+  // tslint:disable-next-line:adjacent-overload-signatures
+  private back(userNameLogin: any) {
+    this.route.navigate(['timeline', this.userNamePath]);
+  }
 }
 

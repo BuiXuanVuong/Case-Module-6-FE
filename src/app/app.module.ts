@@ -40,6 +40,12 @@ import { ListFriendComponent } from './list-friend/list-friend.component';
 import { HelloComponent } from './hello/hello.component';
 import {JwtInterceptor} from './jwt-interceptor';
 import {ErrorInterceptor} from './error-interceptor';
+import { CreateMessageComponent } from './create-message/create-message.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ListMessageComponent } from './list-message/list-message.component';
+import { HeaderBackgroundComponent } from './header-background/header-background.component';
+import { UserManagerComponent } from './user-manager/user-manager.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -76,19 +82,33 @@ import {ErrorInterceptor} from './error-interceptor';
     HelloComponent,
 
 
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
+    CreateMessageComponent,
 
-    FormsModule,
-    ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    AngularFireDatabaseModule
+
+    ListMessageComponent,
+
+
+    HeaderBackgroundComponent,
+
+
+    UserManagerComponent,
+
 
   ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+
+        FormsModule,
+        ReactiveFormsModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
+        AngularFireDatabaseModule,
+        MatFormFieldModule,
+        NgxPaginationModule
+
+    ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

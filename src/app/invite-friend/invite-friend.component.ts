@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../service/account.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IAccount} from '../model/iaccount';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-invite-friend',
@@ -15,26 +16,32 @@ export class InviteFriendComponent implements OnInit {
   friendListSuggest: IAccount[];
   constructor(private accountService: AccountService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private auth: AuthService) { }
 
   ngOnInit(): void {
     // @ts-ignore
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.getListInvite(this.id);
+    // @ts-ignore
+    this.getListInvite(this.auth.currentUserValue.userName);
   }
 
-  acceptInvitation(idGet: number, idPost: number) {
-    this.accountService.acceptFriend(idGet, idPost).subscribe(data => {
+  acceptInvitation(userName: string, idPost: number) {
+    this.accountService.acceptFriend(userName, idPost).subscribe(data => {
       alert('Bạn đã đồng ý kết bạn');
     });
   }
 
-  private getListInvite(id: number) {
+  private getListInvite(userName: string) {
     // @ts-ignore
-    this.accountService.getListInvite(this.id).subscribe(data => {
+    this.accountService.getListInvite(this.auth.currentUserValue.userName).subscribe(data => {
       // @ts-ignore
       this.friendListSuggest = data;
     });
   }
 
-}
+  private back() {
+    this.router.navigate(['timeline', this.auth.currentUserValue.userName]);
+
+  }
+  }
